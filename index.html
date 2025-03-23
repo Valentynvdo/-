@@ -1367,16 +1367,15 @@ footer .copyright {
         </div>
     </section>
 
-    <!-- Калькулятор стейкінгу -->
-    <section class="staking-calculator" id="staking-calculator">
-        <h2 data-translate="staking-title">Калькулятор стейкінгу XPay Token</h2>
-        <p data-translate="staking-text">Розрахуй свій потенційний дохід від стейкінгу XPay Token! Стейкінг — це процес блокування твоїх токенів на платформі для підтримки мережі та отримання винагороди. У XPay ми пропонуємо 10% річних на твої токени. Наприклад, якщо ти заблокуєш 1,000 XPay Token, то через рік отримаєш 100 XPay Token як винагороду. Введи кількість токенів нижче, щоб дізнатися свій дохід!</p>
-        <div class="calculator-box">
-            <input type="number" id="stakeAmount" placeholder="Введіть кількість XPay Token" data-translate-placeholder="staking-input">
-            <p data-translate="staking-yearly">Прибуток за рік (10%): <span id="stakeResult">0 XPay</span></p>
-            <p data-translate="staking-monthly">Прибуток за місяць: <span id="stakeResultMonthly">0 XPay</span></p>
-        </div>
-    </section>
+   <section class="staking-calculator" id="staking-calculator">
+    <h2 data-translate="staking-title">Калькулятор стейкінгу XPay Token</h2>
+    <p data-translate="staking-text">Розрахуй свій потенційний дохід від стейкінгу XPay Token! Стейкінг — це процес блокування твоїх токенів на платформі для підтримки мережі та отримання винагороди. У XPay ми пропонуємо 10% річних на твої токени. Наприклад, якщо ти заблокуєш 1,000 XPay Token, то через рік отримаєш 100 XPay Token як винагороду. Введи кількість токенів нижче, щоб дізнатися свій дохід!</p>
+    <div class="calculator-box">
+        <input type="number" id="stakeAmount" placeholder="Введіть кількість XPay Token" data-translate-placeholder="staking-input">
+        <p><span data-translate="staking-yearly">Прибуток за рік (10%):</span> <span id="stakeResult">0 XPay</span></p>
+        <p><span data-translate="staking-monthly">Прибуток за місяць:</span> <span id="stakeResultMonthly">0 XPay</span></p>
+    </div>
+</section>
 
     <!-- Додаток -->
     <section class="app" id="app">
@@ -1392,17 +1391,16 @@ footer .copyright {
         </ul>
     </section>
 
-    <!-- Секція заробітку -->
     <section class="earn-section" id="earn">
-        <h2 data-translate="earn-title">Заробляй з XPay</h2>
-        <p data-translate="earn-text">Знімай відео про XPay, використовуй хештеги #XPayTON #CryptoTON, і отримуй 0.05$ за кожне відео! Подай заявку нижче.</p>
-        <div class="earn-box">
-            <input type="text" id="telegramUsername" placeholder="Ваш Telegram (@username)" data-translate-placeholder="earn-telegram">
-            <input type="number" id="videoCount" placeholder="Кількість відео" data-translate-placeholder="earn-video-count">
-            <p data-translate="earn-result">Ваш заробіток: <span id="earnResult">0$</span></p>
-            <button onclick="submitApplication()" data-translate="earn-submit">Подати заявку</button>
-        </div>
-    </section>
+    <h2 data-translate="earn-title">Заробляй з XPay</h2>
+    <p data-translate="earn-text">Знімай відео про XPay, використовуй хештеги #XPayTON #CryptoTON, і отримуй 0.05$ за кожне відео! Подай заявку нижче.</p>
+    <div class="earn-box">
+        <input type="text" id="telegramUsername" placeholder="Ваш Telegram (@username)" data-translate-placeholder="earn-telegram">
+        <input type="number" id="videoCount" placeholder="Кількість відео" data-translate-placeholder="earn-video-count">
+        <p><span data-translate="earn-result">Ваш заробіток:</span> <span id="earnResult">0$</span></p>
+        <button onclick="submitApplication()" data-translate="earn-submit">Подати заявку</button>
+    </div>
+</section>
 
     <!-- Новини -->
     <section class="news" id="news">
@@ -1885,67 +1883,109 @@ const translations = {
     }
 };
 // Функція для оновлення тексту на сторінці
-        function updateLanguage(lang) {
-            document.querySelectorAll('[data-translate]').forEach(element => {
-                const key = element.getAttribute('data-translate');
-                element.textContent = translations[lang][key];
-            });
-            document.querySelectorAll('[data-translate-placeholder]').forEach(input => {
-                const key = input.getAttribute('data-translate-placeholder');
-                input.placeholder = translations[lang][key];
-            });
+function updateLanguage(lang) {
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang][key]) {
+            element.innerHTML = translations[lang][key];
         }
-
-        // Калькулятор стейкінгу
-        document.getElementById('stakeAmount').addEventListener('input', function() {
-            const amount = parseFloat(this.value) || 0;
-            const yearlyReward = amount * 0.1; // 10% річних
-            const monthlyReward = yearlyReward / 12; // Прибуток за місяць
-            document.getElementById('stakeResult').textContent = yearlyReward.toFixed(2) + ' XPay';
-            document.getElementById('stakeResultMonthly').textContent = monthlyReward.toFixed(2) + ' XPay';
-        });
-
-        // Калькулятор заробітку
-        document.getElementById('videoCount').addEventListener('input', function() {
-            const count = parseInt(this.value) || 0;
-            const earnings = count * 0.05;
-            document.getElementById('earnResult').textContent = earnings.toFixed(2) + '$';
-        });
-
-        // Подання заявки
-        function submitApplication() {
-            const username = document.getElementById('telegramUsername').value;
-            const videoCount = document.getElementById('videoCount').value;
-            const lang = document.querySelector('.language-switcher a.active').getAttribute('data-lang');
-            if (username && videoCount) {
-                alert(translations[lang]["submit-success"] || `Заявка подана! Telegram: ${username}, відео: ${videoCount}`);
-            } else {
-                alert(translations[lang]["fill-all-fields"] || 'Заповніть усі поля!');
-            }
+    });
+    document.querySelectorAll('[data-translate-placeholder]').forEach(input => {
+        const key = input.getAttribute('data-translate-placeholder');
+        if (translations[lang][key]) {
+            input.placeholder = translations[lang][key];
         }
+    });
+}
 
-        // Перемикання мов
-        document.querySelectorAll('.language-switcher a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.querySelector('.language-switcher a.active').classList.remove('active');
-                link.classList.add('active');
-                const lang = link.getAttribute('data-lang');
-                updateLanguage(lang);
-            });
+// Калькулятор стейкінгу
+function updateStakingCalculator() {
+    const stakeInput = document.getElementById('stakeAmount');
+    const stakeResult = document.getElementById('stakeResult');
+    const stakeResultMonthly = document.getElementById('stakeResultMonthly');
+
+    if (stakeInput && stakeResult && stakeResultMonthly) {
+        const amount = parseFloat(stakeInput.value) || 0;
+        const yearlyReward = amount * 0.1; // 10% річних
+        const monthlyReward = yearlyReward / 12; // Прибуток за місяць
+
+        stakeResult.textContent = yearlyReward.toFixed(2) + ' XPay';
+        stakeResultMonthly.textContent = monthlyReward.toFixed(2) + ' XPay';
+    } else {
+        console.error("Елементи калькулятора стейкінгу не знайдені!");
+    }
+}
+
+// Калькулятор заробітку
+function updateEarningsCalculator() {
+    const videoCountInput = document.getElementById('videoCount');
+    const earnResult = document.getElementById('earnResult');
+
+    if (videoCountInput && earnResult) {
+        const count = parseInt(videoCountInput.value) || 0;
+        const earnings = count * 0.05;
+
+        earnResult.textContent = earnings.toFixed(2) + '$';
+    } else {
+        console.error("Елементи калькулятора заробітку не знайдені!");
+    }
+}
+
+// Подання заявки
+function submitApplication() {
+    const username = document.getElementById('telegramUsername').value;
+    const videoCount = document.getElementById('videoCount').value;
+    const lang = document.querySelector('.language-switcher a.active').getAttribute('data-lang');
+    if (username && videoCount) {
+        const message = translations[lang]["submit-success"]?.replace("{username}", username).replace("{videoCount}", videoCount) || 
+                        `Заявка подана! Telegram: ${username}, відео: ${videoCount}`;
+        alert(message);
+    } else {
+        alert(translations[lang]["fill-all-fields"] || 'Заповніть усі поля!');
+    }
+}
+
+// Ініціалізація слухачів подій після завантаження DOM
+document.addEventListener('DOMContentLoaded', () => {
+    // Перемикання мов
+    document.querySelectorAll('.language-switcher a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelector('.language-switcher a.active').classList.remove('active');
+            link.classList.add('active');
+            const lang = link.getAttribute('data-lang');
+            updateLanguage(lang);
         });
+    });
 
-        // Перегортання карток при кліку (для мобільних пристроїв)
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('flipped');
-            });
+    // Калькулятор стейкінгу
+    const stakeInput = document.getElementById('stakeAmount');
+    if (stakeInput) {
+        stakeInput.addEventListener('input', updateStakingCalculator);
+    } else {
+        console.error("Елемент із ID 'stakeAmount' не знайдено!");
+    }
+
+    // Калькулятор заробітку
+    const videoCountInput = document.getElementById('videoCount');
+    if (videoCountInput) {
+        videoCountInput.addEventListener('input', updateEarningsCalculator);
+    } else {
+        console.error("Елемент із ID 'videoCount' не знайдено!");
+    }
+
+    // Перегортання карток при кліку (для мобільних пристроїв)
+    document.querySelectorAll('.feature-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('flipped');
         });
+    });
 
-        // Індикатори прокрутки
-        const featureGrid = document.querySelector('.feature-grid');
-        const dots = document.querySelectorAll('.scroll-indicators .dot');
+    // Індикатори прокрутки
+    const featureGrid = document.querySelector('.feature-grid');
+    const dots = document.querySelectorAll('.scroll-indicators .dot');
 
+    if (featureGrid) {
         featureGrid.addEventListener('scroll', () => {
             const scrollLeft = featureGrid.scrollLeft;
             const cardWidth = featureGrid.querySelector('.feature-card').offsetWidth + 15; // 15 - gap
@@ -1966,9 +2006,11 @@ const translations = {
                 });
             });
         });
+    }
 
-        // Ініціалізація мови за замовчуванням
-        updateLanguage('uk');
-    </script>
+    // Ініціалізація мови за замовчуванням
+    updateLanguage('uk');
+});
+</script>
 </body>
 </html>
