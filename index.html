@@ -3,8 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XPay - Універсальний крипто-гаманець на TON у Telegram</title>
+    <title>Nexbit - Універсальний крипто-гаманець на TON у Telegram</title>
+    <meta name="description" content="Nexbit — зручний крипто-гаманець у Telegram на блокчейні TON. Створюйте гаманці, торгуйте NFT, беріть участь в аірдропах та обмінюйте криптовалюту легко й безпечно.">
+    <meta name="keywords" content="Nexbit, крипто-гаманець, TON, Telegram, NFT, аірдропи, криптовалюта, стейкінг">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Nexbit Team">
+    <meta property="og:title" content="Nexbit - Крипто-гаманець на TON у Telegram">
+    <meta property="og:description" content="Керуйте криптовалютою прямо в Telegram з Nexbit: створюйте гаманці, торгуйте NFT, беріть участь в аірдропах.">
+    <meta property="og:image" content="https://i.ibb.co/JRnhZdsH/IMG-4831.png">
+    <meta property="og:url" content="https://your-nexbit-site.com">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="https://i.ibb.co/JRnhZdsH/IMG-4831.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Nexbit",
+        "url": "https://your-nexbit-site.com",
+        "description": "Nexbit — крипто-гаманець у Telegram на блокчейні TON для торгівлі NFT, стейкінгу та аірдропів.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://your-nexbit-site.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     <style>
       * {
     margin: 0;
@@ -147,117 +172,218 @@ nav a:hover {
 }
 
 
+/* Герой-секція */
 .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 80px 15px;
     text-align: center;
-    padding: 80px 15px 40px;
-    background: linear-gradient(45deg, #1A1A1A, #2A2A2A);
-    background-attachment: fixed;
-    background-size: cover;
+    background: linear-gradient(45deg, #2A2A2A, #1A1A1A);
     position: relative;
+    overflow: visible;
 }
 
 .hero h1 {
-    font-size: 50px;
-    font-weight: 700;
+    font-size: 36px;
     margin-bottom: 20px;
-    max-width: 90%;
-    line-height: 1.2;
     background: linear-gradient(45deg, #00A3FF, #FF4D4D);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(0, 163, 255, 0.7), 0 0 25px rgba(255, 77, 77, 0.5);
-}
-
-/* 3D-куб */
-.cube-container {
-    perspective: 1000px;
-    margin: 30px 0;
-    width: 250px;
-    height: 250px;
-}
-
-.cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: rotateCubeY 40s infinite linear;
-}
-
-.face {
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    background: transparent !important;
-    border: none;
-    box-shadow: none;
-    overflow: hidden;
-}
-
-.face img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: transparent !important;
-}
-
-.front  { transform: rotateY(0deg) translateZ(125px); }
-.back   { transform: rotateY(180deg) translateZ(125px); }
-.right  { transform: rotateY(90deg) translateZ(125px); }
-.left   { transform: rotateY(-90deg) translateZ(125px); }
-
-@keyframes rotateCubeY {
-    0% { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
 }
 
 .hero p {
-    font-size: 18px;
     color: #B0B0B0;
-    margin: 40px 0 30px; /* Збільшено верхній відступ для зміщення вниз */
+    font-size: 16px;
     max-width: 90%;
+    margin: 0 auto 30px;
+    line-height: 1.5;
 }
 
-.hero .cta-buttons {
+.hero-fan {
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    height: 350px;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.hero .cta-buttons a {
-    padding: 10px 20px;
+.fan-image {
+    position: absolute;
+    width: 200px;
+    height: 333px;
+}
+
+.fan-image:nth-child(1) {
+    transform: rotate(-15deg) translateX(-120px);
+}
+
+.fan-image:nth-child(2) {
+    transform: rotate(-5deg) translateX(-40px);
+    z-index: 1;
+}
+
+.fan-image:nth-child(3) {
+    transform: rotate(5deg) translateX(40px);
+    z-index: 1;
+}
+
+.fan-image:nth-child(4) {
+    transform: rotate(15deg) translateX(120px);
+}
+
+.fan-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-buttons a {
+    padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
-    transition: background-color 0.3s, transform 0.3s;
+    font-size: 16px;
 }
 
-.hero .cta-buttons .primary {
+.cta-buttons .primary {
     background: linear-gradient(45deg, #00A3FF, #0088CC);
     color: #FFFFFF;
-    box-shadow: 0 0 10px rgba(0, 163, 255, 0.3);
+    box-shadow: 0 0 12px rgba(0, 163, 255, 0.3);
 }
 
-.hero .cta-buttons .primary:hover {
+.cta-buttons .primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 163, 255, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 163, 255, 0.5);
 }
 
-.hero .cta-buttons .secondary {
-    background-color: #333333;
+.cta-buttons .secondary {
+    background: transparent;
     color: #FFFFFF;
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #00A3FF, #FF4D4D) 1;
 }
 
-.hero .cta-buttons .secondary:hover {
-    background-color: #444444;
+.cta-buttons .secondary:hover {
     transform: translateY(-2px);
+    background: linear-gradient(45deg, rgba(0, 163, 255, 0.1), rgba(255, 77, 77, 0.1));
+}
+
+/* Адаптація для планшетів */
+@media (max-width: 768px) {
+    .hero {
+        padding: 60px 10px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .hero-fan {
+        height: 280px;
+        max-width: 560px;
+    }
+
+    .fan-image {
+        width: 160px;
+        height: 266px;
+    }
+
+    .fan-image:nth-child(1) {
+        transform: rotate(-15deg) translateX(-96px);
+    }
+
+    .fan-image:nth-child(2) {
+        transform: rotate(-5deg) translateX(-32px);
+        z-index: 1;
+    }
+
+    .fan-image:nth-child(3) {
+        transform: rotate(5deg) translateX(32px);
+        z-index: 1;
+    }
+
+    .fan-image:nth-child(4) {
+        transform: rotate(15deg) translateX(96px);
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .cta-buttons a {
+        padding: 10px 20px;
+        font-size: 14px;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* Адаптація для смартфонів */
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 8px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+
+    .hero-fan {
+        height: 210px;
+        max-width: 420px;
+    }
+
+    .fan-image {
+        width: 120px;
+        height: 200px;
+    }
+
+    .fan-image:nth-child(1) {
+        transform: rotate(-15deg) translateX(-72px);
+    }
+
+    .fan-image:nth-child(2) {
+        transform: rotate(-5deg) translateX(-24px);
+        z-index: 1;
+    }
+
+    .fan-image:nth-child(3) {
+        transform: rotate(5deg) translateX(24px);
+        z-index: 1;
+    }
+
+    .fan-image:nth-child(4) {
+        transform: rotate(15deg) translateX(72px);
+    }
+
+    .cta-buttons {
+        gap: 10px;
+    }
+
+    .cta-buttons a {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
 }
 
 /* Стиль для всіх заголовків h2 */
@@ -2508,20 +2634,18 @@ footer .copyright {
   <!-- Герой-секція -->
 <section class="hero">
     <h1 data-translate="hero-title">Nexbit — твій крипто-гаманець у Telegram на TON</h1>
-    <div class="cube-container">
-        <div class="cube">
-            <div class="face front">
-                <img src="https://i.ibb.co/6J7sTv0J/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-3-removebg-preview.png" alt="Nexbit App Screenshot 1">
-            </div>
-            <div class="face back">
-                <img src="https://i.ibb.co/BKZ4p78J/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-4-removebg-preview.png" alt="Nexbit App Screenshot 2">
-            </div>
-            <div class="face right">
-                <img src="https://i.ibb.co/YTkPd6s0/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-5-removebg-preview.png" alt="Nexbit App Screenshot 3">
-            </div>
-            <div class="face left">
-                <img src="https://i.ibb.co/jvBBV9wv/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-2-removebg-preview.png" alt="Nexbit App Screenshot 4">
-            </div>
+    <div class="hero-fan">
+        <div class="fan-image">
+            <img src="https://i.ibb.co/6J7sTv0J/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-3-removebg-preview.png" alt="Nexbit Telegram app screenshot 1">
+        </div>
+        <div class="fan-image">
+            <img src="https://i.ibb.co/BKZ4p78J/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-4-removebg-preview.png" alt="Nexbit TON wallet screenshot 2">
+        </div>
+        <div class="fan-image">
+            <img src="https://i.ibb.co/YTkPd6s0/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-5-removebg-preview.png" alt="Nexbit NFT marketplace screenshot 3">
+        </div>
+        <div class="fan-image">
+            <img src="https://i.ibb.co/jvBBV9wv/Gray-Shadow-Yes-You-Can-Affirmation-Motivational-Quote-Your-Story-2-removebg-preview.png" alt="Nexbit crypto exchange screenshot 4">
         </div>
     </div>
     <p data-translate="hero-text">Створюй гаманці, торгуй NFT, бери участь в аірдропах та обмінюй крипту прямо в Telegram! Nexbit — це найкращий спосіб керувати криптовалютою на блокчейні TON у 2025 році.</p>
