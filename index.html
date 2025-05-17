@@ -1,976 +1,865 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" prefix="og: https://ogp.me/ns#">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-translate="title">NFT Battle Arena - Крипто-гра на TON</title>
-  <meta name="description" data-translate="meta_description" content="NFT Battle Arena — епічна крипто-гра на TON blockchain! Прокачуй унікальні NFT, бийся на арені, заробляй поінти NBA. Запусти через @XpayTONbot у Telegram Mini App!">
-  <meta name="keywords" content="NFT Battle Arena, XpayTONbot, TON blockchain, crypto game, NFT marketplace, battle arena, clans, Telegram Mini App, NFT rewards">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="NFT Battle Arena Team">
-  <meta property="og:title" data-translate="og_title" content="NFT Battle Arena - Крипто-гра на TON">
-  <meta property="og:description" data-translate="og_description" content="Запусти NFT Battle Arena через @XpayTONbot! Прокачуй NFT, бийся на арені, торгуй на маркетплейсі та заробляй нагороди на TON blockchain.">
-  <meta property="og:image" content="https://i.ibb.co/GvTxHcD4/IMG-4924.png">
-  <meta property="og:url" content="https://nftbattlearena.example.com">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://nftbattlearena.example.com">
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom, #000000, #111111);
-      overflow-x: hidden;
-    }
-
-    section {
-      background: linear-gradient(to bottom, #000000, #111111);
-      border-radius: 16px;
-      margin: 16px;
-      padding: 16px;
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
-      transform: translateY(-4px);
-      transition: transform 0.3s ease;
-      position: relative;
-    }
-
-    section:hover {
-      transform: translateY(-8px);
-    }
-
-    section::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.4);
-    }
-
-    .animate-fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 0.6s ease-in forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .delay-100 { animation-delay: 0.1s; }
-    .delay-200 { animation-delay: 0.2s; }
-    .delay-300 { animation-delay: 0.3s; }
-
-    .animate-pulse {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .backdrop-filter {
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .neon-shadow {
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-    }
-
-    h1, h2, h3 {
-      text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-    }
-
-    header {
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    #mobile-menu.active {
-      display: block;
-      backdrop-filter: blur(8px);
-    }
-
-    .slider, .clan-slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      touch-action: pan-y;
-      border-radius: 12px;
-    }
-
-    .dot.active, .clan-dot.active {
-      background-color: #FFFFFF;
-    }
-
-    .hero-text {
-      opacity: 0;
-      animation: cinematic 30s infinite ease-in-out;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-      max-width: 90%;
-      margin: 0 auto;
-      text-wrap: balance;
-      z-index: 10;
-    }
-
-    .hero-text:nth-child(1) { animation-delay: 0s; }
-    .hero-text:nth-child(2) { animation-delay: 6s; }
-    .hero-text:nth-child(3) { animation-delay: 12s; }
-    .hero-text:nth-child(4) { animation-delay: 18s; }
-    .hero-text:nth-child(5) { animation-delay: 24s; }
-
-    @keyframes cinematic {
-      0%, 10% { opacity: 0; }
-      12%, 30% { opacity: 1; }
-      32%, 100% { opacity: 0; }
-    }
-
-    .faq-item {
-      background: linear-gradient(to bottom, #000000, #111111);
-      border-radius: 8px;
-      margin-bottom: 8px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-    .faq-question:hover {
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 12px;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-answer.active {
-      max-height: 200px;
-      padding: 12px;
-    }
-
-    .faq-toggle {
-      transition: transform 0.3s ease;
-    }
-
-    .faq-toggle.active {
-      transform: rotate(45deg);
-    }
-
-    .roadmap-point::before {
-      content: '';
-      position: absolute;
-      left: -12px;
-      top: 6px;
-      width: 6px;
-      height: 6px;
-      background: #FFFFFF;
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    }
-
-    .roadmap-point::after {
-      content: '';
-      position: absolute;
-      left: -10px;
-      top: 12px;
-      width: 1px;
-      height: calc(100% + 16px);
-      background: #FFFFFF;
-      opacity: 0.3;
-      box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
-    }
-
-    .gradient-btn {
-      background: linear-gradient(90deg, #FFFFFF 0%, #E0E0E0 100%);
-      transition: background 0.3s ease;
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-    }
-
-    .gradient-btn:hover {
-      background: linear-gradient(90deg, #E0E0E0 0%, #FFFFFF 100%);
-    }
-
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #111111;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #333333;
-      border-radius: 3px;
-    }
-
-    @media (max-width: 640px) {
-      h1 {
-        font-size: 1.25rem;
-        max-width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-        word-break: break-word;
-        text-wrap: balance;
-      }
-      h2 {
-        font-size: 1rem;
-      }
-      p {
-        font-size: 0.75rem;
-        line-height: 1.5;
-      }
-      .container {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-      .gradient-btn {
-        padding: 4px 8px;
-        font-size: 0.625rem;
-      }
-      .roadmap-point {
-        padding-left: 16px;
-      }
-      .hero-text {
-        font-size: 1.25rem;
-      }
-      .roadmap-point p {
-        font-size: 0.75rem;
-      }
-      .roadmap-point p.font-semibold {
-        font-size: 0.875rem;
-      }
-      #about .relative {
-        height: 5rem;
-      }
-      .faq-question {
-        font-size: 0.75rem;
-      }
-      .faq-answer {
-        font-size: 0.625rem;
-      }
-    }
-
-    @media (min-width: 641px) and (max-width: 1024px) {
-      h1 {
-        font-size: 1.75rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-      }
-      .hero-text {
-        font-size: 1.75rem;
-      }
-      .roadmap-point p {
-        font-size: 0.875rem;
-      }
-      .roadmap-point p.font-semibold {
-        font-size: 1rem;
-      }
-      #about .relative {
-        height: 6rem;
-      }
-      .faq-question {
-        font-size: 0.875rem;
-      }
-      .faq-answer {
-        font-size: 0.75rem;
-      }
-    }
-
-    @media (min-width: 1025px) {
-      h1 {
-        font-size: 2.25rem;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-      .hero-text {
-        font-size: 2.25rem;
-      }
-      .roadmap-point p {
-        font-size: 1rem;
-      }
-      .roadmap-point p.font-semibold {
-        font-size: 1.125rem;
-      }
-      #about .relative {
-        height: 7rem;
-      }
-      .faq-question {
-        font-size: 1rem;
-      }
-      .faq-answer {
-        font-size: 0.875rem;
-      }
-    }
-  </style>
-</head>
-<body class="text-white font-inter">
-  <!-- Header -->
-  <header class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-filter backdrop-blur-lg z-30">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <img src="https://i.ibb.co/GvTxHcD4/IMG-4924.png" alt="NFT Battle Arena Logo" class="h-8">
-      <nav class="hidden md:flex space-x-4">
-        <a href="#about" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_about">Про гру</a>
-        <a href="#features" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_features">Механіки</a>
-        <a href="#why" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_why">Чому ми</a>
-        <a href="#marketplace" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_marketplace">Маркетплейс</a>
-        <a href="#clans" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_clans">Клани</a>
-        <a href="#rewards" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_rewards">Нагороди</a>
-        <a href="#roadmap" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_roadmap">Плани</a>
-        <a href="#faq" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_faq">FAQ</a>
-        <a href="#community" class="text-gray-300 hover:text-white text-sm transition-colors" data-translate="nav_community">Ком’юніті</a>
-      </nav>
-      <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-3 py-1.5 rounded-lg text-sm font-medium" data-translate="nav_play">Грати</a>
-      <div class="flex space-x-2">
-        <button class="text-white text-sm" onclick="changeLanguage('uk')">🇺🇦</button>
-        <button class="text-white text-sm" onclick="changeLanguage('en')">🇬🇧</button>
-      </div>
-      <button class="md:hidden text-white text-xl" onclick="toggleMenu()">☰</button>
-    </div>
-    <nav id="mobile-menu" class="hidden bg-black bg-opacity-90 p-4 md:hidden">
-      <a href="#about" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_about">Про гру</a>
-      <a href="#features" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_features">Механіки</a>
-      <a href="#why" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_why">Чому ми</a>
-      <a href="#marketplace" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_marketplace">Маркетплейс</a>
-      <a href="#clans" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_clans">Клани</a>
-      <a href="#rewards" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_rewards">Нагороди</a>
-      <a href="#roadmap" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_roadmap">Плани</a>
-      <a href="#faq" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_faq">FAQ</a>
-      <a href="#community" class="block py-2 text-gray-300 hover:text-white text-sm" data-translate="nav_community">Ком’юніті</a>
-    </nav>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="py-10">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="about_title">NFT Battle Arena</h2>
-      <div class="relative">
-        <h1 class="hero-text" data-translate="about_hero_1">Це епічна гра!</h1>
-        <h1 class="hero-text" data-translate="about_hero_2">Ваші унікальні NFT б’ються за славу!</h1>
-        <h1 class="hero-text" data-translate="about_hero_3">Збирайте та прокачуйте бойові активи!</h1>
-        <h1 class="hero-text" data-translate="about_hero_4">Змагайтеся на арені, виконуйте завдання!</h1>
-        <h1 class="hero-text" data-translate="about_hero_5">Станьте легендою у світі кіберспорту!</h1>
-      </div>
-      <div class="flex justify-center mt-4">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="about_cta">Бийся зараз!</a>
-      </div>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm text-center animate-fade-in delay-100" data-translate="about_description">Крипто-гра на TON! Прокачуй NFT, заробляй NBA, бийся.</p>
-    </div>
-  </section>
-
-  <!-- Features Section (Slider) -->
-  <section id="features" class="py-10">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="features_title">Що в грі?</h2>
-      <div class="relative mt-4 overflow-hidden">
-        <div id="slider" class="slider">
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="feature_1_title">Прокачування NFT</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="feature_1_description">Підвищуй силу NFT.</p>
-          </div>
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="feature_2_title">Поінти NBA</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="feature_2_description">Заробляй для покупки.</p>
-          </div>
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="feature_3_title">Арена боїв</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="feature_3_description">Бийся за нагороди.</p>
-          </div>
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="feature_4_title">Клани</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="feature_4_description">Створюй та монетизуй.</p>
-          </div>
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="feature_5_title">TON Blockchain</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="feature_5_description">Виводи у TON.</p>
-          </div>
-        </div>
-        <div class="flex justify-center mt-2 space-x-2">
-          <span class="dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer active"></span>
-          <span class="dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer"></span>
-          <span class="dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer"></span>
-          <span class="dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer"></span>
-          <span class="dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer"></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Section -->
-  <section id="why" class="py-10">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="why_title">Чому ми?</h2>
-      <div class="mt-4 space-y-3 md:grid md:grid-cols-3 md:gap-3 md:space-y-0">
-        <div class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-          <h3 class="text-sm md:text-base font-semibold" data-translate="why_1_title">Епічний геймплей</h3>
-          <p class="text-gray-300 mt-1 text-xs" data-translate="why_1_description">Бийся та прокачуй!</p>
-        </div>
-        <div class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in delay-100 neon-shadow">
-          <h3 class="text-sm md:text-base font-semibold" data-translate="why_2_title">Заробіток</h3>
-          <p class="text-gray-300 mt-1 text-xs" data-translate="why_2_description">Отримуй поінти.</p>
-        </div>
-        <div class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in delay-200 neon-shadow">
-          <h3 class="text-sm md:text-base font-semibold" data-translate="why_3_title">TON Blockchain</h3>
-          <p class="text-gray-300 mt-1 text-xs" data-translate="why_3_description">Швидкий вивід.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NFT Marketplace Section -->
-  <section id="marketplace" class="py-10">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-xl md:text-2xl font-bold animate-fade-in" data-translate="marketplace_title">NFT Маркетплейс</h2>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm animate-fade-in delay-100" data-translate="marketplace_description">Торгуй прокачаними NFT та заробляй на арені!</p>
-      <div class="mt-4 bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in delay-200 neon-shadow">
-        <h3 class="text-sm md:text-base font-semibold" data-translate="marketplace_feature_title">Унікальні активи</h3>
-        <p class="text-gray-300 mt-1 text-xs" data-translate="marketplace_feature_description">Купуй, продавай, обмінюй NFT на TON blockchain.</p>
-      </div>
-      <div class="flex justify-center mt-3">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="marketplace_cta">Торгуй зараз!</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clans & Leaderboards Section -->
-  <section id="clans" class="py-10">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="clans_title">Клани та рейтинги</h2>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm text-center animate-fade-in delay-100" data-translate="clans_description">Створюй клани, змагайся за топ!</p>
-      <div class="relative mt-4 overflow-hidden">
-        <div id="clan-slider" class="clan-slider">
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="clan_1_title">Клан "Shadow Warriors"</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="clan_1_description">Об’єднайся для слави!</p>
-          </div>
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="clan_2_title">Клан "Crypto Legends"</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="clan_2_description">Домінуй на арені!</p>
-          </div>
-          <div class="min-w-full bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-            <h3 class="text-sm md:text-base font-semibold" data-translate="clan_3_title">Клан "Neon Knights"</h3>
-            <p class="text-gray-300 mt-1 text-xs" data-translate="clan_3_description">Сяй у боях!</p>
-          </div>
-        </div>
-        <div class="flex justify-center mt-2 space-x-2">
-          <span class="clan-dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer active"></span>
-          <span class="clan-dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer"></span>
-          <span class="clan-dot w-2 h-2 bg-gray-500 rounded-full cursor-pointer"></span>
-        </div>
-      </div>
-      <div class="flex justify-center mt-3">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="clans_cta">Створи клан!</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Rewards & Achievements Section -->
-  <section id="rewards" class="py-10">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="rewards_title">Нагороди та досягнення</h2>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm text-center animate-fade-in delay-100" data-translate="rewards_description">Заробляй унікальні нагороди за бої!</p>
-      <div class="mt-4 space-y-3 md:grid md:grid-cols-3 md:gap-3 md:space-y-0">
-        <div class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in neon-shadow">
-          <h3 class="text-sm md:text-base font-semibold" data-translate="reward_1_title">Майстер арени</h3>
-          <p class="text-gray-300 mt-1 text-xs" data-translate="reward_1_description">Виграй 100 боїв.</p>
-        </div>
-        <div class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in delay-100 neon-shadow">
-          <h3 class="text-sm md:text-base font-semibold" data-translate="reward_2_title">Легенда NFT</h3>
-          <p class="text-gray-300 mt-1 text-xs" data-translate="reward_2_description">Прокачай 50 NFT.</p>
-        </div>
-        <div class="bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg p-3 rounded-lg animate-fade-in delay-200 neon-shadow">
-          <h3 class="text-sm md:text-base font-semibold" data-translate="reward_3_title">Король клану</h3>
-          <p class="text-gray-300 mt-1 text-xs" data-translate="reward_3_description">Створи топ-клан.</p>
-        </div>
-      </div>
-      <div class="flex justify-center mt-3">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="rewards_cta">Заробляй нагороди!</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Roadmap Section -->
-  <section id="roadmap" class="py-10 overflow-x-hidden">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="roadmap_title">Наші плани</h2>
-      <div class="mt-4 max-w-[280px] md:max-w-[400px] mx-auto relative">
-        <div class="roadmap-point relative pl-4 animate-fade-in">
-          <p class="text-gray-300 font-semibold" data-translate="roadmap_1_title">2023: Старт гри</p>
-          <p class="text-gray-300 mt-1" data-translate="roadmap_1_description">Запуск NFT Battle Arena.</p>
-        </div>
-        <div class="roadmap-point relative pl-4 mt-6 animate-fade-in delay-100">
-          <p class="text-gray-300 font-semibold" data-translate="roadmap_2_title">2024: Арена боїв</p>
-          <p class="text-gray-300 mt-1" data-translate="roadmap_2_description">Бої між гравцями.</p>
-        </div>
-        <div class="roadmap-point relative pl-4 mt-6 animate-fade-in delay-200">
-          <p class="text-gray-300 font-semibold" data-translate="roadmap_3_title">2025: Клани</p>
-          <p class="text-gray-300 mt-1" data-translate="roadmap_3_description">Клани з Telegram.</p>
-        </div>
-        <div class="roadmap-point relative pl-4 mt-6 animate-fade-in delay-300">
-          <p class="text-gray-300 font-semibold" data-translate="roadmap_4_title">2026: Маркетплейс</p>
-          <p class="text-gray-300 mt-1" data-translate="roadmap_4_description">Торгівля у TON.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq" class="py-10">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold text-center animate-fade-in" data-translate="faq_title">Часті запитання</h2>
-      <div class="mt-4 space-y-2">
-        <div class="faq-item bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg neon-shadow animate-fade-in">
-          <div class="faq-question">
-            <span data-translate="faq_1_question">Що таке NFT Battle Arena?</span>
-            <span class="faq-toggle">➕</span>
-          </div>
-          <div class="faq-answer text-gray-300" data-translate="faq_1_answer">
-            NFT Battle Arena — це крипто-гра на TON blockchain, де ви прокачуєте унікальні NFT, б’єтеся на арені та заробляєте поінти NBA. Запустіть гру через @XpayTONbot!
-          </div>
-        </div>
-        <div class="faq-item bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg neon-shadow animate-fade-in delay-100">
-          <div class="faq-question">
-            <span data-translate="faq_2_question">Як почати гру на TON blockchain?</span>
-            <span class="faq-toggle">➕</span>
-          </div>
-          <div class="faq-answer text-gray-300" data-translate="faq_2_answer">
-            Відкрийте Telegram, запустіть @XpayTONbot і створіть свій перший NFT. Бийтеся на арені та заробляйте нагороди в NFT Battle Arena!
-          </div>
-        </div>
-        <div class="faq-item bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg neon-shadow animate-fade-in delay-200">
-          <div class="faq-question">
-            <span data-translate="faq_3_question">Як заробляти в NFT Battle Arena?</span>
-            <span class="faq-toggle">➕</span>
-          </div>
-          <div class="faq-answer text-gray-300" data-translate="faq_3_answer">
-            Заробляйте поінти NBA через бої, прокачування NFT і торгівлю на маркетплейсі. Виводьте нагороди через TON blockchain у Telegram Mini App.
-          </div>
-        </div>
-        <div class="faq-item bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg neon-shadow animate-fade-in delay-300">
-          <div class="faq-question">
-            <span data-translate="faq_4_question">Що таке клани в грі?</span>
-            <span class="faq-toggle">➕</span>
-          </div>
-          <div class="faq-answer text-gray-300" data-translate="faq_4_answer">
-            Клани — це команди гравців у NFT Battle Arena, які змагаються за топові місця. Створюйте клани через @XpayTONbot і монетизуйте їх!
-          </div>
-        </div>
-        <div class="faq-item bg-black bg-opacity-50 backdrop-filter backdrop-blur-lg neon-shadow animate-fade-in delay-300">
-          <div class="faq-question">
-            <span data-translate="faq_5_question">Як торгувати NFT?</span>
-            <span class="faq-toggle">➕</span>
-          </div>
-          <div class="faq-answer text-gray-300" data-translate="faq_5_answer">
-            Використовуйте NFT маркетплейс у грі для купівлі, продажу чи обміну NFT. Усі транзакції безпечні завдяки TON blockchain.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Community Section -->
-  <section id="community" class="py-10">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-xl md:text-2xl font-bold animate-fade-in" data-translate="community_title">Ком’юніті</h2>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm animate-fade-in delay-100" data-translate="community_description">Долучайся до NFT Battle Arena! Створюй клани, змагайся в боях і стань частиною кріпто-ком’юніті на TON blockchain. Запусти гру через @XpayTONbot і здобувай славу!</p>
-      <div class="flex justify-center mt-3">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="community_cta">Долучитися</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Telegram Mini App Section -->
-  <section id="telegram" class="py-10">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="text-xl md:text-2xl font-bold animate-fade-in" data-translate="telegram_title">Грай у Telegram</h2>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm animate-fade-in delay-100" data-translate="telegram_description">Грай у NFT Battle Arena через Telegram! Прокачуй NFT, торгуй на маркетплейсі та вигравай нагороди в Telegram Mini App на TON blockchain.</p>
-      <div class="flex justify-center mt-3">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="telegram_cta">Запустити</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section id="cta" class="py-10 text-center">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl md:text-2xl font-bold animate-fade-in" data-translate="cta_title">Стань легендою!</h2>
-      <p class="mt-3 text-gray-300 text-xs md:text-sm animate-fade-in delay-100" data-translate="cta_description">Стань легендою NFT Battle Arena! Збирай унікальні NFT, бийся на арені та заробляй нагороди на TON blockchain. Почни гру через @XpayTONbot!</p>
-      <div class="flex justify-center mt-3">
-        <a href="https://t.me/XpayTONbot" class="gradient-btn text-black px-4 py-2 rounded-lg font-medium animate-pulse text-xs" data-translate="cta_button">Грати!</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="bg-black py-6">
-    <div class="max-w-screen-xl mx-auto px-4 text-center">
-      <img src="https://i.ibb.co/GvTxHcD4/IMG-4924.png" alt="NFT Battle Arena Logo" class="h-16 mx-auto mb-2">
-      <div class="flex flex-wrap justify-center gap-2 text-xs text-gray-300">
-        <a href="#about" class="hover:text-white" data-translate="nav_about">Про гру</a>
-        <a href="#marketplace" class="hover:text-white" data-translate="nav_marketplace">Маркетплейс</a>
-        <a href="#clans" class="hover:text-white" data-translate="nav_clans">Клани</a>
-        <a href="#rewards" class="hover:text-white" data-translate="nav_rewards">Нагороди</a>
-        <a href="#roadmap" class="hover:text-white" data-translate="nav_roadmap">Плани</a>
-        <a href="#faq" class="hover:text-white" data-translate="nav_faq">FAQ</a>
-        <a href="#community" class="hover:text-white" data-translate="nav_community">Ком’юніті</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Translations object
-    const translations = {
-      uk: {
-        title: "NFT Battle Arena - Крипто-гра на TON",
-        meta_description: "NFT Battle Arena — епічна крипто-гра на TON blockchain! Прокачуй унікальні NFT, бийся на арені, заробляй поінти NBA. Запусти через @XpayTONbot у Telegram Mini App!",
-        og_title: "NFT Battle Arena - Крипто-гра на TON",
-        og_description: "Запусти NFT Battle Arena через @XpayTONbot! Прокачуй NFT, бийся на арені, торгуй на маркетплейсі та заробляй нагороди на TON blockchain.",
-        nav_about: "Про гру",
-        nav_features: "Механіки",
-        nav_why: "Чому ми",
-        nav_marketplace: "Маркетплейс",
-        nav_clans: "Клани",
-        nav_rewards: "Нагороди",
-        nav_roadmap: "Плани",
-        nav_faq: "FAQ",
-        nav_community: "Ком’юніті",
-        nav_play: "Грати",
-        about_title: "NFT Battle Arena",
-        about_hero_1: "Це епічна гра!",
-        about_hero_2: "Ваші унікальні NFT б’ються за славу!",
-        about_hero_3: "Збирайте та прокачуйте бойові активи!",
-        about_hero_4: "Змагайтеся на арені, виконуйте завдання!",
-        about_hero_5: "Станьте легендою у світі кіберспорту!",
-        about_cta: "Бийся зараз!",
-        about_description: "Крипто-гра на TON! Прокачуй NFT, заробляй NBA, бийся.",
-        features_title: "Що в грі?",
-        feature_1_title: "Прокачування NFT",
-        feature_1_description: "Підвищуй силу NFT.",
-        feature_2_title: "Поінти NBA",
-        feature_2_description: "Заробляй для покупки.",
-        feature_3_title: "Арена боїв",
-        feature_3_description: "Бийся за нагороди.",
-        feature_4_title: "Клани",
-        feature_4_description: "Створюй та монетизуй.",
-        feature_5_title: "TON Blockchain",
-        feature_5_description: "Виводи у TON.",
-        why_title: "Чому ми?",
-        why_1_title: "Епічний геймплей",
-        why_1_description: "Бийся та прокачуй!",
-        why_2_title: "Заробіток",
-        why_2_description: "Отримуй поінти.",
-        why_3_title: "TON Blockchain",
-        why_3_description: "Швидкий вивід.",
-        marketplace_title: "NFT Маркетплейс",
-        marketplace_description: "Торгуй прокачаними NFT та заробляй на арені!",
-        marketplace_feature_title: "Унікальні активи",
-        marketplace_feature_description: "Купуй, продавай, обмінюй NFT на TON blockchain.",
-        marketplace_cta: "Торгуй зараз!",
-        clans_title: "Клани та рейтинги",
-        clans_description: "Створюй клани, змагайся за топ!",
-        clan_1_title: 'Клан "Shadow Warriors"',
-        clan_1_description: "Об’єднайся для слави!",
-        clan_2_title: 'Клан "Crypto Legends"',
-        clan_2_description: "Домінуй на арені!",
-        clan_3_title: 'Клан "Neon Knights"',
-        clan_3_description: "Сяй у боях!",
-        clans_cta: "Створи клан!",
-        rewards_title: "Нагороди та досягнення",
-        rewards_description: "Заробляй унікальні нагороди за бої!",
-        reward_1_title: "Майстер арени",
-        reward_1_description: "Виграй 100 боїв.",
-        reward_2_title: "Легенда NFT",
-        reward_2_description: "Прокачай 50 NFT.",
-        reward_3_title: "Король клану",
-        reward_3_description: "Створи топ-клан.",
-        rewards_cta: "Заробляй нагороди!",
-        roadmap_title: "Наші плани",
-        roadmap_1_title: "2023: Старт гри",
-        roadmap_1_description: "Запуск NFT Battle Arena.",
-        roadmap_2_title: "2024: Арена боїв",
-        roadmap_2_description: "Бої між гравцями.",
-        roadmap_3_title: "2025: Клани",
-        roadmap_3_description: "Клани з Telegram.",
-        roadmap_4_title: "2026: Маркетплейс",
-        roadmap_4_description: "Торгівля у TON.",
-        cinematic_1: "Скоро",
-        cinematic_2: "Маркетплейс",
-        cinematic_3: "Ваших бойових NFT",
-        faq_title: "Часті запитання",
-        faq_1_question: "Що таке NFT Battle Arena?",
-        faq_1_answer: "NFT Battle Arena — це крипто-гра на TON blockchain, де ви прокачуєте унікальні NFT, б’єтеся на арені та заробляєте поінти NBA. Запустіть гру через @XpayTONbot!",
-        faq_2_question: "Як почати гру на TON blockchain?",
-        faq_2_answer: "Відкрийте Telegram, запустіть @XpayTONbot і створіть свій перший NFT. Бийтеся на арені та заробляйте нагороди в NFT Battle Arena!",
-        faq_3_question: "Як заробляти в NFT Battle Arena?",
-        faq_3_answer: "Заробляйте поінти NBA через бої, прокачування NFT і торгівлю на маркетплейсі. Виводьте нагороди через TON blockchain у Telegram Mini App.",
-        faq_4_question: "Що таке клани в грі?",
-        faq_4_answer: "Клани — це команди гравців у NFT Battle Arena, які змагаються за топові місця. Створюйте клани через @XpayTONbot і монетизуйте їх!",
-        faq_5_question: "Як торгувати NFT?",
-        faq_5_answer: "Використовуйте NFT маркетплейс у грі для купівлі, продажу чи обміну NFT. Усі транзакції безпечні завдяки TON blockchain.",
-        community_title: "Ком’юніті",
-        community_description: "Долучайся до NFT Battle Arena! Створюй клани, змагайся в боях і стань частиною кріпто-ком’юніті на TON blockchain. Запусти гру через @XpayTONbot і здобувай славу!",
-        community_cta: "Долучитися",
-        telegram_title: "Грай у Telegram",
-        telegram_description: "Грай у NFT Battle Arena через Telegram! Прокачуй NFT, торгуй на маркетплейсі та вигравай нагороди в Telegram Mini App на TON blockchain.",
-        telegram_cta: "Запустити",
-        cta_title: "Стань легендою!",
-        cta_description: "Стань легендою NFT Battle Arena! Збирай унікальні NFT, бийся на арені та заробляй нагороди на TON blockchain. Почни гру через @XpayTONbot!",
-        cta_button: "Грати!"
-      },
-      en: {
-        title: "NFT Battle Arena - Crypto Game on TON",
-        meta_description: "NFT Battle Arena is an epic crypto game on TON blockchain! Upgrade unique NFTs, fight in the arena, earn NBA points. Launch via @XpayTONbot in Telegram Mini App!",
-        og_title: "NFT Battle Arena - Crypto Game on TON",
-        og_description: "Launch NFT Battle Arena via @XpayTONbot! Upgrade NFTs, fight in the arena, trade on the marketplace, and earn rewards on TON blockchain.",
-        nav_about: "About",
-        nav_features: "Features",
-        nav_why: "Why Us",
-        nav_marketplace: "Marketplace",
-        nav_clans: "Clans",
-        nav_rewards: "Rewards",
-        nav_roadmap: "Roadmap",
-        nav_faq: "FAQ",
-        nav_community: "Community",
-        nav_play: "Play",
-        about_title: "NFT Battle Arena",
-        about_hero_1: "It's an epic game!",
-        about_hero_2: "Your unique NFTs fight for glory!",
-        about_hero_3: "Collect and upgrade battle assets!",
-        about_hero_4: "Compete in the arena, complete missions!",
-        about_hero_5: "Become a legend in the esports world!",
-        about_cta: "Fight Now!",
-        about_description: "Crypto game on TON! Upgrade NFTs, earn NBA points, fight.",
-        features_title: "What's in the Game?",
-        feature_1_title: "NFT Upgrading",
-        feature_1_description: "Boost your NFT's power.",
-        feature_2_title: "NBA Points",
-        feature_2_description: "Earn for purchases.",
-        feature_3_title: "Battle Arena",
-        feature_3_description: "Fight for rewards.",
-        feature_4_title: "Clans",
-        feature_4_description: "Create and monetize.",
-        feature_5_title: "TON Blockchain",
-        feature_5_description: "Withdraw in TON.",
-        why_title: "Why Us?",
-        why_1_title: "Epic Gameplay",
-        why_1_description: "Fight and upgrade!",
-        why_2_title: "Earnings",
-        why_2_description: "Earn points.",
-        why_3_title: "TON Blockchain",
-        why_3_description: "Fast withdrawal.",
-        marketplace_title: "NFT Marketplace",
-        marketplace_description: "Trade upgraded NFTs and earn in the arena!",
-        marketplace_feature_title: "Unique Assets",
-        marketplace_feature_description: "Buy, sell, or trade NFTs on TON blockchain.",
-        marketplace_cta: "Trade Now!",
-        clans_title: "Clans & Leaderboards",
-        clans_description: "Create clans, compete for the top!",
-        clan_1_title: 'Clan "Shadow Warriors"',
-        clan_1_description: "Unite for glory!",
-        clan_2_title: 'Clan "Crypto Legends"',
-        clan_2_description: "Dominate the arena!",
-        clan_3_title: 'Clan "Neon Knights"',
-        clan_3_description: "Shine in battles!",
-        clans_cta: "Create a Clan!",
-        rewards_title: "Rewards & Achievements",
-        rewards_description: "Earn unique rewards for battles!",
-        reward_1_title: "Arena Master",
-        reward_1_description: "Win 100 battles.",
-        reward_2_title: "NFT Legend",
-        reward_2_description: "Upgrade 50 NFTs.",
-        reward_3_title: "Clan King",
-        reward_3_description: "Create a top clan.",
-        rewards_cta: "Earn Rewards!",
-        roadmap_title: "Our Roadmap",
-        roadmap_1_title: "2023: Game Launch",
-        roadmap_1_description: "Launch of NFT Battle Arena.",
-        roadmap_2_title: "2024: Battle Arena",
-        roadmap_2_description: "Player vs. player battles.",
-        roadmap_3_title: "2025: Clans",
-        roadmap_3_description: "Clans via Telegram.",
-        roadmap_4_title: "2026: Marketplace",
-        roadmap_4_description: "Trading on TON.",
-        cinematic_1: "Coming Soon",
-        cinematic_2: "Marketplace",
-        cinematic_3: "Your Battle NFTs",
-        faq_title: "Frequently Asked Questions",
-        faq_1_question: "What is NFT Battle Arena?",
-        faq_1_answer: "NFT Battle Arena is a crypto game on TON blockchain where you upgrade unique NFTs, fight in the arena, and earn NBA points. Launch the game via @XpayTONbot!",
-        faq_2_question: "How to start the game on TON blockchain?",
-        faq_2_answer: "Open Telegram, launch @XpayTONbot, and create your first NFT. Fight in the arena and earn rewards in NFT Battle Arena!",
-        faq_3_question: "How to earn in NFT Battle Arena?",
-        faq_3_answer: "Earn NBA points through battles, NFT upgrades, and trading on the marketplace. Withdraw rewards via TON blockchain in Telegram Mini App.",
-        faq_4_question: "What are clans in the game?",
-        faq_4_answer: "Clans are teams of players in NFT Battle Arena competing for top ranks. Create clans via @XpayTONbot and monetize them!",
-        faq_5_question: "How to trade NFTs?",
-        faq_5_answer: "Use the NFT marketplace in the game to buy, sell, or trade NFTs. All transactions are secure thanks to TON blockchain.",
-        community_title: "Community",
-        community_description: "Join NFT Battle Arena! Create clans, compete in battles, and become part of the crypto community on TON blockchain. Launch the game via @XpayTONbot and gain fame!",
-        community_cta: "Join Now",
-        telegram_title: "Play in Telegram",
-        telegram_description: "Play NFT Battle Arena via Telegram! Upgrade NFTs, trade on the marketplace, and win rewards in Telegram Mini App on TON blockchain.",
-        telegram_cta: "Launch",
-        cta_title: "Become a Legend!",
-        cta_description: "Become a legend in NFT Battle Arena! Collect unique NFTs, fight in the arena, and earn rewards on TON blockchain. Start the game via @XpayTONbot!",
-        cta_button: "Play!"
-      }
-    };
-
-    // Language switcher
-    function changeLanguage(lang) {
-      document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        if (translations[lang][key]) {
-          if (el.tagName === 'META') {
-            el.setAttribute('content', translations[lang][key]);
-          } else {
-            el.textContent = translations[lang][key];
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Основні метатеги для SEO -->
+    <title>NFT Battle Arena - Web3-гра з NFT-бійцями для PvP та PvE</title>
+    <meta name="description" content="NFT Battle Arena — Web3-гра, де ваші NFT стають бійцями в епічних PvP та PvE битвах. Грайте безкоштовно через Telegram або Web, приєднуйтесь до ком’юніті!">
+    <meta name="keywords" content="NFT Battle Arena, Web3-гра, NFT-бійці, PvP-турніри, PvE-битви, блокчейн-гра, GameFi, криптоігри, Telegram-бот, NFT-гра">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="NFT Battle Arena Team">
+    <!-- Канонічний URL -->
+    <link rel="canonical" href="https://nftbattlearena.com">
+    <!-- Hreflang для української версії -->
+    <link rel="alternate" hreflang="uk" href="https://nftbattlearena.com/uk">
+    <link rel="alternate" hreflang="x-default" href="https://nftbattlearena.com">
+    <!-- Open Graph для соцмереж -->
+    <meta property="og:title" content="NFT Battle Arena - Web3-гра з NFT-бійцями">
+    <meta property="og:description" content="Приєднуйтесь до NFT Battle Arena — Web3-гри з PvP та PvE битвами, де ваші NFT стають бійцями. Грайте через Telegram!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nftbattlearena.com">
+    <meta property="og:image" content="https://i.ibb.co/LhQpSFk7/IMG-4991.png">
+    <meta property="og:image:alt" content="NFT Battle Arena Logo">
+    <meta property="og:site_name" content="NFT Battle Arena">
+    <meta property="og:locale" content="uk_UA">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NFT Battle Arena - Web3-гра з NFT-бійцями">
+    <meta name="twitter:description" content="Грайте в NFT Battle Arena: Web3-гра з NFT-бійцями для PvP та PvE. Доступно через Telegram!">
+    <meta name="twitter:image" content="https://i.ibb.co/LhQpSFk7/IMG-4991.png">
+    <!-- Структуровані дані JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "NFT Battle Arena",
+        "description": "Web3-гра NFT Battle Arena, де ваші NFT стають бійцями в епічних PvP та PvE битвах. Грайте безкоштовно через Telegram або Web.",
+        "url": "https://nftbattlearena.com",
+        "image": "https://i.ibb.co/LhQpSFk7/IMG-4991.png",
+        "genre": ["Action", "Blockchain", "PvP", "PvE"],
+        "platform": ["Web", "Telegram"],
+        "inLanguage": "uk",
+        "sameAs": [
+            "https://t.me/NFT_Battle_Arena_bot",
+            "https://t.me/NFTBattleCommunity"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "120"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
         }
-      });
-      document.documentElement.lang = lang;
-      localStorage.setItem('language', lang);
     }
-
-    // Load saved language or default to 'uk'
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('language') || 'uk';
-      changeLanguage(savedLang);
-    });
-
-    // Mobile menu toggle
-    function toggleMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-      menu.classList.toggle('active');
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "item": {
+                    "@type": "CreativeWork",
+                    "name": "Бієць 1",
+                    "description": "Епічний NFT-бієць для PvP-турнірів у Web3-грі NFT Battle Arena.",
+                    "image": "fighter1.png"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "item": {
+                    "@type": "CreativeWork",
+                    "name": "Бієць 2",
+                    "description": "Легендарний NFT-бієць для PvP та PvE-битв у блокчейн-грі NFT Battle Arena.",
+                    "image": "fighter2.png"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "item": {
+                    "@type": "CreativeWork",
+                    "name": "Devilish Goblin",
+                    "description": "Рідкісний NFT-бієць із магічними здібностями для PvP-турнірів у Web3-грі.",
+                    "image": "https://i.ibb.co/ycpGRbXb/Leonardo-Phoenix-10-3-D-render-of-a-unique-devilish-goblin-stan-3-removebg-preview.png"
+                }
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "item": {
+                    "@type": "CreativeWork",
+                    "name": "Anime CyberBot",
+                    "description": "Легендарний NFT-робот для перемог у GameFi та PvP-боях NFT Battle Arena.",
+                    "image": "https://i.ibb.co/RTPyyL3B/Leonardo-Phoenix-10-Vibrant-animestyle-robot-character-with-a-2-removebg-preview.png"
+                }
+            }
+        ]
     }
-
-    // FAQ toggle
-    document.querySelectorAll('.faq-question').forEach(item => {
-      item.addEventListener('click', () => {
-        const answer = item.nextElementSibling;
-        const toggle = item.querySelector('.faq-toggle');
-        answer.classList.toggle('active');
-        toggle.classList.toggle('active');
-      });
-    });
-
-    // Features slider
-    const slider = document.getElementById('slider');
-    const dots = document.querySelectorAll('.dot');
-    let currentIndex = 0;
-    const totalSlides = 5; // Updated to match the number of slides
-
-    function showSlide(index) {
-      slider.style.transform = `translateX(-${index * 100}%)`;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-      currentIndex = index;
+    </script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+     /* Базові стилі */
+body {
+    background: #171717;
+    color: #ffffff;
+    font-family: 'Fira Code', monospace;
+    margin: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ffffff; /* Менш яскрава тінь */
+    text-align: center; /* Центрування заголовків */
+    opacity: 0; /* Для анімації */
+    animation: fadeIn 0.5s ease-out forwards; /* Анімація появи */
+}
+h1 { animation-delay: 0.1s; }
+h2 { animation-delay: 0.2s; }
+h3 { animation-delay: 0.3s; }
+h4 { animation-delay: 0.4s; }
+@keyframes fadeIn {
+    to {
+        opacity: 1;
     }
+}
 
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        showSlide(i);
-      });
-    });
+/* Контейнер для контенту */
+section {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative; /* Для псевдоелементів */
+    text-align: center; /* Центрування тексту в секціях */
+}
 
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      showSlide(currentIndex);
-    }, 5000);
+/* Біла світящася лінія між секціями */
+section:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.8) 20%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0.8) 80%,
+        transparent 100%
+    ); /* Градієнт із затуханням */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4); /* Сяйво */
+}
 
-    // Clan slider
-    const clanSlider = document.getElementById('clan-slider');
-    const clanDots = document.querySelectorAll('.clan-dot');
-    let clanIndex = 0;
-    const totalClans = 3;
+/* Кнопки */
+.neon-btn {
+    border: 1px solid #2f2500; /* Темніший золотий */
+    background: transparent;
+    color: #ffffff;
+    text-shadow: 0 0 3px #ffffff; /* Тьмяна тінь */
+    transition: all 0.3s ease;
+    display: inline-block; /* Для центрування */
+    margin: 0 auto; /* Центрування кнопок */
+}
+.neon-btn:hover {
+    background: #2f2500;
+    box-shadow: 0 0 5px #2f2500; /* Зменшене світіння */
+    transform: scale(1.02); /* Менш помітний ефект */
+}
 
-    function showClan(index) {
-      clanSlider.style.transform = `translateX(-${index * 100}%)`;
-      clanDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-      clanIndex = index;
+/* Прозорі картки без фону */
+.card {
+    border: 1px solid #2f2500;
+    box-shadow: 0 0 5px #2f2500; /* Зменшене світіння */
+    transition: all 0.3s ease;
+    text-align: center; /* Центрування тексту в картках */
+}
+.card:hover {
+    transform: translateY(-3px); /* Менший підйом */
+    box-shadow: 0 0 8px #2f2500;
+}
+
+/* Карусель */
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: #2f2500 #171717;
+    width: 100%; /* Повна ширина */
+    min-width: 0; /* Запобігає стисненню */
+    padding: 0 0.25rem; /* Зменшені відступи */
+    gap: 0.5rem; /* Менший проміжок між картками */
+    justify-content: flex-start; /* Початок для гортання */
+}
+.carousel-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 16rem; /* 256px */
+}
+
+/* Акордеон */
+.faq-item-content {
+    transition: all 0.3s ease;
+    text-align: center; /* Центрування тексту відповідей */
+}
+.faq-item-content.hidden {
+    display: none;
+}
+
+/* Стилі для заголовків у #monetization, #features, #team, #partners, #faq */
+#monetization h3,
+#monetization h4,
+#features h3,
+#team h3,
+#partners h2,
+#faq h2,
+#faq .text-xl.font-bold {
+    color: #ffffff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.4); /* Менш яскрава тінь */
+    text-align: center; /* Центрування */
+    opacity: 0; /* Для анімації */
+    animation: fadeIn 0.5s ease-out forwards; /* Анімація появи */
+}
+#faq .text-xl.font-bold {
+    animation-delay: 0.3s; /* Затримка як для h3 */
+}
+
+/* Стилі для тексту в #features */
+.visible-text {
+    display: inline;
+}
+.hidden-text {
+    display: inline;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+.hidden-text.show {
+    max-height: 200px; /* Налаштуйте за потребою */
+    opacity: 1;
+    display: inline;
+}
+
+/* Стилі для кнопки в #features */
+.toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #6b7280; /* text-gray-500 */
+    font-weight: 600;
+    display: inline-block; /* Для центрування */
+    margin: 0 auto; /* Центрування кнопок */
+}
+.toggle-btn:hover {
+    color: #4b5563; /* text-gray-700 */
+}
+
+/* Стилі для SEO-описів у каруселі */
+.carousel-item p.text-sm.text-gray-400 {
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+/* Медіа-запити для адаптації під смартфони */
+@media (max-width: 360px) {
+    /* Дуже малі екрани (iPhone 4/5) */
+    h1 {
+        font-size: 2rem; /* 32px */
     }
+    h2 {
+        font-size: 1.75rem; /* 28px */
+    }
+    h3, #faq .text-xl.font-bold {
+        font-size: 1.125rem; /* 18px */
+    }
+    p, .neon-btn, .toggle-btn {
+        font-size: 0.875rem; /* 14px */
+    }
+    .faq-item-content {
+        font-size: 0.75rem; /* 12px */
+    }
+    .carousel-item {
+        width: 8rem; /* 128px */
+    }
+    section:not(:first-child)::before {
+        left: 5%;
+        right: 5%; /* Широка лінія */
+    }
+    .card {
+        padding: 0.5rem; /* Менші відступи */
+    }
+    .neon-btn {
+        padding: 0.5rem 1rem; /* Компактні кнопки */
+    }
+    .carousel-item img {
+        height: 8rem; /* 128px */
+    }
+    .carousel {
+        padding: 0 0.125rem; /* Ще менші відступи */
+        gap: 0.25rem; /* Менший проміжок */
+    }
+    .carousel-item p.text-sm {
+        font-size: 0.75rem; /* 12px для SEO-описів */
+    }
+}
 
-    clanDots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        showClan(i);
-      });
-    });
+@media (min-width: 360px) and (max-width: 480px) {
+    /* Середні смартфони */
+    h1 {
+        font-size: 2.5rem; /* 40px */
+    }
+    h2 {
+        font-size: 2rem; /* 32px */
+    }
+    h3, #faq .text-xl.font-bold {
+        font-size: 1.25rem; /* 20px */
+    }
+    p, .neon-btn, .toggle-btn {
+        font-size: 0.875rem; /* 14px */
+    }
+    .faq-item-content {
+        font-size: 0.875rem; /* 14px */
+    }
+    .carousel-item {
+        width: 10rem; /* 160px */
+    }
+    section:not(:first-child)::before {
+        left: 5%;
+        right: 5%;
+    }
+    .card {
+        padding: 0.75rem;
+    }
+    .carousel-item img {
+        height: 10rem; /* 160px */
+    }
+    .carousel {
+        padding: 0 0.25rem;
+        gap: 0.5rem;
+    }
+    .carousel-item p.text-sm {
+        font-size: 0.875rem; /* 14px */
+    }
+}
 
-    setInterval(() => {
-      clanIndex = (clanIndex + 1) % totalClans;
-      showClan(clanIndex);
-    }, 4000);
+@media (min-width: 480px) and (max-width: 640px) {
+    /* Більші смартфони */
+    h1 {
+        font-size: 3rem; /* 48px */
+    }
+    h2 {
+        font-size: 2.25rem; /* 36px */
+    }
+    h3, #faq .text-xl.font-bold {
+        font-size: 1.375rem; /* 22px */
+    }
+    p, .neon-btn, .toggle-btn {
+        font-size: 1rem; /* 16px */
+    }
+    .faq-item-content {
+        font-size: 0.875rem; /* 14px */
+    }
+    .carousel-item {
+        width: 12rem; /* 192px */
+    }
+    section:not(:first-child)::before {
+        left: 8%;
+        right: 8%;
+    }
+    .carousel-item img {
+        height: 12rem; /* 192px */
+    }
+    .carousel {
+        padding: 0 0.5rem;
+        gap: 0.75rem;
+    }
+}
 
-    // Touch support for sliders
-    let touchStartX = 0;
-    let touchEndX = 0;
+@media (min-width: 640px) {
+    /* Планшети та десктопи */
+    h1 {
+        font-size: 3.5rem; /* 56px */
+    }
+    h2 {
+        font-size: 2.5rem; /* 40px */
+    }
+    h3, #faq .text-xl.font-bold {
+        font-size: 1.5rem; /* 24px */
+    }
+    p, .neon-btn, .toggle-btn {
+        font-size: 1rem; /* 16px */
+    }
+    .faq-item-content {
+        font-size: 1rem; /* 16px */
+    }
+    .carousel-item {
+        width: 16rem; /* 256px */
+    }
+    .carousel-item img {
+        height: 12rem; /* 192px */
+    }
+}
+    </style>
+</head>
+<body>
+  <main>
+<!-- Hero Block -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center p-6">
+    <img src="https://i.ibb.co/LhQpSFk7/IMG-4991.png" alt="NFT Battle Arena - Web3-гра з NFT-бійцями" class="h-24 mb-4" />
+    <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-4">NFT Battle Arena</h1>
+    <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl">Твій NFT — твоя зброя. Виходь на арену.</p>
+    <div class="flex flex-col sm:flex-row gap-4">
+        <a href="https://t.me/NFT_Battle_Arena_bot" class="neon-btn py-3 px-6 rounded-lg" title="Грати в NFT Battle Arena через Telegram">Грати</a>
+        <a href="#whitepaper" class="neon-btn py-3 px-6 rounded-lg" title="Читати Whitepaper NFT Battle Arena">Whitepaper</a>
+        <a href="https://t.me/NFTBattleCommunity" class="neon-btn py-3 px-6 rounded-lg" title="Приєднатися до ком’юніті NFT Battle Arena в Telegram">Приєднатися до ком’юніті</a>
+    </div>
+</section>
 
-    slider.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
+    <!-- Про гру -->
+<section id="about" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Про гру</h2>
+    <p class="text-lg text-center max-w-3xl mx-auto mb-8">
+        NFT Battle Arena — це Web3-гра, де ваші NFT стають бійцями в епічних PvP та PvE битвах.
+        Грайте безкоштовно через Telegram або Web.
+    </p>
+    <!-- Карусель бійців -->
+    <div class="carousel gap-2">
+        <div class="carousel-item card rounded-lg p-4">
+            <img src="https://i.ibb.co/5xfLGb58/IMG-4993.png" alt="Бієць 1 - Епічний NFT-бієць для PvP-битв" class="w-full h-48 object-cover rounded" />
+            <h3 class="text-xl font-bold mt-2">Бієць 1</h3>
+            <p class="text-sm">Сила: 80 | Рідкість: Epic</p>
+            <p class="text-sm text-gray-400">Епічний NFT-бієць для PvP-турнірів у Web3-грі NFT Battle Arena. Потужний і універсальний для всіх режимів гри.</p>
+        </div>
+        <div class="carousel-item card rounded-lg p-4">
+            <img src="https://i.ibb.co/QjvbWqsX/IMG-4994.png" alt="Бієць 2 - Легендарний NFT-бієць для Web3-турнірів" class="w-full h-48 object-cover rounded" />
+            <h3 class="text-xl font-bold mt-2">Бієць 2</h3>
+            <p class="text-sm">Сила: 90 | Рідкість: Legendary</p>
+            <p class="text-sm text-gray-400">Легендарний NFT-бієць із високою силою для PvP та PvE-битв у блокчейн-грі NFT Battle Arena.</p>
+        </div>
+        <div class="carousel-item card rounded-lg p-4">
+            <img src="https://i.ibb.co/ycpGRbXb/Leonardo-Phoenix-10-3-D-render-of-a-unique-devilish-goblin-stan-3-removebg-preview.png" alt="Devilish Goblin - Рідкісний NFT-бієць для криптоігор" class="w-full h-48 object-cover rounded" />
+            <h3 class="text-xl font-bold mt-2">Devilish Goblin</h3>
+            <p class="text-sm">Сила: 85 | Рідкість: Rare</p>
+            <p class="text-sm text-gray-400">Рідкісний NFT-бієць із магічними здібностями для PvP-турнірів у Web3-грі NFT Battle Arena.</p>
+        </div>
+        <div class="carousel-item card rounded-lg p-4">
+            <img src="https://i.ibb.co/RTPyyL3B/Leonardo-Phoenix-10-Vibrant-animestyle-robot-character-with-a-2-removebg-preview.png" alt="Anime CyberBot - Легендарний NFT-робот для GameFi" class="w-full h-48 object-cover rounded" />
+            <h3 class="text-xl font-bold mt-2">Anime CyberBot</h3>
+            <p class="text-sm">Сила: 95 | Рідкість: Legendary</p>
+            <p class="text-sm text-gray-400">Легендарний NFT-робот із передовими технологіями для перемог у GameFi та PvP-боях NFT Battle Arena.</p>
+        </div>
+    </div>
+</section>
 
-    slider.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        showSlide(currentIndex);
-      } else if (touchEndX - touchStartX > 50) {
-        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-        showSlide(currentIndex);
-      }
-    });
+    <!-- Можливості гри -->
+<section id="features" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Можливості гри</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">NFT Колекції</h3>
+            <p>
+                <span class="visible-text">Створюйте, купуйте та торгуйте унікальними бійцями у вигляді NFT.</span>
+                <span class="hidden-text"> Кожен робот — це цифровий актив із кастомними характеристиками для боїв на арені.</span>
+            </p>
+            <button class="toggle-btn text-gray-500 hover:text-gray-700 font-semibold mt-2" onclick="toggleText(this)">Більше</button>
+        </div>
+        <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Прокачка бійців</h3>
+            <p>
+                <span class="visible-text">Покращуйте характеристики своїх роботів через ігрові токени.</span>
+                <span class="hidden-text"> Відкривайте нові навички та підсилювачі для переваги в боях.</span>
+            </p>
+            <button class="toggle-btn text-gray-500 hover:text-gray-700 font-semibold mt-2" onclick="toggleText(this)">Більше</button>
+        </div>
+        <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Ставки на бої</h3>
+            <p>
+                <span class="visible-text">Робіть ставки на результати боїв і заробляйте токени.</span>
+                <span class="hidden-text"> Беріть участь у захопливих PvP-змаганнях або глобальних турнірах.</span>
+            </p>
+            <button class="toggle-btn text-gray-500 hover:text-gray-700 font-semibold mt-2" onclick="toggleText(this)">Більше</button>
+        </div>
+        <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Суперудари та арени</h3>
+            <p>
+                <span class="visible-text">Використовуйте унікальні суперудари для епічних перемог.</span>
+                <span class="hidden-text"> Боріться на кастомізованих аренах із різними ігровими механіками.</span>
+            </p>
+            <button class="toggle-btn text-gray-500 hover:text-gray-700 font-semibold mt-2" onclick="toggleText(this)">Більше</button>
+        </div>
+        <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-bold mb-2">Персонажі брендів</h3>
+            <p>
+                <span class="visible-text">Грайте за брендованих роботів (наприклад, “Nike Bot”).</span>
+                <span class="hidden-text"> Беріть участь у боях на аренах, створених у співпраці з відомими брендами.</span>
+            </p>
+            <button class="toggle-btn text-gray-500 hover:text-gray-700 font-semibold mt-2" onclick="toggleText(this)">Більше</button>
+        </div>
+    </div>
+</section>
 
-    clanSlider.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
+    <!-- Модель монетизації, Для брендів, Франшиза, Дорожня карта, Команда, Партнери (заглушки) -->
+    <section id="monetization" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Модель монетизації</h2>
+    <div class="max-w-4xl mx-auto text-center">
+        <p class="text-lg sm:text-xl mb-8">
+            Наша платформа пропонує різноманітні способи монетизації для залучення гравців і партнерів! 🚀 Від продажу унікальних NFT до інтерактивних турнірів і брендованих інтеграцій — заробляйте разом із нами в світі GameFi! 💰😎
+        </p>
+        <!-- Модель монетизації -->
+        <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-bold mb-4">Як ми заробляємо</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Продаж NFT</h4>
+                    <p class="text-lg">
+                        Створюйте та продавайте унікальні NFT-роботів із кастомними характеристиками для боїв на арені. Гравці можуть купувати, обмінювати або колекціонувати цифрові активи, що підвищує їхній ігровий досвід. Кожен NFT — це інвестиція в гру та можливість заробляти!
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Battle Pass / Підписка</h4>
+                    <p class="text-lg">
+                        Battle Pass і преміум-підписки відкривають ексклюзивні нагороди, бонуси та доступ до особливих режимів гри. Гравці отримують унікальні скіни, підсилювачі та ранній доступ до нових функцій, що забезпечує стабільний дохід платформи.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Ставки та турніри</h4>
+                    <p class="text-lg">
+                        Організовуйте захопливі турніри з призовими фондами та дозволяйте гравцям робити ставки на бої. PvP-змагання та глобальні івенти залучають аудиторію, а відсоток від ставок формує дохід для платформи та франчайзі.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Рекламні інтеграції з брендами</h4>
+                    <p class="text-lg">
+                        Співпрацюйте з брендами для створення брендованих NFT (наприклад, “RedBull Бот”) та арен (наприклад, “Rozetka Metroplex”). Інтерактивна реклама підвищує впізнаваність бренду, а платформа отримує дохід від партнерств.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="text-center">
+            <p class="text-lg mb-4">Хочете стати частиною GameFi-революції? Приєднуйтесь до нас! ✉️</p>
+            <a href="mailto:monetization@battlearena.game" class="neon-btn py-3 px-6 rounded-lg inline-block">
+                Дізнатися більше 🚀
+            </a>
+        </div>
+    </div>
+</section>
+  
+  
+ <section id="brands" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Для брендів</h2>
+    <div class="max-w-4xl mx-auto text-center">
+        <p class="text-lg sm:text-xl mb-8">
+            Просувайте свій бренд через унікальні NFT та арени в нашій грі! 🚀 Створюйте інтерактивний контент, який залучає гравців і підвищує впізнаваність. 💰😎
+        </p>
+        <!-- Пропозиція партнерства -->
+        <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-bold mb-4">Пропозиція партнерства</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">Приклади інтеграції</h4>
+                    <ul class="list-disc list-inside text-lg">
+                        <li><strong>NFT “RedBull Бот”</strong>: Ексклюзивний ігровий персонаж із дизайном RedBull та унікальними здібностями.</li>
+                        <li><strong>Арена “Rozetka Metroplex”</strong>: Брендована бойова арена з логотипами Rozetka для захопливих боїв.</li>
+                        <li>Брендовані скіни, предмети або спеціальні ігрові події.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">Переваги для бренду</h4>
+                    <ul class="list-disc list-inside text-lg">
+                        <li><strong>Показ логотипу</strong>: Ваш бренд на NFT, аренах і в промо-матеріалах.</li>
+                        <li><strong>Лояльність гравців</strong>: Унікальний контент підвищує прихильність аудиторії.</li>
+                        <li><strong>Інтерактивна реклама</strong>: Бренд стає частиною ігрового досвіду.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="text-center">
+            <p class="text-lg mb-4">Готові інтегрувати свій бренд? Напиши нам! ✉️</p>
+            <a href="mailto:partnerships@battlearena.game" class="neon-btn py-3 px-6 rounded-lg inline-block">
+                Почати співпрацю 🚀
+            </a>
+        </div>
+    </div>
+</section>
+    
+    
+  <section id="franchise" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Франшиза NFT Battle Arena</h2>
+    <div class="max-w-4xl mx-auto text-center">
+        <p class="text-lg sm:text-xl mb-8">
+            Створи свою Web3-арену, як “Battle Arena Asia” чи “Battle Arena UA”! 🚀 Заробляй на NFT і ставках із готовим кодом і TON Connect! Обери пакет і підкорюй GameFi! 💰😎
+        </p>
+        <!-- Таблиця цін -->
+        <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-bold mb-4">Пакети франшизи</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-lg">
+                    <thead>
+                        <tr class="border-b border-[#2f2500]">
+                            <th class="py-2 px-4 text-left">Функція</th>
+                            <th class="py-2 px-4 text-center">Стандарт ($1,500)</th>
+                            <th class="py-2 px-4 text-center">Профі ($3,500)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Вступний внесок</td>
+                            <td class="py-2 px-4 text-center">$1,500</td>
+                            <td class="py-2 px-4 text-center">$3,500</td>
+                        </tr>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Доступ до коду</td>
+                            <td class="py-2 px-4 text-center">Telegram MVP (PvE)</td>
+                            <td class="py-2 px-4 text-center">Telegram MVP + Web PvP</td>
+                        </tr>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Режими гри</td>
+                            <td class="py-2 px-4 text-center">PvE</td>
+                            <td class="py-2 px-4 text-center">PvE + PvP</td>
+                        </tr>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Web3-інтеграція</td>
+                            <td class="py-2 px-4 text-center">TON Connect</td>
+                            <td class="py-2 px-4 text-center">TON Connect</td>
+                        </tr>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Брендинг</td>
+                            <td class="py-2 px-4 text-center">Базовий</td>
+                            <td class="py-2 px-4 text-center">Повний</td>
+                        </tr>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Технічна підтримка</td>
+                            <td class="py-2 px-4 text-center">1 місяць ($500/місяць після)</td>
+                            <td class="py-2 px-4 text-center">2 місяці ($300/місяць після)</td>
+                        </tr>
+                        <tr class="border-b border-[#2f2500]">
+                            <td class="py-2 px-4">Відрахування прибутку</td>
+                            <td class="py-2 px-4 text-center">35%</td>
+                            <td class="py-2 px-4 text-center">25%</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4">Додаткові функції</td>
+                            <td class="py-2 px-4 text-center">-</td>
+                            <td class="py-2 px-4 text-center">Інтеграція NFT, маркетинговий гайд</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- CTA -->
+        <div class="text-center">
+            <p class="text-lg mb-4">Готові запустити свою арену? Напиши нам! ✉️</p>
+            <a href="mailto:franchise@battlearena.game" class="neon-btn py-3 px-6 rounded-lg inline-block">
+                Почати співпрацю 🚀
+            </a>
+        </div>
+    </div>
+</section>
+  
+    <!-- Дорожня карта -->
+<section id="roadmap" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Дорожня карта</h2>
+    <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 gap-4">
+            <!-- Етап 1 -->
+            <div class="card p-4 rounded-lg text-center">
+                <h3 class="text-xl font-bold mb-2">Telegram MVP</h3>
+                <p class="text-lg mb-2">Q1 2025</p>
+                <p class="text-lg text-green-500">✅ Запущено</p>
+            </div>
+            <!-- Етап 2 -->
+            <div class="card p-4 rounded-lg text-center">
+                <h3 class="text-xl font-bold mb-2">Web PvP</h3>
+                <p class="text-lg mb-2">Q2 2025</p>
+                <p class="text-lg">У розробці</p>
+            </div>
+            <!-- Етап 3 -->
+            <div class="card p-4 rounded-lg text-center">
+                <h3 class="text-xl font-bold mb-2">NFT Колекція</h3>
+                <p class="text-lg mb-2">Q2 2025</p>
+                <p class="text-lg">Запуск</p>
+            </div>
+            <!-- Етап 4 -->
+            <div class="card p-4 rounded-lg text-center">
+                <h3 class="text-xl font-bold mb-2">Бренд-арени</h3>
+                <p class="text-lg mb-2">Q3 2025</p>
+                <p class="text-lg">Планується</p>
+            </div>
+            <!-- Етап 5 -->
+            <div class="card p-4 rounded-lg text-center">
+                <h3 class="text-xl font-bold mb-2">DAO / Токеноміка</h3>
+                <p class="text-lg mb-2">Q4 2025</p>
+                <p class="text-lg">Планується</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+  <!-- Команда -->
+<section id="team" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Команда</h2>
+    <p class="text-lg sm:text-xl text-center max-w-3xl mx-auto mb-8">
+        Зустрічайте нашу команду, яка створює NFT Battle Arena! Від засновників до дизайнерів — ми будуємо майбутнє GameFi.
+    </p>
+    <!-- Карусель команди -->
+    <div class="carousel gap-4 mb-12">
+        <div class="carousel-item card rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold mb-2">CyberSmith</h3>
+            <p class="text-lg">Засновник</p>
+            <p class="text-gray-400">Візіонер проєкту, стратег Web3-ігор.</p>
+        </div>
+        <div class="carousel-item card rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold mb-2">CodeNinja</h3>
+            <p class="text-lg">Девелопер</p>
+            <p class="text-gray-400">Кодує смарт-контракти та ігрову логіку.</p>
+        </div>
+        <div class="carousel-item card rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold mb-2">PixelWarden</h3>
+            <p class="text-lg">Дизайнер</p>
+            <p class="text-gray-400">Створює унікальні NFT та арени.</p>
+        </div>
+        <div class="carousel-item card rounded-lg p-6 text-center">
+            <h3 class="text-xl font-bold mb-2">ArenaVoice</h3>
+            <p class="text-lg">Ком’юніті-менеджер</p>
+            <p class="text-gray-400">Залучає гравців і модерує спільноту.</p>
+        </div>
+    </div>
+    <!-- CTA для приєднання -->
+    <div class="text-center">
+        <p class="text-lg sm:text-xl mb-4">
+            Хочеш стати частиною нашої команди? Приєднуйся до творців NFT Battle Arena! 🚀
+        </p>
+        <a href="mailto:careers@battlearena.game" class="cidas:neon-btn py-3 px-6 rounded-lg inline-block">
+            Напиши нам ✉️
+        </a>
+    </div>
+</section>
+  
+    <!-- Партнери -->
+<section id="partners" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Партнери</h2>
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="card p-6 rounded-lg mb-8">
+            <p class="text-lg sm:text-xl mb-4">
+                Наразі ми тільки починаємо будувати екосистему NFT Battle Arena, але вже готові до потужних партнерств! 🚀
+                Ми шукаємо бренди, Web3-проєкти та інноваційні компанії, які хочуть стати частиною GameFi-революції.
+                Від брендованих NFT до спільних арен і турнірів — разом ми створимо щось унікальне! 💪
+            </p>
+            <p class="text-lg sm:text-xl text-gray-400">
+                Станьте першим партнером і отримайте ексклюзивні можливості для просування вашого бренду в нашій грі!
+            </p>
+        </div>
+        <!-- CTA -->
+        <div class="text-center">
+            <p class="text-lg mb-4">Готові до співпраці? Напишіть нам! ✉️</p>
+            <a href="mailto:partnerships@battlearena.game" class="neon-btn py-3 px-6 rounded-lg inline-block">
+                Стати партнером 🚀
+            </a>
+        </div>
+    </div>
+</section>
 
-    clanSlider.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) {
-        clanIndex = (clanIndex + 1) % totalClans;
-        showClan(clanIndex);
-      } else if (touchEndX - touchStartX > 50) {
-        clanIndex = (clanIndex - 1 + totalClans) % totalClans;
-        showClan(clanIndex);
-      }
-    });
+   <!-- FAQ -->
+<section id="faq" class="py-16 px-6">
+    <h2 class="text-4xl sm:text-5xl font-bold text-center mb-8">Питання-Відповіді</h2>
+    <div class="max-w-3xl mx-auto">
+        <div class="card p-4 rounded-lg mb-4">
+            <button class="w-full text-left text-xl font-bold" onclick="toggleFAQ(this)">Чи потрібен NFT для старту в NFT Battle Arena?</button>
+            <p class="faq-item-content hidden mt-2">
+                Ні, у NFT Battle Arena можна грати абсолютно безкоштовно через Telegram! Наша Web3-гра дозволяє розпочати без володіння NFT, використовуючи базових бійців для PvE-битв. Однак, купівля унікальних NFT-роботів відкриває доступ до PvP-турнірів, ставок і заробітку в GameFi. Завдяки інтеграції з TON Connect ви можете легко підключити гаманець і почати торгувати цифровими активами. Приєднуйтесь до блокчейн-гри без вкладень і відкрийте світ криптоігор уже сьогодні!
+            </p>
+        </div>
+        <div class="card p-4 rounded-lg mb-4">
+            <button class="w-full text-left text-xl font-bold" onclick="toggleFAQ(this)">Як працюють ставки в грі?</button>
+            <p class="faq-item-content hidden mt-2">
+                У NFT Battle Arena ставки — це захопливий спосіб заробити токени в Web3-грі! Вибирайте PvP-бій, робіть ставку ігровими токенами та отримуйте виграш, якщо ваш боєць переможе. Наші блокчейн-турніри дозволяють брати участь у глобальних змаганнях із призовими фондами. Система ставок побудована на прозорій технології TON, що гарантує безпеку транзакцій. Почніть із невеликих ставок, прокачуйте своїх NFT-бійців і змагайтеся за великі нагороди в криптоіграх. Долучайтесь до GameFi та заробляйте!
+            </p>
+        </div>
+        <div class="card p-4 rounded-lg mb-4">
+            <button class="w-full text-left text-xl font-bold" onclick="toggleFAQ(this)">Як заробляти в NFT Battle Arena?</button>
+            <p class="faq-item-content hidden mt-2">
+                NFT Battle Arena пропонує численні способи заробітку в GameFi! Купуйте, створюйте та торгуйте унікальними NFT-роботами на маркетплейсі, щоб отримувати прибуток від їхньої цінності. Беріть участь у криптовалютних турнірах, робіть ставки в PvP-боях і вигравайте токени. Преміум-підписки та Battle Pass відкривають ексклюзивні нагороди, такі як рідкісні скіни та підсилювачі. Співпраця з брендами через брендовані NFT також може принести дохід. Завдяки блокчейн-технології TON усі транзакції безпечні. Почніть заробляти в Web3-грі вже зараз!
+            </p>
+        </div>
+        <div class="card p-4 rounded-lg mb-4">
+            <button class="w-full text-left text-xl font-bold" onclick="toggleFAQ(this)">Що таке TON Connect і як його використовувати?</button>
+            <p class="faq-item-content hidden mt-2">
+                TON Connect — це безпечна технологія для інтеграції блокчейн-гаманців у NFT Battle Arena. Вона дозволяє підключити ваш криптогаманець (наприклад, Tonkeeper) до гри для торгівлі NFT, ставок і заробітку токенів. Щоб почати, встановіть гаманець із підтримкою TON, створіть акаунт і підключіть його через Telegram або вебверсію гри. TON Connect забезпечує швидкі та прозорі транзакції в Web3-грі, роблячи вашу взаємодію з GameFi простою. Долучайтесь до NFT Battle Arena та відкрийте можливості блокчейн-ігор!
+            </p>
+        </div>
+        <div class="card p-4 rounded-lg mb-4">
+            <button class="w-full text-left text-xl font-bold" onclick="toggleFAQ(this)">Як стати партнером NFT Battle Arena?</button>
+            <p class="faq-item-content hidden mt-2">
+                NFT Battle Arena запрошує бренди, Web3-проєкти та компанії до партнерства в GameFi! Створюйте брендовані NFT, арени чи турніри, щоб просувати ваш бренд серед гравців. Наша блокчейн-гра пропонує інтерактивну рекламу, яка підвищує впізнаваність. Наприклад, створіть NFT “RedBull Бот” або арену “Rozetka Metroplex”. Щоб стати партнером, напишіть нам на partnerships@battlearena.game. Ми пропонуємо ексклюзивні умови для перших партнерів. Приєднуйтесь до Web3-революції та розвивайте свій бренд у криптоіграх разом із NFT Battle Arena!
+            </p>
+        </div>
+    </div>
+    <!-- CTA -->
+    <div class="text-center max-w-3xl mx-auto">
+        <p class="text-lg sm:text-xl mb-4">
+            Маєте інші питання? Напишіть нам і приєднуйтесь до спільноти NFT Battle Arena! 🚀
+        </p>
+        <a href="mailto:info@battlearena.game" class="neon-btn py-3 px-6 rounded-lg inline-block">
+            Зв’язатися з нами ✉️
+        </a>
+    </div>
+</section>
+</main>
+    <!-- Футер -->
+    <footer class="py-8 px-6 text-center">
+        <div class="flex flex-wrap justify-center gap-4 mb-4">
+            <a href="https://t.me/NFTBattleArena" class="neon-btn py-1 px-3 rounded">Telegram</a>
+            <a href="https://discord.gg/NFTBattleArena" class="neon-btn py-1 px-3 rounded">Discord</a>
+            <a href="https://twitter.com/NFTBattleArena" class="neon-btn py-1 px-3 rounded">Twitter</a>
+            <a href="https://github.com/NFTBattleArena" class="neon-btn py-1 px-3 rounded">GitHub</a>
+        </div>
+        <p class="mb-2">Email: <a href="mailto:info@battlearena.game" class="text-white hover:text-gray-300">info@battlearena.game</a></p>
+        <p>© 2025 NFT Battle Arena. Всі права захищено.</p>
+    </footer>
 
-    // Scroll animations
-    document.addEventListener('DOMContentLoaded', () => {
-      const elements = document.querySelectorAll('.animate-fade-in');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, { threshold: 0.2 });
+    <!-- JavaScript -->
+    <script>
+      function toggleText(button) {
+    const hiddenText = button.previousElementSibling.querySelector('.hidden-text');
+    hiddenText.classList.toggle('show');
+    button.textContent = hiddenText.classList.contains('show') ? 'Менше' : 'Більше';
+}
+        // Акордеон для FAQ
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            content.classList.toggle('hidden');
+        }
 
-      elements.forEach(el => observer.observe(el));
-    });
-  </script>
+        // Web3-заглушка (Metamask)
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    alert('Гаманець підключено!');
+                } catch (error) {
+                    console.error('Помилка підключення:', error);
+                }
+            } else {
+                alert('Встановіть Metamask!');
+            }
+        }
+    </script>
 </body>
 </html>
