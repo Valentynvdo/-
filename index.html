@@ -3,695 +3,846 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NFT Battle Arena - Епічні бої NFT персонажів</title>
-    <meta name="description" content="Грайте в NFT Battle Arena - захоплюючу гру з боями NFT персонажів. Збирайте, покращуйте та бийтеся за перемогу!">
-    <meta name="keywords" content="NFT, бої, гра, блокчейн, Telegram, Web3, персонажі">
-    
+    <title>NFT Battle Arena – Play2Earn гра в Telegram Mini App</title>
+    <meta name="description" content="NFT Battle Arena – бойова арена в Telegram Mini App. Отримуй перший NFT, бийся з суперниками, збирай колекцію та заробляй нагороди. Приєднуйся зараз!">
+    <meta name="keywords" content="NFT Battle Arena, NFT гра, Telegram Mini App, Play2Earn, blockchain gaming, NFT бійці, крипто ігри, NFT колекція, GameFi, battle arena">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nftbattlearena.site">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preload" href="/images/hero-nft.webp" as="image">
+
     <!-- Open Graph -->
-    <meta property="og:title" content="NFT Battle Arena - Епічні бої NFT персонажів">
-    <meta property="og:description" content="Грайте в NFT Battle Arena - захоплюючу гру з боями NFT персонажів">
-    <meta property="og:image" content="/images/og-image.jpg">
+    <meta property="og:title" content="NFT Battle Arena – Play2Earn гра в Telegram">
+    <meta property="og:description" content="Отримуй свій перший NFT, бийся на арені та збирай колекцію. NFT Battle Arena – твій шанс стати легендою Web3 світу.">
+    <meta property="og:image" content="https://nftbattlearena.site/images/preview.jpg">
+    <meta property="og:url" content="https://nftbattlearena.site">
     <meta property="og:type" content="website">
-    
+    <meta property="og:site_name" content="NFT Battle Arena">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NFT Battle Arena – Play2Earn гра в Telegram">
+    <meta name="twitter:description" content="Отримай перший NFT та бийся на арені!">
+    <meta name="twitter:image" content="https://nftbattlearena.site/images/preview.jpg">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-     
-<style>
-    :root {
-    --primary-color: #1e293b; /* Дуже темний синій для основних акцентів */
-    --primary-hover: #334155; /* Трохи світліший синій для ховер-ефектів */
-    --secondary-color: #4b5563; /* Темний сірий для другорядних елементів */
-    --accent-color: #475569; /* Темний сірий для акцентів */
-    --success-color: #1f6e56; /* Темний зелений для позитивних повідомлень */
-    --danger-color: #7f1d1d; /* Темний червоний для помилок */
-    --dark-bg: #0a0e17; /* Майже чорний фон для основного контенту */
-    --dark-surface: #121825; /* Темний фон для секцій */
-    --text-primary: #f1f5f9; /* Світлий текст для основного контенту */
-    --text-secondary: #94a3b8; /* Світло-сірий для другорядного тексту */
-    --gradient-primary: linear-gradient(135deg, #1e293b 0%, #4b5563 100%); /* Темний монохромний градієнт */
-    --gradient-hero: linear-gradient(135deg, #0a0e17 0%, #121825 50%, #1e293b 100%); /* Темний градієнт для герой-секції */
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-}
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Inter', sans-serif;
-        background: var(--dark-bg);
-        color: var(--text-primary);
-        line-height: 1.6;
-        overflow-x: hidden;
-    }
-  
-
-
-    /* Навігація з чорним glass ефектом */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: rgba(17, 24, 39, 0.25); /* Темний glass-ефект */
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        z-index: 1000;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .navbar.scrolled {
-        background: rgba(17, 24, 39, 0.35);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .nav-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1rem 2rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .nav-links {
-        display: flex;
-        list-style: none;
-        gap: 2rem;
-    }
-
-    .nav-links a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-        color: var(--primary-color);
-    }
-
-    .cta-button {
-        background: rgba(17, 24, 39, 0.3); /* Темний glass-ефект */
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: var(--text-primary);
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-
-    .cta-button:hover {
-        background: rgba(17, 24, 39, 0.4);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    }
-
-    /* Герой секція */
-    .hero {
-        min-height: 100vh;
-        background: var(--gradient-hero);
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        opacity: 0.3;
-    }
-
-    .hero-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-        position: relative;
-        z-index: 1;
-    }
-
-    .hero-content h1 {
-        font-size: 3.5rem;
-        font-weight: 800;
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
-        background: linear-gradient(135deg, #f9fafb 0%, #3b82f6 100%); /* Оновлений градієнт для заголовка */
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .hero-content p {
-        font-size: 1.25rem;
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-        line-height: 1.7;
-    }
-
-    .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .btn-primary {
-        background: rgba(17, 24, 39, 0.35);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: var(--text-primary);
-        padding: 1rem 2rem;
-        border-radius: 0.75rem;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .btn-primary:hover {
-        background: rgba(17, 24, 39, 0.45);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-secondary {
-        background: rgba(17, 24, 39, 0.2);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        color: var(--text-primary);
-        padding: 1rem 2rem;
-        border-radius: 0.75rem;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.1rem;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .btn-secondary:hover {
-        background: rgba(17, 24, 39, 0.3);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    }
-
-    .hero-visual {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .hero-nft {
-        width: 400px;
-        height: 400px;
-        border-radius: 2rem;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        animation: float 6s ease-in-out infinite;
-        
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-    }
-
-    .floating-elements {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-    }
-
-    .floating-element {
-        position: absolute;
-        font-size: 2rem;
-        opacity: 0.7;
-        animation: floatRandom 8s ease-in-out infinite;
-    }
-
-    .floating-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-    .floating-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
-    .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
-    .floating-element:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 6s; }
-
-    @keyframes floatRandom {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        25% { transform: translateY(-15px) rotate(5deg); }
-        50% { transform: translateY(-30px) rotate(-5deg); }
-        75% { transform: translateY(-15px) rotate(3deg); }
-    }
-
-    /* Особливості */
-    .features {
-        padding: 6rem 2rem;
-        background: var(--dark-surface);
-    }
-
-    .features-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .section-subtitle {
-        text-align: center;
-        font-size: 1.25rem;
-        color: var(--text-secondary);
-        margin-bottom: 4rem;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .feature-card {
-        background: rgba(17, 24, 39, 0.15);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 2rem;
-        border-radius: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        transition: all 0.3s ease;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .feature-card:hover {
-        background: rgba(17, 24, 39, 0.25);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
-        transform: translateY(-5px);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-
-    .feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary); /* Білий колір для смайликів */
-    display: inline-block; /* Забезпечує коректне відображення емодзі */
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text-primary); /* Білий колір для заголовків */
-}
-
-    .feature-card h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-
-    .feature-card p {
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
-
-    /* Статистика */
-    .stats {
-        padding: 4rem 2rem;
-        background: var(--dark-bg);
-    }
-
-    .stats-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-    }
-
-    .stat-item {
-        text-align: center;
-        padding: 2rem;
-        background: rgba(17, 24, 39, 0.2);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .stat-number {
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--primary-color);
-        margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-        font-weight: 500;
-    }
-
-    /* Як грати */
-    .how-to-play {
-        padding: 6rem 2rem;
-        background: var(--dark-surface);
-    }
-
-    .how-to-play-container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    .steps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-top: 4rem;
-    }
-
-    .step-card {
-        background: rgba(17, 24, 39, 0.15);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 2rem;
-        border-radius: 1rem;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        position: relative;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-    }
-
-    .step-number {
-        position: absolute;
-        top: -1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        background: var(--gradient-primary);
-        color: var(--text-primary);
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-    }
-
-    .step-card h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-    }
-
-    .step-card p {
-        color: var(--text-secondary);
-        line-height: 1.6;
-    }
-
-    /* CTA секція */
-    .cta-section {
-        padding: 6rem 2rem;
-        background: var(--gradient-primary);
-        text-align: center;
-    }
-
-    .cta-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .cta-section h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--text-primary);
-    }
-
-    .cta-section p {
-        font-size: 1.25rem;
-        margin-bottom: 2rem;
-        color: var(--text-secondary);
-        opacity: 0.9;
-    }
-
-    /* Футер */
-    .footer {
-        padding: 3rem 2rem 2rem;
-        background: var(--dark-bg);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .footer-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-    }
-
-    .footer-section h3 {
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: var(--primary-color);
-    }
-
-    .footer-section ul {
-        list-style: none;
-    }
-
-    .footer-section ul li {
-        margin-bottom: 0.5rem;
-    }
-
-    .footer-section ul li a {
-        color: var(--text-secondary);
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .footer-section ul li a:hover {
-        color: var(--primary-color);
-    }
-
-    .footer-bottom {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
-        color: var(--text-secondary);
-    }
-
-    .social-links {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        margin-top: 1rem;
-    }
-
-    .social-links a {
-        color: var(--text-secondary);
-        font-size: 1.5rem;
-        transition: color 0.3s ease;
-    }
-
-    .social-links a:hover {
-        color: var(--primary-color);
-    }
-
-    /* Мобільне меню */
-    .mobile-menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        color: var(--text-primary);
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    /* Адаптивний дизайн */
-    @media (max-width: 768px) {
-        .mobile-menu-toggle {
-            display: block;
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "NFT Battle Arena",
+      "url": "https://nftbattlearena.site",
+      "image": "https://nftbattlearena.site/images/preview.jpg",
+      "description": "NFT Battle Arena — грай, збирай NFT та бийся на арені. Почни з першого NFT і розвивай армію воїнів.",
+      "author": {
+        "@type": "Organization",
+        "name": "NFT Battle Arena Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NFT Battle Arena"
+      },
+      "applicationCategory": "Game",
+      "operatingSystem": "Web, Android, iOS",
+      "genre": ["Blockchain Game", "P2E", "NFT", "Battle Arena"],
+      "inLanguage": ["uk", "en", "pl"],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --primary-hover: #334155;
+            --secondary-color: #4b5563;
+            --accent-color: #3b82f6;
+            --success-color: #1f6e56;
+            --danger-color: #7f1d1d;
+            --dark-bg: #0a0e17;
+            --dark-surface: #121825;
+            --text-primary: #f1f5f9;
+            --text-secondary: #a1b2c8;
+            --gradient-primary: linear-gradient(135deg, #1e293b 0%, #4b5563 100%);
+            --gradient-hero: linear-gradient(135deg, #0a0e17 0%, #121825 50%, #1e293b 100%);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Навігація */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17, 24, 39, 0.25);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar.scrolled {
+            background: rgba(17, 24, 39, 0.35);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(17, 24, 39, 0.95);
-            backdrop-filter: blur(20px);
-            flex-direction: column;
-            padding: 2rem;
-            gap: 1rem;
+            display: flex;
+            list-style: none;
+            gap: 2rem;
         }
 
-        .nav-links.active {
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .cta-button {
+            background: var(--accent-color);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Герой секція */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
             display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
         }
 
         .hero-container {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
         .hero-content h1 {
-            font-size: 2.5rem;
-        }
-
-        .hero-nft {
-            width: 300px;
-            height: 300px;
-        }
-
-        .hero-buttons {
-            justify-content: center;
-        }
-
-        .features-grid,
-        .steps-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .stats-container {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .nav-container {
-            padding: 1rem;
-        }
-
-        .hero-content h1 {
-            font-size: 2rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-content p {
-            font-size: 1rem;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
         }
 
-        .btn-primary,
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
         .btn-secondary {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
+            background: rgba(17, 24, 39, 0.2);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(17, 24, 39, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .hero-nft {
-            width: 250px;
-            height: 250px;
+            width: 400px;
+            height: 400px;
+            border-radius: 2rem;
+            box-shadow: var(--shadow-xl);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Секції */
+        .section {
+            padding: 6rem 2rem;
+            background: var(--dark-surface);
+        }
+
+        .section.bg-light {
+            background: var(--dark-bg);
+        }
+
+        .section.bg-dark {
+            background: var(--gradient-primary);
         }
 
         .section-title {
-            font-size: 2rem;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            position: relative;
         }
 
-        .stats-container {
-            grid-template-columns: 1fr;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
         }
-    }
 
-    /* Анімації */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.6s ease;
-    }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
 
-    /* Прелоадер */
-    .preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--dark-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-    }
+        .img-fluid:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
 
-    .preloader.hidden {
-        opacity: 0;
-        pointer-events: none;
-    }
+        /* Секція: Як отримати перший NFT */
+        .get-nft-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-    .spinner {
-        width: 50px;
-        height: 50px;
-        border: 3px solid rgba(59, 130, 246, 0.3); /* Оновлено для нового кольору */
-        border-top: 3px solid var(--primary-color);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-    }
+        .get-nft-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-</style>
+        .get-nft-list li {
+            background: rgba(17, 24, 39, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 1.5rem 1.5rem 4rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: slideIn 0.6s ease forwards;
+        }
 
+        .get-nft-list li:nth-child(1) { animation-delay: 0.1s; }
+        .get-nft-list li:nth-child(2) { animation-delay: 0.2s; }
+        .get-nft-list li:nth-child(3) { animation-delay: 0.3s; }
+
+        .get-nft-list li:hover {
+            transform: translateY(-5px) scale(1);
+            box-shadow: var(--shadow-xl);
+            background: rgba(17, 24, 39, 0.25);
+        }
+
+        .get-nft-list li::before {
+            content: '→';
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: pulseArrow 1.5s ease-in-out infinite;
+        }
+
+        .get-nft-list li a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .get-nft-list li a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        /* Секція: Правила гри */
+        .rules-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rules-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rules-list li {
+            background: rgba(17, 24, 39, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 1.5rem 1.5rem 4rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .rules-list li:nth-child(1) { animation-delay: 0.1s; }
+        .rules-list li:nth-child(2) { animation-delay: 0.2s; }
+        .rules-list li:nth-child(3) { animation-delay: 0.3s; }
+        .rules-list li:nth-child(4) { animation-delay: 0.4s; }
+        .rules-list li:nth-child(5) { animation-delay: 0.5s; }
+
+        .rules-list li:hover {
+            transform: translateY(-5px) scale(1);
+            box-shadow: var(--shadow-xl);
+            background: rgba(17, 24, 39, 0.25);
+        }
+
+        .rules-list li::before {
+            content: '→';
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: pulseArrow 1.5s ease-in-out infinite;
+        }
+
+        .rules-list strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Секція: Roadmap */
+        .roadmap-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .event {
+            background: rgba(17, 24, 39, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .event:nth-child(1) { animation-delay: 0.1s; }
+        .event:nth-child(2) { animation-delay: 0.2s; }
+        .event:nth-child(3) { animation-delay: 0.3s; }
+
+        .event:hover {
+            transform: translateY(-5px) scale(1);
+            box-shadow: var(--shadow-xl);
+            background: rgba(17, 24, 39, 0.25);
+        }
+
+        .event::before {
+            content: '🚀';
+            position: absolute;
+            left: -2.5rem;
+            top: 1.5rem;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        /* Секція: FAQ */
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(17, 24, 39, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .faq-item:hover {
+            transform: translateY(-5px) scale(1);
+            box-shadow: var(--shadow-xl);
+            background: rgba(17, 24, 39, 0.25);
+        }
+
+        .faq-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .faq-item h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.3rem;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .faq-item:hover h3::after {
+            width: 100px;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+        }
+
+        .faq-item a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .faq-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Секція: SEO текст */
+        .seo-text-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .seo-text {
+            background: rgba(17, 24, 39, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        .seo-text p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .seo-text strong, .seo-text em {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Секція: Grid-3 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .grid-3 div {
+            background: rgba(17, 24, 39, 0.15);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .grid-3 div:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Анімації */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+                filter: blur(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes pulseArrow {
+            0%, 100% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-nft, .get-nft-list li, .rules-list li, .faq-item, .grid-3 div, .event, .seo-text {
+                animation: none;
+                transition: none;
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
+        }
+
+        /* Футер */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--dark-bg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        /* Модальне вікно */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: var(--dark-surface);
+            padding: 2rem;
+            border-radius: 1rem;
+            position: relative;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* Адаптивність */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(17, 24, 39, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-nft {
+                width: 300px;
+                height: 300px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .grid-3, .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .get-nft-list li, .rules-list li, .faq-item {
+                padding: 1.5rem;
+            }
+
+            .get-nft-list li::before, .rules-list li::before {
+                left: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .hero-nft {
+                width: 250px;
+                height: 250px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .get-nft-list li, .rules-list li {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .faq-item h3 {
+                font-size: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -705,151 +856,175 @@
         <div class="nav-container">
             <div class="logo">NFT Battle Arena</div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Головна</a></li>
-                <li><a href="#features">Особливості</a></li>
-                <li><a href="#how-to-play">Як грати</a></li>
-                <li><a href="#stats">Статистика</a></li>
+                <li><a href="#hero">Головна</a></li>
+                <li><a href="#get-nft">Як отримати NFT</a></li>
+                <li><a href="#scale-nft">Збери армію</a></li>
+                <li><a href="#rules">Правила</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
-            <a href="/app" class="cta-button">
+            <a href="https://t.me/NFTBattleArenaBot" class="cta-button" target="_blank">
                 <i class="fas fa-play"></i>
                 Грати зараз
             </a>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Відкрити/закрити меню" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
     <!-- Герой секція -->
-    <section class="hero" id="home">
+    <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content fade-in">
-                <h1>Епічні бої NFT персонажів</h1>
-                <p>Збирайте унікальних NFT воїнів, покращуйте їх здібності та бийтеся за звання найкращого в захоплюючих PvP боях. Приєднуйтесь до найбільшої NFT бойової арени!</p>
+                <h1>NFT Battle Arena – Play2Earn гра в Telegram</h1>
+                <p>Отримай свій перший NFT, бийся на арені з суперниками та збирай унікальну колекцію. Це не просто гра – це битва за нагороди, престиж і справжню силу!</p>
                 <div class="hero-buttons">
-                    <a href="/app" class="btn-primary">
+                    <a href="https://t.me/NFTBattleArenaBot" class="btn-primary" target="_blank">
                         <i class="fas fa-rocket"></i>
-                        Почати гру
+                        Грати в Telegram
                     </a>
-                    <a href="#how-to-play" class="btn-secondary">
+                    <a href="#get-nft" class="btn-secondary">
                         <i class="fas fa-info-circle"></i>
-                        Дізнатися більше
+                        Як отримати NFT
+                    </a>
+                    <a href="#" class="btn-secondary" id="gameplayVideoBtn">
+                        <i class="fas fa-video"></i>
+                        Дивитися геймплей
                     </a>
                 </div>
             </div>
             <div class="hero-visual fade-in">
-                <img src="https://i.postimg.cc/jd9kxPBD/Photoroom-20250711-225513.png" alt="NFT Warrior" class="hero-nft">
-                <div class="floating-elements">
-                    <div class="floating-element">⚔️</div>
-                    <div class="floating-element">🛡️</div>
-                    <div class="floating-element">🔥</div>
-                    <div class="floating-element">💎</div>
+                <picture>
+                    <source srcset="/images/hero-nft.webp" type="image/webp">
+                    <img src="/images/hero-nft.jpg" alt="Унікальний NFT персонаж-воїн у бойовій арені" class="hero-nft" loading="lazy">
+                </picture>
+            </div>
+        </div>
+        <div class="modal" id="gameplayModal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Як отримати перший NFT -->
+    <section id="get-nft" class="section">
+        <div class="get-nft-container fade-in">
+            <h2 class="section-title">🎁 Як отримати свій перший NFT</h2>
+            <p class="section-subtitle">Почни свою пригоду в <strong>NFT Battle Arena</strong> з першого унікального NFT-бійця! Ми зробили процес максимально простим, щоб кожен міг долучитися до гри та розпочати битви на арені. Ось три основні способи отримати твого першого героя:</p>
+            <ul class="get-nft-list">
+                <li><a href="https://example.com/airdrop">Airdrop для новачків</a> — зареєструйся в нашій програмі та отримай безкоштовного стартового воїна, який стане твоїм першим кроком до перемог.</li>
+                <li><a href="https://example.com/market">Придбати на ринку</a> — відвідай наш офіційний маркетплейс, де ти можеш обрати унікального NFT-бійця з особливими характеристиками та здібностями.</li>
+                <li><a href="https://example.com/quest">Виконати завдання</a> — бери участь у квестах і подіях у грі, щоб заробити ексклюзивний NFT як нагороду за твої досягнення.</li>
+            </ul>
+            <picture>
+                <source srcset="/images/placeholder-nft1.webp" type="image/webp">
+                <img src="/images/placeholder-nft1.jpg" alt="Отримання першого NFT-бійця в NFT Battle Arena" class="img-fluid" loading="lazy">
+            </picture>
+        </div>
+    </section>
+
+    <!-- Як зібрати більше NFT -->
+    <section id="scale-nft" class="section bg-light">
+        <div class="section-container fade-in">
+            <h2 class="section-title">🔥 Як зібрати більше воїнів</h2>
+            <p class="section-subtitle">Збільшуй свою армію NFT за допомогою:</p>
+            <div class="grid-3">
+                <div>
+                    <h3>⚔️ Битви</h3>
+                    <p>Бийся з іншими гравцями та вигравай унікальні NFT.</p>
+                </div>
+                <div>
+                    <h3>⚒️ Крафт</h3>
+                    <p>Об’єднуй воїнів і створюй нових, сильніших персонажів.</p>
+                </div>
+                <div>
+                    <h3>📈 Торгівля</h3>
+                    <p>Купуй і продавай NFT на нашому <a href="https://example.com/market">ринку</a>.</p>
+                </div>
+            </div>
+            <picture>
+                <source srcset="/images/placeholder-nft2.webp" type="image/webp">
+                <img src="/images/placeholder-nft2.jpg" alt="Збір армії NFT у NFT Battle Arena" class="img-fluid" loading="lazy">
+            </picture>
+        </div>
+    </section>
+
+    <!-- Правила гри -->
+    <section id="rules" class="section">
+        <div class="rules-container fade-in">
+            <h2 class="section-title">📜 Правила гри</h2>
+            <p class="section-subtitle">Ознайомся з основними правилами <strong>NFT Battle Arena</strong>, щоб стати справжньою легендою арени! Наші правила створені для забезпечення чесної та захоплюючої гри для всіх учасників.</p>
+            <ol class="rules-list">
+                <li>Кожен воїн має <strong>1000 HP</strong> та три типи атак: <strong>звичайна атака</strong> для стабільного ураження, <strong>захист</strong> для зменшення шкоди, і <strong>спецудар</strong> для потужного удару з унікальними ефектами.</li>
+                <li>Гравець отримує <strong>5 енергії</strong> щодня для участі в боях. Енергія автоматично відновлюється кожні 24 години, дозволяючи планувати твої стратегічні битви.</li>
+                <li>Перемога в бою приносить <strong>рейтинг</strong>, <strong>досвід</strong> для прокачування воїна та шанс отримати ексклюзивний <strong>NFT</strong> як нагороду.</li>
+                <li>Поразка знижує твій рейтинг, але твої NFT залишаються в безпеці – ти ніколи не втратиш своїх бійців.</li>
+                <li>Чесна гра – наш пріоритет. Використання мультиакаунтів або ботів призведе до <strong>бану</strong>, щоб забезпечити справедливість для всіх гравців.</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap" class="section bg-dark text-white">
+        <div class="roadmap-container fade-in">
+            <h2 class="section-title">🚀 Майбутні плани розвитку</h2>
+            <p class="section-subtitle">Дізнайся, що чекає на <strong>NFT Battle Arena</strong> у найближчому майбутньому! Наша команда працює над новими функціями, щоб зробити гру ще більш захоплюючою та інноваційною.</p>
+            <div class="timeline">
+                <div class="event">
+                    <h3>Осінь 2025</h3>
+                    <p>Запуск <strong>PvE-режимів</strong> із новими сюжетними квестами та битвами проти легендарних босів. Гравці зможуть отримувати рідкісні NFT за перемоги над могутніми ворогами.</p>
+                </div>
+                <div class="event">
+                    <h3>Зима 2025</h3>
+                    <p>Введення <strong>Guild Wars</strong> – кланових битв, де гравці об’єднуються в команди, щоб змагатися за спільні нагороди та славу на арені.</p>
+                </div>
+                <div class="event">
+                    <h3>2026 і далі</h3>
+                    <p>Глобальні <strong>турніри</strong> з призовими фондами, запуск мобільного додатку для iOS та Android, а також впровадження <strong>DAO governance</strong> для децентралізованого управління спільнотою.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Особливості -->
-    <section class="features" id="features">
-        <div class="features-container">
-            <h2 class="section-title fade-in">Чому NFT Battle Arena?</h2>
-            <p class="section-subtitle fade-in">Відкрийте для себе унікальні можливості нашої гри</p>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎮</div>
-                    <h3>Захоплюючий геймплей</h3>
-                    <p>Стратегічні бої в реальному часі з унікальною системою енергії та спеціальних атак</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Унікальні NFT</h3>
-                    <p>Збирайте рідкісних персонажів з різними здібностями та візуальними стилями</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Система покращень</h3>
-                    <p>Прокачуйте своїх воїнів, покращуючи їх силу, швидкість, захист та здоров'я</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🏆</div>
-                    <h3>Турніри та рейтинги</h3>
-                    <p>Змагайтеся з іншими гравцями та піднімайтеся в рейтингу за цінні нагороди</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎁</div>
-                    <h3>Щоденні винагороди</h3>
-                    <p>Отримуйте щоденні бонуси, виконуйте завдання та збирайте досягнення</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📱</div>
-                    <h3>Telegram інтеграція</h3>
-                    <p>Грайте прямо в Telegram без необхідності встановлення додаткових додатків</p>
-                </div>
+    <!-- FAQ -->
+    <section id="faq" class="section">
+        <div class="faq-container fade-in">
+            <h2 class="section-title">❓ Часті питання</h2>
+            <p class="section-subtitle">Отримай відповіді на найпоширеніші запитання про <strong>NFT Battle Arena</strong> та почни свою пригоду з упевненістю!</p>
+            <div class="faq-item">
+                <h3>Що таке NFT Battle Arena?</h3>
+                <p>NFT Battle Arena – це інноваційна <strong>Play2Earn</strong> гра у форматі Telegram Mini App. Кожен гравець отримує безкоштовного NFT-бійця, щоб розпочати битви на арені та збирати унікальну колекцію.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Чи потрібно мати криптовалюту для гри?</h3>
+                <p>Ні, криптовалюта не потрібна. Усі транзакції в грі здійснюються через <strong>Telegram Stars</strong>, що робить її доступною для всіх.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Де можна завантажити NFT Battle Arena?</h3>
+                <p>Гра доступна в <a href="https://t.me/NFTBattleArenaBot">Telegram Mini App</a>. У майбутньому планується реліз у Play Store та App Store.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Чи можу я заробити гроші у NFT Battle Arena?</h3>
+                <p>Так, отримані NFT можна продавати на маркетплейсі або використовувати в івентах із реальними нагородами, що відкриває можливості для заробітку.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Чи буде мультиплеєр?</h3>
+                <p>Так, ми плануємо ввести <strong>PvP-битви</strong> між реальними гравцями та глобальні турніри з цінними призами.</p>
             </div>
         </div>
     </section>
 
-    <!-- Статистика -->
-    <section class="stats" id="stats">
-        <div class="stats-container">
-            <div class="stat-item fade-in">
-                <div class="stat-number">10K+</div>
-                <div class="stat-label">Активних гравців</div>
+    <!-- SEO текст -->
+    <section class="section seo-text">
+        <div class="seo-text-container fade-in">
+            <h2 class="section-title">NFT Battle Arena – майбутнє Play2Earn ігор</h2>
+            <div class="seo-text">
+                <p><strong>NFT Battle Arena</strong> – це революційна <strong>Play2Earn</strong> гра, створена на платформі <strong>Telegram Mini App</strong>. Поєднуючи <em>NFT-колекціонування</em>, динамічні <em>бойові арени</em> та унікальну <em>механіку заробітку</em>, ми пропонуємо гравцям захоплюючий досвід, де кожен бій має значення. Отримай свого першого бійця безкоштовно, розвивай його здібності та змагайся за місце в глобальних рейтингах.</p>
+                <p>На відміну від традиційних мобільних ігор, NFT Battle Arena дозволяє заробляти реальні активи через <strong>Telegram Stars</strong> та <strong>NFT-токени</strong>. У майбутньому ми плануємо інтегрувати геолокаційні івенти, де гравці зможуть отримувати NFT у реальному світі, а також глобальні турніри з призовими фондами. Приєднуйся до нашої спільноти та стань частиною нового покоління Web3-ігор!</p>
             </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">50K+</div>
-                <div class="stat-label">Проведених боїв</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Унікальних NFT</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Онлайн підтримка</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Як грати -->
-    <section class="how-to-play" id="how-to-play">
-        <div class="how-to-play-container">
-            <h2 class="section-title fade-in">Як почати грати?</h2>
-            <p class="section-subtitle fade-in">Простий шлях до епічних пригод</p>
-            <div class="steps-grid">
-                <div class="step-card fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Виберіть NFT</h3>
-                    <p>Оберіть свого першого воїна з колекції початкових персонажів або придбайте рідкісного</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Покращте здібності</h3>
-                    <p>Витрачайте зароблені монети на покращення характеристик вашого персонажа</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Вступіть у бій</h3>
-                    <p>Кидайте виклик іншим гравцям або боту в захоплюючих стратегічних боях</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Збирайте нагороди</h3>
-                    <p>Перемагайте, виконуйте завдання та отримуйте цінні винагороди за свої досягнення</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA секція -->
-    <section class="cta-section">
-        <div class="cta-container fade-in">
-            <h2>Готові до епічних пригод?</h2>
-            <p>Приєднуйтесь до тисяч гравців у найзахоплюючішій NFT бойовій арені!</p>
-            <a href="/app" class="btn-primary" style="background: var(--primary-color); color: var(--text-primary); font-size: 1.2rem; padding: 1.25rem 2.5rem;">
-    <i class="fas fa-play"></i>
-    Почати гру зараз
-</a>
         </div>
     </section>
 
@@ -860,119 +1035,58 @@
                 <h3>NFT Battle Arena</h3>
                 <p>Найкраща платформа для NFT боїв у Telegram. Збирайте, бийтеся, перемагайте!</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div
-</div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">500+</div>
-                <div class="stat-label">Унікальних NFT</div>
-            </div>
-            <div class="stat-item fade-in">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">Онлайн підтримка</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Як грати -->
-    <section class="how-to-play" id="how-to-play">
-        <div class="how-to-play-container">
-            <h2 class="section-title fade-in">Як почати грати?</h2>
-            <p class="section-subtitle fade-in">Простий шлях до епічних пригод</p>
-            <div class="steps-grid">
-                <div class="step-card fade-in">
-                    <div class="step-number">1</div>
-                    <h3>Виберіть NFT</h3>
-                    <p>Оберіть свого першого воїна з колекції початкових персонажів або придбайте рідкісного</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">2</div>
-                    <h3>Покращте здібності</h3>
-                    <p>Витрачайте зароблені монети на покращення характеристик вашого персонажа</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">3</div>
-                    <h3>Вступіть у бій</h3>
-                    <p>Кидайте виклик іншим гравцям або боту в захоплюючих стратегічних боях</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">4</div>
-                    <h3>Збирайте нагороди</h3>
-                    <p>Перемагайте, виконуйте завдання та отримуйте цінні винагороди за свої досягнення</p>
+                    <a href="https://t.me/NFTBattleArenaBot" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://twitter.com/nftbattlearena" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://discord.gg/nftbattlearena" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://youtube.com/nftbattlearena" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA секція -->
-    <section class="cta-section">
-        <div class="cta-container fade-in">
-            <h2>Готові до епічних пригод?</h2>
-            <p>Приєднуйтесь до тисяч гравців у найзахоплюючішій NFT бойовій арені!</p>
-            <a href="/app" class="btn-primary" style="background: white; color: var(--primary-color); font-size: 1.2rem; padding: 1.25rem 2.5rem;">
-                <i class="fas fa-play"></i>
-                Почати гру зараз
-            </a>
-        </div>
-    </section>
-
-    <!-- Футер -->
-    <footer class="footer">
-    <div class="footer-container">
-        <div class="footer-section">
-            <h3>NFT Battle Arena</h3>
-            <p>Найкраща платформа для NFT боїв у Telegram. Збирайте, бийтеся, перемагайте!</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-telegram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-discord"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+            <div class="footer-section">
+                <h3>Гра</h3>
+                <ul>
+                    <li><a href="https://t.me/NFTBattleArenaBot">Грати зараз</a></li>
+                    <li><a href="#get-nft">Як отримати NFT</a></li>
+                    <li><a href="#rules">Правила</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Підтримка</h3>
+                <ul>
+                    <li><a href="#">Центр допомоги</a></li>
+                    <li><a href="#">Зв'язатися з нами</a></li>
+                    <li><a href="#">Повідомити про помилку</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Правова інформація</h3>
+                <ul>
+                    <li><a href="#">Умови використання</a></li>
+                    <li><a href="#">Політика конфіденційності</a></li>
+                    <li><a href="#">Правила гри</a></li>
+                    <li><a href="#">Відмова від відповідальності</a></li>
+                </ul>
             </div>
         </div>
-        <div class="footer-section">
-            <h3>Гра</h3>
-            <ul>
-                <li><a href="/app">Грати зараз</a></li>
-                <li><a href="#features">Особливості</a></li>
-                <li><a href="#how-to-play">Як грати</a></li>
-                <li><a href="#stats">Статистика</a></li>
-            </ul>
+        <div class="footer-bottom">
+            <p>&copy; 2025 NFT Battle Arena. Всі права захищені.</p>
         </div>
-        <div class="footer-section">
-            <h3>Підтримка</h3>
-            <ul>
-                <li><a href="#">Центр допомоги</a></li>
-                <li><a href="#">Зв'язатися з нами</a></li>
-                <li><a href="#">Повідомити про помилку</a></li>
-                <li><a href="#">FAQ</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h3>Правова інформація</h3>
-            <ul>
-                <li><a href="#">Умови використання</a></li>
-                <li><a href="#">Політика конфіденційності</a></li>
-                <li><a href="#">Правила гри</a></li>
-                <li><a href="#">Відмова від відповідальності</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 NFT Battle Arena. Всі права захищені.</p>
-    </div>
-</footer>
+    </footer>
 
     <script>
         // Прелоадер
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
+            const minLoadingTime = 500;
+            const startTime = Date.now();
             setTimeout(() => {
-                preloader.classList.add('hidden');
-            }, 1000);
+                if (Date.now() - startTime >= minLoadingTime) {
+                    preloader.classList.add('hidden');
+                } else {
+                    setTimeout(() => preloader.classList.add('hidden'), minLoadingTime - (Date.now() - startTime));
+                }
+            }, 0);
         });
 
         // Навігація при скролі
@@ -988,22 +1102,27 @@
         // Мобільне меню
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const navLinks = document.getElementById('navLinks');
-
         mobileMenuToggle.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
+            const isExpanded = navLinks.classList.toggle('active');
+            this.setAttribute('aria-expanded', isExpanded);
             const icon = this.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
+            icon.classList.toggle('fa-bars', !isExpanded);
+            icon.classList.toggle('fa-times', isExpanded);
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.setAttribute('aria-expanded', false);
+                const icon = mobileMenuToggle.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
-            }
+            });
         });
 
         // Плавна прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
@@ -1015,7 +1134,7 @@
             });
         });
 
-        // Анімація появи елементів
+        // Анімація появи
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1033,112 +1152,27 @@
             observer.observe(el);
         });
 
-        // Анімація чисел статистики
-        function animateNumbers() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
-                const suffix = stat.textContent.replace(/[\d]/g, '');
-                let current = 0;
-                const increment = target / 100;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + suffix;
-                }, 20);
-            });
-        }
-
-        // Запуск анімації чисел при появі секції статистики
-        const statsSection = document.getElementById('stats');
-        const statsObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateNumbers();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        statsObserver.observe(statsSection);
-
-        // Додавання ефекту паралаксу для героя
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const heroHeight = hero.offsetHeight;
-            
-            if (scrolled < heroHeight) {
-                const rate = scrolled * -0.5;
-                hero.style.transform = `translateY(${rate}px)`;
+        // Модальне вікно
+        const modal = document.getElementById('gameplayModal');
+        const modalBtn = document.getElementById('gameplayVideoBtn');
+        const closeBtn = document.querySelector('.modal-close');
+        modalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
             }
         });
 
-        // Додавання ефекту наведення для карток
-        document.querySelectorAll('.feature-card, .step-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Додавання ефекту частинок для героя
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = '4px';
-            particle.style.height = '4px';
-            particle.style.background = 'rgba(255, 255, 255, 0.6)';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = '100%';
-            particle.style.animation = 'particleFloat 8s linear infinite';
-            
-            const hero = document.querySelector('.hero');
-            hero.appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 8000);
-        }
-
-        // Додавання CSS для анімації частинок
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes particleFloat {
-                0% {
-                    transform: translateY(0) rotate(0deg);
-                    opacity: 0;
-                }
-                10% {
-                    opacity: 1;
-                }
-                90% {
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(-100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Створення частинок кожні 2 секунди
-        setInterval(createParticle, 2000);
-
-        // Додавання ефекту печатання для заголовка
-        function typeWriter(element, text, speed = 100) {
+        // Ефект печатання
+        function typeWriter(element, text, speed = 80) {
             let i = 0;
             element.innerHTML = '';
-            
             function type() {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
@@ -1146,11 +1180,9 @@
                     setTimeout(type, speed);
                 }
             }
-            
             type();
         }
 
-        // Запуск ефекту печатання після завантаження
         setTimeout(() => {
             const heroTitle = document.querySelector('.hero-content h1');
             const originalText = heroTitle.textContent;
