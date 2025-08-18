@@ -851,6 +851,200 @@ body {
         left: -2.5rem;
     }
 }
+      
+      
+      
+     /* Галерея */
+.gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem 0;
+  height: 400px;
+  perspective: 1000px;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-item {
+  position: absolute;
+  width: 70%;
+  max-width: 400px;
+  height: auto;
+  
+  
+  transition: transform 0.5s ease, opacity 0.5s ease, z-index 0s;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.gallery-item.active {
+  transform: translateX(0) scale(1);
+  z-index: 3;
+  opacity: 1;
+}
+
+.gallery-item:not(.active) {
+  transform: translateX(50%) scale(0.8);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.gallery-item.prev {
+  transform: translateX(-50%) scale(0.8);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.gallery-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1rem;
+}
+
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.0);
+  padding: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Підказка */
+.carousel-hint {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: clamp(12px, 2.5vw, 14px);
+  margin-top: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Відео бою */
+.battle-video {
+  margin-top: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.video-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.battle-video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+}
+
+/* Модальне вікно галереї */
+.gallery-modal .modal-content {
+  max-width: 90%;
+  max-height: 90vh;
+  padding: 1rem;
+  text-align: center;
+}
+
+.modal-img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.modal-caption {
+  color: var(--text-secondary);
+  font-size: clamp(var(--min-font-size), 3vw, 1rem);
+}
+
+/* Анімація для підказки */
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Адаптивність */
+@media (min-width: 320px) and (max-width: 767px) {
+  .gallery-carousel {
+    max-width: 100%;
+    height: 300px;
+  }
+
+  .gallery-item {
+    width: 80%;
+  }
+
+  .gallery-item:not(.active) {
+    transform: translateX(40%) scale(0.7);
+  }
+
+  .gallery-item.prev {
+    transform: translateX(-40%) scale(0.7);
+  }
+
+  .video-container {
+    padding-bottom: 75%;
+  }
+
+  .video-title {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  .carousel-hint {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .gallery-item {
+    width: 75%;
+  }
+
+  .gallery-item:not(.active) {
+    transform: translateX(45%) scale(0.75);
+  }
+
+  .gallery-item.prev {
+    transform: translateX(-45%) scale(0.75);
+  }
+}
     </style>
 </head>
 <body>
@@ -869,6 +1063,7 @@ body {
                 <li><a href="#scale-nft">Збери армію</a></li>
                 <li><a href="#rules">Правила</a></li>
                 <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#gallery">Галерея</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
             <a href="https://t.me/NFTBattleArenaBot" class="cta-button" target="_blank">
@@ -1119,6 +1314,71 @@ body {
             </div>
         </div>
     </section>
+      
+
+<!-- Галерея модульних вікон та відео бою -->
+<section id="gallery" class="section bg-light">
+  <div class="gallery-container fade-in">
+    <h2 class="section-title">🖼️ Галерея функцій</h2>
+    <p class="section-subtitle">
+      Ознайомтесь із модульними вікнами <strong>NFT Battle Arena</strong>. Клацніть на заднє зображення, щоб переглянути його!
+    </p>
+
+    <!-- Галерея з каруселлю -->
+    <div class="gallery-carousel">
+      <div class="carousel-inner">
+        <div class="gallery-item" data-index="0">
+          <img src="https://i.ibb.co/B5hj9ShC/8-removebg-preview.png" alt="Модульне вікно апгрейдів" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="1">
+          <img src="https://i.ibb.co/gMGrKyJN/9-removebg-preview.png" alt="Магазин Telegram Stars" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="2">
+          <img src="https://i.ibb.co/LsyD0vv/7-removebg-preview.png" alt="Вікно бою" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="3">
+          <img src="https://i.ibb.co/5hFPHKVX/6-removebg-preview.png" alt="Налаштування гри" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="4">
+          <img src="https://i.ibb.co/W43GSCWR/5-removebg-preview.png" alt="Вікно статистики" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="5">
+          <img src="https://i.ibb.co/pr1brFyr/4-removebg-preview.png" alt="Меню вибору режимів" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="6">
+          <img src="https://i.ibb.co/HLm1Dbzh/3-removebg-preview.png" alt="Вікно нагород" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="7">
+          <img src="https://i.ibb.co/Cps44Xds/removebg-preview.png" alt="Вікно лідерів" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+        <div class="gallery-item" data-index="8">
+          <img src="https://i.ibb.co/354s1Fdd/2-removebg-preview.png" alt="Вікно профілю" class="gallery-img" loading="lazy">
+          <div class="gallery-overlay"></div>
+        </div>
+      </div>
+      <!-- Підказка -->
+      <div class="carousel-hint">← Клацніть на заднє зображення →</div>
+    </div>
+
+    <!-- Модальне вікно для галереї -->
+    <div class="modal gallery-modal" id="galleryModal">
+      <div class="modal-content gallery-modal-content">
+        <span class="modal-close">&times;</span>
+        <img src="" alt="Зображення галереї" class="modal-img">
+        <p class="modal-caption"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- SEO текст -->
     <section class="section seo-text">
@@ -1131,6 +1391,7 @@ body {
         </div>
     </section>
 
+      
     <!-- Футер -->
     <footer class="footer">
         <div class="footer-container">
@@ -1178,139 +1439,180 @@ body {
     </footer>
 
    <script>
-        // Прелоадер
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            const minLoadingTime = 500;
-            const startTime = Date.now();
-            setTimeout(() => {
-                if (Date.now() - startTime >= minLoadingTime) {
-                    preloader.classList.add('hidden');
-                } else {
-                    setTimeout(() => preloader.classList.add('hidden'), minLoadingTime - (Date.now() - startTime));
-                }
-            }, 0);
-        });
-
-        // Навігація при скролі
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Мобільне меню
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
-        mobileMenuToggle.addEventListener('click', function() {
-            const isExpanded = navLinks.classList.toggle('active');
-            this.setAttribute('aria-expanded', isExpanded);
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fa-bars', !isExpanded);
-            icon.classList.toggle('fa-times', isExpanded);
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.setAttribute('aria-expanded', false);
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
-        });
-
-        // Плавна прокрутка
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Анімація появи
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Модальне вікно
-        const modal = document.getElementById('gameplayModal');
-        const modalBtn = document.getElementById('gameplayVideoBtn');
-        const closeBtn = document.querySelector('.modal-close');
-        modalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex';
-        });
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-
-        // Ефект печатання
-        function typeWriter(element, text, speed = 80) {
-            let i = 0;
-            element.innerHTML = '';
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        setTimeout(() => {
-            const heroTitle = document.querySelector('.hero-content h1');
-            const originalText = heroTitle.textContent;
-            typeWriter(heroTitle, originalText, 80);
-        }, 1500);
-     
-     // Встановлення прокрутки до верху сторінки після завантаження
+        // Прелоадер і прокрутка до верху
 window.addEventListener('load', function() {
-    const preloader = document.getElementById('preloader');
-    const minLoadingTime = 500;
-    const startTime = Date.now();
-    
-    // Встановлюємо прокрутку до верху
-    window.scrollTo(0, 0);
-    
-    setTimeout(() => {
-        if (Date.now() - startTime >= minLoadingTime) {
-            preloader.classList.add('hidden');
-        } else {
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-            }, minLoadingTime - (Date.now() - startTime));
-        }
-    }, 0);
+  const preloader = document.getElementById('preloader');
+  const minLoadingTime = 500;
+  const startTime = Date.now();
+
+  // Встановлюємо прокрутку до верху
+  window.scrollTo(0, 0);
+
+  setTimeout(() => {
+    if (Date.now() - startTime >= minLoadingTime) {
+      preloader.classList.add('hidden');
+    } else {
+      setTimeout(() => preloader.classList.add('hidden'), minLoadingTime - (Date.now() - startTime));
+    }
+  }, 0);
 });
+
+// Навігація при скролі
+window.addEventListener('scroll', function() {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// Мобільне меню
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const navLinks = document.getElementById('navLinks');
+mobileMenuToggle.addEventListener('click', function() {
+  const isExpanded = navLinks.classList.toggle('active');
+  this.setAttribute('aria-expanded', isExpanded);
+  const icon = this.querySelector('i');
+  icon.classList.toggle('fa-bars', !isExpanded);
+  icon.classList.toggle('fa-times', isExpanded);
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+    mobileMenuToggle.setAttribute('aria-expanded', false);
+    const icon = mobileMenuToggle.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
+  });
+});
+
+// Плавна прокрутка
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').substring(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      const navbarHeight = document.querySelector('.navbar').offsetHeight;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Анімація появи
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in').forEach(el => {
+  observer.observe(el);
+});
+
+// Модальне вікно для відео
+const modal = document.getElementById('gameplayModal');
+const modalBtn = document.getElementById('gameplayVideoBtn');
+const closeBtn = document.querySelector('.modal-close');
+modalBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  modal.style.display = 'flex';
+});
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+// Галерея та модальне вікно для галереї
+const galleryModal = document.getElementById('galleryModal');
+const galleryModalImg = galleryModal.querySelector('.modal-img');
+const galleryModalCaption = galleryModal.querySelector('.modal-caption');
+const galleryItems = document.querySelectorAll('.gallery-item');
+const carouselInner = document.querySelector('.carousel-inner');
+
+// Ініціалізація каруселі
+let currentIndex = 0;
+
+function updateCarousel() {
+  galleryItems.forEach((item, index) => {
+    item.classList.remove('active', 'prev');
+    if (index === currentIndex) {
+      item.classList.add('active');
+    } else if (index < currentIndex) {
+      item.classList.add('prev');
+    }
+  });
+}
+
+// Обробка кліків на зображення
+galleryItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const index = parseInt(item.getAttribute('data-index'));
+    if (index !== currentIndex) {
+      // Перелистування до заднього зображення
+      currentIndex = index;
+      updateCarousel();
+    } else {
+      // Відкриття модального вікна для активного зображення
+      const img = item.querySelector('.gallery-img');
+      galleryModalImg.src = img.src;
+      galleryModalImg.alt = img.alt;
+      galleryModalCaption.textContent = img.alt; // Використовуємо alt для підпису
+      galleryModal.style.display = 'flex';
+    }
+  });
+});
+
+// Закриття модального вікна галереї
+galleryModal.querySelector('.modal-close').addEventListener('click', () => {
+  galleryModal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === galleryModal) {
+    galleryModal.style.display = 'none';
+  }
+});
+
+// Початкова ініціалізація каруселі
+updateCarousel();
+
+// Ефект печатання
+function typeWriter(element, text, speed = 80) {
+  let i = 0;
+  element.innerHTML = '';
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+setTimeout(() => {
+  const heroTitle = document.querySelector('.hero-content h1');
+  const originalText = heroTitle.textContent;
+  typeWriter(heroTitle, originalText, 80);
+}, 1500);
     </script>
 </body>
 </html>
