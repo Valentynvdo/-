@@ -60,801 +60,454 @@
 
     <style>
         :root {
-    --primary-color: #1e293b;
-    --primary-hover: #334155;
-    --secondary-color: #4b5563;
-    --accent-color: #3b82f6;
-    --success-color: #1f6e56;
-    --danger-color: #7f1d1d;
-    --dark-bg: #0a0e17;
-    --dark-surface: #121825;
-    --text-primary: #f1f5f9;
-    --text-secondary: #a1b2c8;
-    --gradient-primary: linear-gradient(135deg, #1e293b 0%, #4b5563 100%);
-    --gradient-hero: linear-gradient(135deg, #0a0e17 0%, #121825 50%, #1e293b 100%);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-    --min-font-size: 14px;
-    --touch-min-size: 44px;
+  --primary-color: #1e293b;
+  --primary-hover: #334155;
+  --secondary-color: #4b5563;
+  --accent-color: #3b82f6;
+  --success-color: #1f6e56;
+  --danger-color: #7f1d1d;
+  --dark-bg: #0a0e17;
+  --dark-surface: #121825;
+  --text-primary: #f1f5f9;
+  --text-secondary: #a1b2c8;
+  --gradient-hero: linear-gradient(180deg, #0a0e17 0%, #121825 100%); /* Для #hero */
+  --gradient-nft-collection: linear-gradient(180deg, #121825 0%, #0a0e17 100%); /* Для #nft-collection */
+  --gradient-rules: linear-gradient(180deg, #0a0e17 0%, #121825 100%); /* Для #rules */
+  --gradient-roadmap: linear-gradient(180deg, #121825 0%, #1e293b 100%); /* Для #roadmap */
+  --gradient-faq: linear-gradient(180deg, #1e293b 0%, #121825 100%); /* Для #faq */
+  --gradient-gallery: linear-gradient(180deg, #121825 0%, #0a0e17 100%); /* Для #gallery */
+  --gradient-seo-text: linear-gradient(180deg, #0a0e17 0%, #121825 100%); /* Для #seo-text */
+  --gradient-footer: linear-gradient(180deg, #121825 0%, #0a0e17 100%); /* Для .footer */
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --min-font-size: 14px;
+  --touch-min-size: 44px;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: var(--dark-bg);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-    font-size: var(--min-font-size);
-    min-width: 320px;
+  font-family: 'Inter', sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-size: var(--min-font-size);
+  min-width: 320px;
+}
+
+/* Прелоадер */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  transition: opacity 0.5s ease;
+}
+
+.preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--accent-color);
+  border-top: 5px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* Навігація */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(17, 24, 39, 0.25);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-lg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(17, 24, 39, 0.25);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
 }
 
 .navbar.scrolled {
-    background: rgba(17, 24, 39, 0.35);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+  background: rgba(17, 24, 39, 0.35);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
 }
 
 .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.75rem; /* Зменшено відступи для компактності */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
 }
 
 .logo {
-    font-size: clamp(1rem, 3.5vw, 1.25rem); /* Зменшено розмір логотипу */
-    font-weight: 800;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #1e293b 0%, #4b5563 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 0.5rem; /* Зменшуємо відстань між посиланнями */
-    flex-wrap: nowrap; /* Забороняємо перенос посилань */
-    justify-content: center;
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    padding: 0.4rem 0.8rem; /* Зменшено відступи */
-    font-size: clamp(11px, 2vw, 12px); /* Зменшено розмір шрифту */
-    white-space: nowrap;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.4rem 0.8rem;
+  font-size: clamp(11px, 2vw, 12px);
+  white-space: nowrap;
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .cta-button {
-    background: var(--accent-color);
-    color: var(--text-primary);
-    padding: 0.5rem 1rem; /* Зменшено відступи кнопки */
-    border-radius: 0.4rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-lg);
-    min-height: 36px; /* Зменшено мінімальну висоту */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(11px, 2vw, 12px); /* Зменшено розмір шрифту кнопки */
+  background: var(--accent-color);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(11px, 2vw, 12px);
 }
 
 .cta-button:hover {
-    background: #2563eb;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-xl);
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
 }
 
+/* Кнопка мобільного меню */
 .mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1.25rem; /* Зменшено розмір іконки */
-    cursor: pointer;
-    min-height: 36px; /* Зменшено мінімальну висоту */
-    min-width: 36px; /* Зменшено мінімальну ширину */
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  min-height: var(--touch-min-size);
+  min-width: var(--touch-min-size);
+  display: flex; /* Додано для центрування */
+  justify-content: center; /* Центрування по горизонталі */
+  align-items: center; /* Центрування по вертикалі */
+  position: relative; /* Додано для позиціонування бордера */
 }
 
 /* Герой секція */
 .hero {
-    min-height: 100vh;
-    background: var(--gradient-hero);
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding: 5rem 1rem 2rem; /* Додаємо більший верхній відступ */
+  min-height: 100vh;
+  background: var(--gradient-hero);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 1rem 2rem;
 }
-      
-      @media (min-width: 320px) and (max-width: 767px) {
-    .hero {
-        padding-top: 6rem; /* Додатковий відступ для мобільних */
-    }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .hero {
+    padding-top: 6rem;
+  }
 }
 
 .hero-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    align-items: center;
-    justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
 }
 
 .hero-content h1 {
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #f9fafb 0%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: center;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #f9fafb 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
 }
 
 .hero-content p {
-    font-size: clamp(var(--min-font-size), 3vw, 1.25rem);
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    text-align: center;
+  font-size: clamp(var(--min-font-size), 3vw, 1.25rem);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .hero-buttons {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .btn-primary,
 .btn-secondary {
-    padding: 1rem 2rem;
-    border-radius: 0.75rem;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: clamp(var(--min-font-size), 3vw, 1.1rem);
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-lg);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-height: var(--touch-min-size);
-    min-width: 150px;
-    justify-content: center;
-    text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(var(--min-font-size), 3vw, 1.1rem);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-lg);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: var(--touch-min-size);
+  min-width: 150px;
+  justify-content: center;
+  text-align: center;
 }
 
 .btn-primary {
-    background: var(--accent-color);
-    color: var(--text-primary);
+  background: var(--accent-color);
+  color: var(--text-primary);
 }
 
 .btn-primary:hover {
-    background: #2563eb;
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-xl);
+  background: #2563eb;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
 }
 
 .btn-secondary {
-    background: rgba(17, 24, 39, 0.2);
-    backdrop-filter: blur(20px);
-    color: var(--text-primary);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(17, 24, 39, 0.2);
+  backdrop-filter: blur(20px);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .btn-secondary:hover {
-    background: rgba(17, 24, 39, 0.3);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-xl);
+  background: rgba(17, 24, 39, 0.3);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
 }
 
 .hero-visual {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-nft {
-    max-width: 100%;
-    height: auto;
-    max-height: 400px;
-    border-radius: 2rem;
-    box-shadow: var(--shadow-xl);
-    animation: float 6s ease-in-out infinite;
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  border-radius: 2rem;
+  box-shadow: var(--shadow-xl);
+  animation: float 6s ease-in-out infinite;
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 
-/* Секції */
-.section {
-    padding: 4rem 1rem;
-    background: var(--dark-surface);
-    overflow: hidden;
+/* Секція: Отримання та збір NFT */
+#nft-collection {
+  padding: 4rem 1rem;
+  background: var(--gradient-nft-collection);
+  overflow: hidden;
 }
 
-.section.bg-light {
-    background: var(--dark-bg);
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.section.bg-dark {
-    background: var(--gradient-primary);
+/* Секція: Правила гри */
+#rules {
+  padding: 4rem 1rem;
+  background: var(--gradient-rules);
+  overflow: visible; /* Змінено з hidden на visible, щоб уникнути обрізання */
 }
 
-.section-title {
-    text-align: center;
-    font-size: clamp(2rem, 5vw, 2.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-    position: relative;
+.rules-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -0.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: var(--accent-color);
-    border-radius: 2px;
-}
-
-.section-subtitle {
-    text-align: center;
-    font-size: clamp(var(--min-font-size), 3vw, 1.25rem);
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.img-fluid {
-    max-width: 100%;
-    height: auto;
-    border-radius: 1rem;
-    margin-top: 2rem;
-    box-shadow: var(--shadow-lg);
-    transition: transform 0.3s ease, filter 0.3s ease;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.img-fluid:hover {
-    transform: scale(1.02);
-    filter: brightness(1.1);
-}
-
-/* Секція: Як отримати перший NFT */
-.get-nft-container,
-.rules-container,
-.roadmap-container,
-.faq-container,
-.seo-text-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.get-nft-list,
 .rules-list {
-    list-style: none;
-    width: 100%;
-    max-width: 800px;
-    padding: 0;
+  list-style: none;
+  width: 100%;
+  max-width: 800px;
+  padding: 0;
 }
 
-.get-nft-list li,
-.rules-list li,
-.faq-item,
-.event,
-.grid-3 div,
-.seo-text {
-    background: rgba(17, 24, 39, 0.15);
-    backdrop-filter: blur(20px);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: var(--shadow-lg);
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-    animation: slideIn 0.6s ease forwards;
-    width: 100%;
-    font-size: var(--min-font-size);
-}
-
-.get-nft-list li:hover,
-.rules-list li:hover,
-.faq-item:hover,
-.event:hover,
-.grid-3 div:hover {
-    transform: translateY(-5px) scale(1);
-    box-shadow: var(--shadow-xl);
-    background: rgba(17, 24, 39, 0.25);
-}
-
-.get-nft-list li::before,
-.rules-list li::before {
-    content: '→';
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--accent-color);
-    font-size: 1.5rem;
-    font-weight: bold;
-    animation: pulseArrow 1.5s ease-in-out infinite;
-}
-
-.get-nft-list li,
 .rules-list li {
-    padding-left: 3rem;
+  background: rgba(17, 24, 39, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem 1.5rem 1.5rem 4rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  font-size: var(--min-font-size);
 }
 
-.get-nft-list li a,
-.rules-list strong,
-.faq-item a,
-.seo-text strong,
-.seo-text em {
-    color: var(--accent-color);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.rules-list li:hover {
+  transform: translateY(-5px) scale(1);
+  box-shadow: var(--shadow-xl);
+  background: rgba(17, 24, 39, 0.25);
 }
 
-.get-nft-list li a:hover,
-.faq-item a:hover {
-    color: #2563eb;
-    text-decoration: underline;
+.rules-list li::before {
+  content: '→';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: pulseArrow 1.5s ease-in-out infinite;
 }
 
-/* Grid-3 */
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 2rem;
+/* Кнопка для розгортання/згортання */
+.toggle-rules-btn {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  min-height: var(--touch-min-size);
+  min-width: var(--touch-min-size);
 }
 
-/* Timeline */
-.timeline {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
+.toggle-rules-btn i {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
 }
 
-.event::before {
-    content: '';
-    position: absolute;
-    left: -2.5rem;
-    top: 1.5rem;
-    color: var(--accent-color);
-    font-size: 1.5rem;
+.toggle-rules-btn[aria-expanded="true"] i {
+  transform: rotate(180deg);
 }
 
-/* FAQ */
-.faq-item h3 {
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
-    position: relative;
+.toggle-rules-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
-.faq-item h3::after {
-    content: '';
-    position: absolute;
-    bottom: -0.3rem;
-    left: 0;
-    width: 50px;
-    height: 2px;
-    background: var(--accent-color);
-    transition: width 0.3s ease;
+/* Контейнер для прихованого вмісту */
+.rules-content {
+  width: 100%;
+  max-width: 800px;
+  transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Змінено max-height на height */
+  overflow-y: auto; /* Додано для прокрутки на мобільних */
 }
 
-.faq-item:hover h3::after {
-    width: 100px;
+.rules-content[data-state="collapsed"] {
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.faq-item p {
-    color: var(--text-secondary);
-    font-size: var(--min-font-size);
+.rules-content[data-state="expanded"] {
+  height: auto; /* Змінено з max-height: 4000px на height: auto */
+  opacity: 1;
+  visibility: visible;
 }
 
-/* SEO текст */
-.seo-text p {
-    margin-bottom: 1rem;
-    color: var(--text-secondary);
-    font-size: var(--min-font-size);
+/* Секція: Roadmap */
+#roadmap {
+  padding: 4rem 1rem;
+  background: var(--gradient-roadmap);
+  overflow: hidden;
 }
 
-/* Анімації */
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-        filter: blur(5px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
+.roadmap-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes pulseArrow {
-    0%, 100% { transform: translateY(-50%) scale(1); }
-    50% { transform: translateY(-50%) scale(1.2); }
+/* Секція: FAQ */
+#faq {
+  padding: 4rem 1rem;
+  background: var(--gradient-faq);
+  overflow: hidden;
 }
 
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
+.faq-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* Секція: Галерея */
+#gallery {
+  padding: 4rem 1rem;
+  background: var(--gradient-gallery);
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .hero-nft, .get-nft-list li, .rules-list li, .faq-item, .grid-3 div, .event, .seo-text {
-        animation: none;
-        transition: none;
-        opacity: 1;
-        transform: none;
-        filter: none;
-    }
-}
-      
-      /* Мобільні стилі */
-@media (min-width: 320px) and (max-width: 767px) {
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(17, 24, 39, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 1rem;
-        gap: 0.5rem;
-        width: 100%;
-        text-align: center; /* Центруємо текст */
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links a {
-        font-size: 16px; /* Збільшуємо для кращої читабельності */
-        padding: 0.75rem;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-}
-
-/* Футер */
-.footer {
-    padding: 3rem 1rem;
-    background: var(--dark-bg);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: hidden;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.footer-section h3 {
-    font-size: clamp(var(--min-font-size), 3vw, 1.25rem);
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-section ul li a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-    font-size: var(--min-font-size);
-}
-
-.footer-section ul li a:hover {
-    color: var(--accent-color);
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.social-links a {
-    color: var(--text-secondary);
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
-    transition: color 0.3s ease;
-    min-width: var(--touch-min-size);
-    min-height: var(--touch-min-size);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-links a:hover {
-    color: var(--accent-color);
-}
-
-.footer-bottom {
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: var(--min-font-size);
-}
-
-/* Модальне вікно */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    overflow: auto;
-    padding: 1rem;
-}
-
-.modal-content {
-    background: var(--dark-surface);
-    padding: 2rem 1rem;
-    border-radius: 1rem;
-    position: relative;
-    max-width: 90%;
-    width: auto;
-    max-height: 90vh;
-    overflow: auto;
-}
-
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-primary);
-    min-width: var(--touch-min-size);
-    min-height: var(--touch-min-size);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Медіа-запити */
-
-/* Смартфони (320px–767px) */
-@media (min-width: 320px) and (max-width: 767px) {
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(17, 24, 39, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        padding: 1rem;
-        gap: 1rem;
-        width: 100%;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    .hero-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-nft {
-        max-height: 250px;
-    }
-
-    .section {
-        padding: 3rem 1rem;
-    }
-
-    .get-nft-list li,
-    .rules-list li,
-    .faq-item,
-    .event {
-        padding: 1rem 1rem 1rem 2.5rem;
-    }
-
-    .get-nft-list li::before,
-    .rules-list li::before {
-        left: 0.75rem;
-    }
-
-    .event::before {
-        left: -1.5rem;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .grid-3 {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Планшети (768px–1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .nav-container {
-        padding: 1rem 2rem;
-    }
-
-    .hero-container {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .hero-nft {
-        max-height: 300px;
-    }
-
-    .section {
-        padding: 5rem 2rem;
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .nav-links {
-        gap: 1.5rem;
-    }
-
-    .event::before {
-        left: -2rem;
-    }
-}
-
-/* Десктопи (від 1024px) */
-@media (min-width: 1024px) {
-    .nav-container {
-        padding: 1rem 2rem;
-    }
-
-    .hero-container {
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-    }
-
-    .hero-nft {
-        max-height: 400px;
-    }
-
-    .section {
-        padding: 6rem 2rem;
-    }
-
-    .grid-3 {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .nav-links {
-        gap: 2rem;
-    }
-
-    .get-nft-list li,
-    .rules-list li {
-        padding: 1.5rem 1.5rem 1.5rem 4rem;
-    }
-
-    .get-nft-list li::before,
-    .rules-list li::before {
-        left: 1.5rem;
-    }
-
-    .event::before {
-        left: -2.5rem;
-    }
-}
-      
-      
-      
-     /* Галерея */
 .gallery-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -886,29 +539,34 @@ body {
   width: 70%;
   max-width: 400px;
   height: auto;
-  
-  
-  transition: transform 0.5s ease, opacity 0.5s ease, z-index 0s;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease, z-index 0s linear;
+  opacity: 0.7;
   cursor: pointer;
   z-index: 1;
 }
 
 .gallery-item.active {
   transform: translateX(0) scale(1);
-  z-index: 3;
   opacity: 1;
-}
-
-.gallery-item:not(.active) {
-  transform: translateX(50%) scale(0.8);
-  opacity: 0.7;
-  z-index: 2;
+  z-index: 3;
 }
 
 .gallery-item.prev {
-  transform: translateX(-50%) scale(0.8);
+  transform: translateX(-60%) scale(0.85);
   opacity: 0.7;
   z-index: 2;
+}
+
+.gallery-item.next {
+  transform: translateX(60%) scale(0.85);
+  opacity: 0.7;
+  z-index: 2;
+}
+
+.gallery-item:not(.active):not(.prev):not(.next) {
+  transform: translateX(100%) scale(0.7);
+  opacity: 0;
+  z-index: 1;
 }
 
 .gallery-img {
@@ -923,7 +581,6 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.0);
   padding: 0.75rem;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -942,39 +599,325 @@ body {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* Відео бою */
-.battle-video {
-  margin-top: 2rem;
-  text-align: center;
-  width: 100%;
-}
-
-.video-title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
+/* Секція: SEO текст */
+.seo-text {
+  padding: 4rem 1rem;
+  background: var(--gradient-seo-text);
   overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: var(--shadow-lg);
 }
 
-.battle-video-player {
+.seo-text-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Футер */
+.footer {
+  padding: 3rem 1rem;
+  background: var(--gradient-footer);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.footer-section h3 {
+  font-size: clamp(var(--min-font-size), 3vw, 1.25rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: var(--min-font-size);
+}
+
+.footer-section ul li a:hover {
+  color: var(--accent-color);
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: var(--text-secondary);
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  transition: color 0.3s ease;
+  min-width: var(--touch-min-size);
+  min-height: var(--touch-min-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-links a:hover {
+  color: var(--accent-color);
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--min-font-size);
+}
+
+/* Загальні стилі для секцій */
+.section-title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
   position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: clamp(var(--min-font-size), 3vw, 1.25rem);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-fluid:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.get-nft-container,
+.rules-container,
+.roadmap-container,
+.faq-container,
+.seo-text-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.get-nft-list,
+.rules-list,
+.faq-item,
+.event,
+.grid-3 div,
+.seo-text {
+  background: rgba(17, 24, 39, 0.15);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  font-size: var(--min-font-size);
+}
+
+.get-nft-list li:hover,
+.rules-list li:hover,
+.faq-item:hover,
+.event:hover,
+.grid-3 div:hover {
+  transform: translateY(-5px) scale(1);
+  box-shadow: var(--shadow-xl);
+  background: rgba(17, 24, 39, 0.25);
+}
+
+.get-nft-list li::before,
+.rules-list li::before {
+  content: '→';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: pulseArrow 1.5s ease-in-out infinite;
+}
+
+.get-nft-list li,
+.rules-list li {
+  padding-left: 3rem;
+}
+
+.get-nft-list li a,
+.rules-list strong,
+.faq-item a,
+.seo-text strong,
+.seo-text em {
+  color: var(--accent-color);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.get-nft-list li a:hover,
+.faq-item a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Grid-3 */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 2rem;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.event::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 1.5rem;
+  color: var(--accent-color);
+  font-size: 1.5rem;
+}
+
+/* FAQ */
+.faq-item h3 {
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.faq-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: -0.3rem;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.faq-item:hover h3::after {
+  width: 100px;
+}
+
+.faq-item p {
+  color: var(--text-secondary);
+  font-size: var(--min-font-size);
+}
+
+/* SEO текст */
+.seo-text p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  font-size: var(--min-font-size);
+}
+
+/* Модальне вікно */
+.modal {
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 1rem;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  overflow: auto;
+  padding: 1rem;
 }
 
-/* Модальне вікно галереї */
+.modal-content {
+  background: var(--dark-surface);
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  position: relative;
+  max-width: 90%;
+  width: auto;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  min-width: var(--touch-min-size);
+  min-height: var(--touch-min-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .gallery-modal .modal-content {
   max-width: 90%;
   max-height: 90vh;
@@ -994,14 +937,134 @@ body {
   font-size: clamp(var(--min-font-size), 3vw, 1rem);
 }
 
-/* Анімація для підказки */
+/* Анімації */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes pulseArrow {
+  0%, 100% { transform: translateY(-50%) scale(1); }
+  50% { transform: translateY(-50%) scale(1.2); }
+}
+
 @keyframes pulse {
   0%, 100% { opacity: 0.7; }
   50% { opacity: 1; }
 }
 
-/* Адаптивність */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-nft,
+  .get-nft-list li,
+  .rules-list li,
+  .faq-item,
+  .grid-3 div,
+  .event,
+  .seo-text {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Медіа-запити */
+
+/* Смартфони (320px–767px) */
 @media (min-width: 320px) and (max-width: 767px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero-nft {
+    max-height: 250px;
+  }
+
+  #nft-collection,
+  #rules,
+  #roadmap,
+  #faq,
+  #gallery,
+  .seo-text {
+    padding: 3rem 1rem;
+  }
+
+  .get-nft-list li,
+  .rules-list li,
+  .faq-item,
+  .event {
+    padding: 1rem 1rem 1rem 2.5rem;
+  }
+
+  .get-nft-list li::before,
+  .rules-list li::before {
+    left: 0.75rem;
+  }
+
+  .event::before {
+    left: -1.5rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
   .gallery-carousel {
     max-width: 100%;
     height: 300px;
@@ -1011,40 +1074,152 @@ body {
     width: 80%;
   }
 
-  .gallery-item:not(.active) {
-    transform: translateX(40%) scale(0.7);
+  .gallery-item.active {
+    transform: translateX(0) scale(1);
   }
 
   .gallery-item.prev {
-    transform: translateX(-40%) scale(0.7);
+    transform: translateX(-50%) scale(0.8);
   }
 
-  .video-container {
-    padding-bottom: 75%;
+  .gallery-item.next {
+    transform: translateX(50%) scale(0.8);
   }
 
-  .video-title {
-    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  .gallery-item:not(.active):not(.prev):not(.next) {
+    transform: translateX(80%) scale(0.7);
+    opacity: 0;
   }
 
   .carousel-hint {
     font-size: 12px;
   }
+
+  .rules-list li {
+    padding: 1rem 1rem 1rem 2.5rem;
+  }
+
+  .rules-list li::before {
+    left: 0.75rem;
+  }
+
+  .toggle-rules-btn {
+    padding: 0.5rem;
+  }
 }
 
+/* Планшети (768px–1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
+  .nav-container {
+    padding: 1rem 2rem;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-nft {
+    max-height: 300px;
+  }
+
+  #nft-collection,
+  #rules,
+  #roadmap,
+  #faq,
+  #gallery,
+  .seo-text {
+    padding: 5rem 2rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-links {
+    gap: 1.5rem;
+  }
+
+  .event::before {
+    left: -2rem;
+  }
+
   .gallery-item {
     width: 75%;
   }
 
-  .gallery-item:not(.active) {
-    transform: translateX(45%) scale(0.75);
+  .gallery-item.active {
+    transform: translateX(0) scale(1);
   }
 
   .gallery-item.prev {
-    transform: translateX(-45%) scale(0.75);
+    transform: translateX(-55%) scale(0.85);
+  }
+
+  .gallery-item.next {
+    transform: translateX(55%) scale(0.85);
+  }
+
+  .gallery-item:not(.active):not(.prev):not(.next) {
+    transform: translateX(90%) scale(0.7);
+    opacity: 0;
+  }
+
+  .rules-list li {
+    padding: 1.5rem 1.5rem 1.5rem 3rem;
+  }
+
+  .rules-list li::before {
+    left: 1rem;
   }
 }
+
+/* Десктопи (від 1024px) */
+@media (min-width: 1024px) {
+  .nav-container {
+    padding: 1rem 2rem;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .hero-nft {
+    max-height: 400px;
+  }
+
+  #nft-collection,
+  #rules,
+  #roadmap,
+  #faq,
+  #gallery,
+  .seo-text {
+    padding: 6rem 2rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .nav-links {
+    gap: 2rem;
+  }
+
+  .get-nft-list li,
+  .rules-list li {
+    padding: 1.5rem 1.5rem 1.5rem 4rem;
+  }
+
+  .get-nft-list li::before,
+  .rules-list li::before {
+    left: 1.5rem;
+  }
+
+  .event::before {
+    left: -2.5rem;
+  }
+}     
+      
     </style>
 </head>
 <body>
@@ -1087,15 +1262,15 @@ body {
                         <i class="fas fa-rocket"></i>
                         Грати в Telegram
                     </a>
-                    <a href="#get-nft" class="btn-secondary">
+                     <a href="#get-nft" class="btn-secondary">
                         <i class="fas fa-info-circle"></i>
                         Як отримати NFT
                     </a>
-                    <a href="#" class="btn-secondary" id="gameplayVideoBtn">
+                   <a href="#" class="btn-secondary" id="gameplayVideoBtn">
                         <i class="fas fa-video"></i>
                         Дивитися геймплей
                     </a>
-                </div>
+                  </div>
             </div>
             <div class="hero-visual fade-in">
                 <picture>
@@ -1136,88 +1311,80 @@ body {
     </div>
 
     <picture>
-      <source srcset="https://i.ibb.co/HpbQqvTS/IMG-6586.png" type="image/webp">
-      <img src="/images/placeholder-nft1.jpg" alt="Отримання та збір NFT-бійців в NFT Battle Arena" class="img-fluid" loading="lazy">
+     
     </picture>
   </div>
 </section>
 
 
 
- <!-- Правила гри -->
+<!-- Правила гри -->
 <section id="rules" class="section">
   <div class="rules-container fade-in">
     <h2 class="section-title">📜 Правила гри</h2>
     <p class="section-subtitle">
       Ознайомся з основними правилами <strong>NFT Battle Arena</strong>. Тут показано весь шлях гравця: від отримання першого NFT до боїв, накопичення BP і прозорого заробітку.
     </p>
-
-    <ol class="rules-list">
-      <li><strong>Початок гри і перший NFT:</strong>
-        <ul>
-          <li>При першому вході гравець отримує <strong>безкоштовного базового NFT-бійця</strong>.</li>
-          <li>Цей воїн потрібен для початкових боїв проти бота та отримання перших BP-поінтів.</li>
-        </ul>
-      </li>
-
-      <li><strong>Отримання BP-поінтів:</strong>
-  <ul>
-    <li>BP-поінти нараховуються за <strong>перемогу в боях проти бота</strong>.</li>
-    <li>Гравець також може отримувати <strong>безкоштовні BP-поінти щодня</strong> – раз на 24 години.</li>
-    <li>BP-поінти використовуються тільки для <strong>виводу через спеціальні аксесуари</strong>, які підтримують конвертацію.</li>
-    <li>Для покупки аксесуарів та NFT використовуються виключно <strong>Telegram Stars</strong>; BP-поінти на це не витрачаються.</li>
-    <li>Модульне вікно апгрейдів дозволяє підвищувати кількість BP, що нараховуються за перемогу, для збільшення заробітку.</li>
-  </ul>
-</li>
-
-
-      <li><strong>Покупка BP-поінтів:</strong>
-  <ul>
-    <li>BP-поінти можна придбати за <strong>Telegram Stars</strong>.</li>
-    <li>Для покупки аксесуарів та NFT використовуються лише Stars; BP-поінти на це не витрачаються.</li>
-    <li>BP-поінти використовуються виключно для <strong>виводу через спеціальні аксесуари</strong>, якщо вони це підтримують.</li>
-    <li>Вся економіка гри та ціни аксесуарів/виводу відображаються прозоро для гравця.</li>
-  </ul>
-</li>
-
-
-      <li><strong>Бої проти бота:</strong>
-        <ul>
-          <li>Кожен боєць має 1000 HP та три типи дій: атака, захист, спецудар.</li>
-          <li>Перемога приносить лише BP-поінти і досвід для покращення воїна.</li>
-          <li>Поразка зменшує рейтинг, але NFT та BP-поінти залишаються у гравця.</li>
-          <li>Гравець завжди бачить можливий прибуток у модульному вікні перед боєм.</li>
-        </ul>
-      </li>
-
-      <li><strong>Покупка NFT:</strong>
-        <ul>
-          <li>Всі NFT купуються виключно за <strong>Telegram Stars</strong>.</li>
-          <li>NFT можна використовувати у боях, для покращення стратегії або продажу на маркетплейсі.</li>
-          <li>Продаж NFT на маркетплейсі буде доступний у майбутньому.</li>
-        </ul>
-      </li>
-
-      <li><strong>Аксесуари та покращення:</strong>
-  <ul>
-    <li>Аксесуари дають бонуси у бою, допомагаючи підвищити ефективність воїна.</li>
-    <li>Всі аксесуари купуються виключно за <strong>Telegram Stars</strong>; BP-поінти на покупку аксесуарів не витрачаються.</li>
-    <li>Деякі аксесуари дозволяють <strong>виводити BP-поінти</strong>, якщо вони підтримують конвертацію.</li>
-    <li>Вся інформація про ефекти та ціну аксесуарів відображається прозоро у модульному вікні.</li>
-  </ul>
-</li>
-
-
-      <li><strong>Чесна гра і прозорість:</strong>
-  <ul>
-    <li>Використання ботів, мультиакаунтів або будь-яких спроб шахрайства суворо заборонено. Порушники отримують <strong>безумовний бан</strong> без повернення BP-поінтів або NFT.</li>
-    <li>Ми налаштували систему <strong>антиспам та перевірки акаунтів</strong>, яка відстежує підозрілі дії та гарантує чесну гру для всіх учасників.</li>
-    <li>Гравець завжди бачить доходи від боїв, ціни аксесуарів за <strong>Telegram Stars</strong> та можливості виводу BP – всі операції відображаються прозоро та без можливості маніпуляцій.</li>
-  </ul>
-</li>
-
-      </li>
-    </ol>
+    <button class="toggle-rules-btn" aria-expanded="false" aria-label="Розгорнути/згорнути правила">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="rules-content" data-state="collapsed">
+      <ol class="rules-list">
+        <li><strong>Початок гри і перший NFT:</strong>
+          <ul>
+            <li>При першому вході гравець отримує <strong>безкоштовного базового NFT-бійця</strong>.</li>
+            <li>Цей воїн потрібен для початкових боїв проти бота та отримання перших BP-поінтів.</li>
+          </ul>
+        </li>
+        <li><strong>Отримання BP-поінтів:</strong>
+          <ul>
+            <li>BP-поінти нараховуються за <strong>перемогу в боях проти бота</strong>.</li>
+            <li>Гравець також може отримувати <strong>безкоштовні BP-поінти щодня</strong> – раз на 24 години.</li>
+            <li>BP-поінти використовуються тільки для <strong>виводу через спеціальні аксесуари</strong>, які підтримують конвертацію.</li>
+            <li>Для покупки аксесуарів та NFT використовуються виключно <strong>Telegram Stars</strong>; BP-поінти на це не витрачаються.</li>
+            <li>Модульне вікно апгрейдів дозволяє підвищувати кількість BP, що нараховуються за перемогу, для збільшення заробітку.</li>
+          </ul>
+        </li>
+        <li><strong>Покупка BP-поінтів:</strong>
+          <ul>
+            <li>BP-поінти можна придбати за <strong>Telegram Stars</strong>.</li>
+            <li>Для покупки аксесуарів та NFT використовуються лише Stars; BP-поінти на це не витрачаються.</li>
+            <li>BP-поінти використовуються виключно для <strong>виводу через спеціальні аксесуари</strong>, якщо вони це підтримують.</li>
+            <li>Вся економіка гри та ціни аксесуарів/виводу відображаються прозоро для гравця.</li>
+          </ul>
+        </li>
+        <li><strong>Бої проти бота:</strong>
+          <ul>
+            <li>Кожен боєць має 1000 HP та три типи дій: атака, захист, спецудар.</li>
+            <li>Перемога приносить лише BP-поінти і досвід для покращення воїна.</li>
+            <li>Поразка зменшує рейтинг, але NFT та BP-поінти залишаються у гравця.</li>
+            <li>Гравець завжди бачить можливий прибуток у модульному вікні перед боєм.</li>
+          </ul>
+        </li>
+        <li><strong>Покупка NFT:</strong>
+          <ul>
+            <li>Всі NFT купуються виключно за <strong>Telegram Stars</strong>.</li>
+            <li>NFT можна використовувати у боях, для покращення стратегії або продажу на маркетплейсі.</li>
+            <li>Продаж NFT на маркетплейсі буде доступний у майбутньому.</li>
+          </ul>
+        </li>
+        <li><strong>Аксесуари та покращення:</strong>
+          <ul>
+            <li>Аксесуари дають бонуси у бою, допомагаючи підвищити ефективність воїна.</li>
+            <li>Всі аксесуари купуються виключно за <strong>Telegram Stars</strong>; BP-поінти на покупку аксесуарів не витрачаються.</li>
+            <li>Деякі аксесуари дозволяють <strong>виводити BP-поінти</strong>, якщо вони підтримують конвертацію.</li>
+            <li>Вся інформація про ефекти та ціну аксесуарів відображається прозоро у модульному вікні.</li>
+          </ul>
+        </li>
+        <li><strong>Чесна гра і прозорість:</strong>
+          <ul>
+            <li>Використання ботів, мультиакаунтів або будь-яких спроб шахрайства суворо заборонено. Порушники отримують <strong>безумовний бан</strong> без повернення BP-поінтів або NFT.</li>
+            <li>Ми налаштували систему <strong>антиспам та перевірки акаунтів</strong>, яка відстежує підозрілі дії та гарантує чесну гру для всіх учасників.</li>
+            <li>Гравець завжди бачить доходи від боїв, ціни аксесуарів за <strong>Telegram Stars</strong> та можливості виводу BP – всі операції відображаються прозоро та без можливості маніпуляцій.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
   </div>
 </section>
 
@@ -1439,13 +1606,12 @@ body {
     </footer>
 
    <script>
-        // Прелоадер і прокрутка до верху
+        // Прелоадер і прокрутка
 window.addEventListener('load', function() {
   const preloader = document.getElementById('preloader');
   const minLoadingTime = 500;
   const startTime = Date.now();
 
-  // Встановлюємо прокрутку до верху
   window.scrollTo(0, 0);
 
   setTimeout(() => {
@@ -1456,20 +1622,28 @@ window.addEventListener('load', function() {
     }
   }, 0);
 });
+     
+     // Розгортання/згортання правил
+const toggleRulesBtn = document.querySelector('.toggle-rules-btn');
+const rulesContent = document.querySelector('.rules-content');
+
+toggleRulesBtn.addEventListener('click', () => {
+  const isExpanded = toggleRulesBtn.getAttribute('aria-expanded') === 'true';
+  toggleRulesBtn.setAttribute('aria-expanded', !isExpanded);
+  rulesContent.setAttribute('data-state', isExpanded ? 'collapsed' : 'expanded');
+});
 
 // Навігація при скролі
 window.addEventListener('scroll', function() {
   const navbar = document.getElementById('navbar');
-  if (window.scrollY > 100) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
+  if (window.scrollY > 100) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
 });
 
 // Мобільне меню
 const mobileMenuToggle = document.getElementById('mobileMenuToggle');
 const navLinks = document.getElementById('navLinks');
+
 mobileMenuToggle.addEventListener('click', function() {
   const isExpanded = navLinks.classList.toggle('active');
   this.setAttribute('aria-expanded', isExpanded);
@@ -1497,104 +1671,79 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) {
       const navbarHeight = document.querySelector('.navbar').offsetHeight;
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     }
   });
 });
 
 // Анімація появи
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
+    if (entry.isIntersecting) entry.target.classList.add('visible');
   });
 }, observerOptions);
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-document.querySelectorAll('.fade-in').forEach(el => {
-  observer.observe(el);
-});
-
-// Модальне вікно для відео
+// Модальне відео
 const modal = document.getElementById('gameplayModal');
 const modalBtn = document.getElementById('gameplayVideoBtn');
-const closeBtn = document.querySelector('.modal-close');
-modalBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  modal.style.display = 'flex';
-});
-closeBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-});
+const closeBtn = modal.querySelector('.modal-close');
 
-// Галерея та модальне вікно для галереї
+modalBtn.addEventListener('click', e => { e.preventDefault(); modal.style.display = 'flex'; });
+closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
+window.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+
+// Галерея + модальне вікно
 const galleryModal = document.getElementById('galleryModal');
 const galleryModalImg = galleryModal.querySelector('.modal-img');
 const galleryModalCaption = galleryModal.querySelector('.modal-caption');
 const galleryItems = document.querySelectorAll('.gallery-item');
-const carouselInner = document.querySelector('.carousel-inner');
 
-// Ініціалізація каруселі
 let currentIndex = 0;
 
-function updateCarousel() {
+function updateGallery() {
   galleryItems.forEach((item, index) => {
-    item.classList.remove('active', 'prev');
+    item.classList.remove('prev', 'active', 'next');
     if (index === currentIndex) {
       item.classList.add('active');
-    } else if (index < currentIndex) {
+    } else if (index === (currentIndex - 1 + galleryItems.length) % galleryItems.length) {
       item.classList.add('prev');
+    } else if (index === (currentIndex + 1) % galleryItems.length) {
+      item.classList.add('next');
     }
   });
 }
 
-// Обробка кліків на зображення
+// Клік по слайду
 galleryItems.forEach(item => {
   item.addEventListener('click', () => {
     const index = parseInt(item.getAttribute('data-index'));
     if (index !== currentIndex) {
-      // Перелистування до заднього зображення
       currentIndex = index;
-      updateCarousel();
+      updateGallery();
     } else {
-      // Відкриття модального вікна для активного зображення
       const img = item.querySelector('.gallery-img');
       galleryModalImg.src = img.src;
       galleryModalImg.alt = img.alt;
-      galleryModalCaption.textContent = img.alt; // Використовуємо alt для підпису
+      galleryModalCaption.textContent = img.alt;
       galleryModal.style.display = 'flex';
     }
   });
 });
 
-// Закриття модального вікна галереї
+// Закриття модального вікна
 galleryModal.querySelector('.modal-close').addEventListener('click', () => {
   galleryModal.style.display = 'none';
 });
-
-window.addEventListener('click', (e) => {
-  if (e.target === galleryModal) {
-    galleryModal.style.display = 'none';
-  }
+window.addEventListener('click', e => {
+  if (e.target === galleryModal) galleryModal.style.display = 'none';
 });
 
-// Початкова ініціалізація каруселі
-updateCarousel();
+// Ініціалізація каруселі
+updateGallery();
 
-// Ефект печатання
+// Ефект друку тексту
 function typeWriter(element, text, speed = 80) {
   let i = 0;
   element.innerHTML = '';
@@ -1610,8 +1759,7 @@ function typeWriter(element, text, speed = 80) {
 
 setTimeout(() => {
   const heroTitle = document.querySelector('.hero-content h1');
-  const originalText = heroTitle.textContent;
-  typeWriter(heroTitle, originalText, 80);
+  if (heroTitle) typeWriter(heroTitle, heroTitle.textContent, 80);
 }, 1500);
     </script>
 </body>
