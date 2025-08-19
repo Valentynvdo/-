@@ -80,6 +80,8 @@
   --gradient-footer: linear-gradient(180deg, #121825 0%, #0a0e17 100%); /* Для .footer */
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+  --gradient-counter: linear-gradient(0deg, #121825 0%, #1e293b 50%, #121825 100%); /* Градієнт знизу вгору з проміжним кольором для плавності */
+  --gradient-motivation: linear-gradient(0deg, #121825 0%, #1e293b 50%, #121825 100%); /* Градієнт для #motivation */
   --min-font-size: 14px;
   --touch-min-size: 44px;
 }
@@ -247,7 +249,7 @@ body {
 
 @media (min-width: 320px) and (max-width: 767px) {
   .hero {
-    padding-top: 6rem;
+    padding-top: 2rem;
   }
 }
 
@@ -279,7 +281,8 @@ body {
   margin-bottom: 2rem;
   text-align: center;
 }
-
+      
+      
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -340,8 +343,7 @@ body {
   max-width: 100%;
   height: auto;
   max-height: 400px;
-  border-radius: 2rem;
-  box-shadow: var(--shadow-xl);
+  
   animation: float 6s ease-in-out infinite;
 }
 
@@ -1251,7 +1253,7 @@ body {
         </div>
     </nav>
 
-    <!-- Герой секція -->
+  <!-- Герой секція -->
     <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content fade-in">
@@ -1274,7 +1276,7 @@ body {
             </div>
             <div class="hero-visual fade-in">
                 <picture>
-                    <source srcset="https://i.ibb.co/x8Fwg9cg/IMG-5231.gif" type="image/webp">
+                    <source srcset="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png" type="image/webp">
                     <img src="images/hero-nft.jpg" alt="Унікальний NFT персонаж-воїн у бойовій арені" class="hero-nft" loading="lazy">
                 </picture>
         
@@ -1286,6 +1288,49 @@ body {
         </div>
           
     </section>
+          
+          
+         <!-- Секція: Лічильник BP та балансу -->
+<section id="counter" class="section" style="background: var(--gradient-counter); padding: 4rem 1rem;" data-target-bp="50000" data-rate="0.002" data-duration="2000">
+  <div class="section-container fade-in">
+    <h2 class="section-title">📊 Твій прогрес у грі</h2>
+    <p class="section-subtitle">Слідкуй за накопиченням <strong>BP-поінтів</strong> та їх конвертацією у реальні нагороди!</p>
+    <div class="counter-container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      <div class="counter-item" style="background: rgba(17, 24, 39, 0.15); backdrop-filter: blur(20px); padding: 2rem; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: var(--shadow-lg); min-width: 200px; text-align: center;">
+        <h3 style="font-size: clamp(1.25rem, 4vw, 1.5rem); font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">BP Points</h3>
+        <p class="counter-bp" style="font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; color: var(--accent-color); margin: 0;" aria-live="polite">0</p>
+      </div>
+      <div class="counter-item" style="background: rgba(17, 24, 39, 0.15); backdrop-filter: blur(20px); padding: 2rem; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: var(--shadow-lg); min-width: 200px; text-align: center;">
+        <h3 style="font-size: clamp(1.25rem, 4vw, 1.5rem); font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">Баланс ($)</h3>
+        <p class="counter-usd" style="font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 700; color: var(--accent-color); margin: 0;" aria-live="polite">0.00</p>
+      </div>
+    </div>
+    <p class="section-subtitle" style="margin-top: 1rem;">Курс конверсії: <strong>1 BP = 0.002 $</strong></p>
+  </div>
+</section>
+          
+          <!-- Секція: Мотивація для витрачання Stars та заробітку BP -->
+<section id="motivation" class="section" style="background: var(--gradient-motivation); padding: 4rem 1rem; overflow: visible;">
+  <div class="section-container fade-in">
+    <h2 class="section-title">🚀 Посиль свою гру з Telegram Stars!</h2>
+    <p class="section-subtitle">Витрачай <strong>Telegram Stars</strong>, щоб отримати унікальні NFT, аксесуари та прискорити заробіток <strong>BP-поінтів</strong>. Стань легендою арени!</p>
+    <div class="grid-3">
+      <div>
+        <h3>💎 Купуй унікальні NFT</h3>
+        <p>Використовуй Telegram Stars, щоб отримати рідкісних бійців із потужними здібностями. Кожен NFT – це твій ключ до перемог і більших нагород!</p>
+      </div>
+      <div>
+        <h3>⚡ Підвищуй заробіток BP</h3>
+        <p>Інвестуй Stars в аксесуари, які збільшують кількість BP-поінтів за бої. Швидше накопичуй і конвертуй їх у реальні нагороди!</p>
+      </div>
+      <div>
+        <h3>🏆 Домінуй у рейтингах</h3>
+        <p>З унікальними NFT та аксесуарами ти отримуєш перевагу в боях, що підніме тебе на вершину таблиці лідерів. Покажи всім, хто справжній чемпіон!</p>
+      </div>
+    </div>
+  </div>
+</section>
+          
 
     <!-- Отримання та збір NFT -->
 <section id="nft-collection" class="section bg-light">
@@ -1761,6 +1806,65 @@ setTimeout(() => {
   const heroTitle = document.querySelector('.hero-content h1');
   if (heroTitle) typeWriter(heroTitle, heroTitle.textContent, 80);
 }, 1500);
+     
+     // Анімація лічильника з IntersectionObserver
+document.addEventListener('DOMContentLoaded', () => {
+  const counterSection = document.querySelector('#counter');
+  const bpCounter = document.querySelector('.counter-bp');
+  const usdCounter = document.querySelector('.counter-usd');
+  const targetBP = parseInt(counterSection.dataset.targetBp) || 50000;
+  const rate = parseFloat(counterSection.dataset.rate) || 0.002;
+  const duration = parseInt(counterSection.dataset.duration) || 2000;
+  let hasStarted = false;
+
+  // Функція форматування чисел
+  const formatNumber = (num, isUSD = false) => {
+    if (isUSD) {
+      return num.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    return num.toLocaleString('uk-UA').replace(/\s/g, ' ');
+  };
+
+  // Ease-out функція
+  const easeOutQuad = t => t * (2 - t);
+
+  // Функція анімації
+  const animateCounter = (element, start, end, duration, isUSD = false) => {
+    let startTime = null;
+    const step = timestamp => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easedProgress = easeOutQuad(progress);
+      const current = start + (end - start) * easedProgress;
+      element.textContent = formatNumber(isUSD ? current : Math.floor(current), isUSD);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+    requestAnimationFrame(step);
+  };
+
+  // Перевірка prefers-reduced-motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // IntersectionObserver для запуску анімації
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasStarted) {
+        hasStarted = true;
+        if (!prefersReducedMotion) {
+          animateCounter(bpCounter, 0, targetBP, duration);
+          animateCounter(usdCounter, 0, targetBP * rate, duration, true);
+        } else {
+          bpCounter.textContent = formatNumber(targetBP);
+          usdCounter.textContent = formatNumber(targetBP * rate, true);
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(counterSection);
+});
     </script>
 </body>
 </html>
