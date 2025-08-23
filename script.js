@@ -655,12 +655,20 @@ function updateNavigation() {
 
 // Tab switching for game info page
 function switchTab(tabName) {
+    console.log('Switching to tab:', tabName);
+    
     // Hide all tabs
     const tabs = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => tab.classList.add('hidden'));
+    console.log('Found tabs:', tabs.length);
+    tabs.forEach(tab => {
+        tab.classList.add('hidden');
+        console.log('Hidden tab:', tab.id);
+    });
     
     // Show selected tab
     const targetTab = document.getElementById(tabName);
+    console.log('Looking for tab:', tabName, 'Found:', targetTab);
+    
     if (targetTab) {
         targetTab.classList.remove('hidden');
         
@@ -675,7 +683,9 @@ function switchTab(tabName) {
             }
         });
         
-        console.log('Switched to tab:', tabName);
+        console.log('Successfully switched to tab:', tabName);
+    } else {
+        console.error('Tab not found:', tabName);
     }
 }
 
