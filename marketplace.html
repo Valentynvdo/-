@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Marketplace - NFT Battle Arena</title>
+    <meta name="description" content="Магазин NFT для NFT Battle Arena - купуйте та продавайте унікальні NFT-бійців та аксесуари">
+    <meta name="keywords" content="NFT Marketplace, NFT магазин, купити NFT, продати NFT, NFT Battle Arena">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="NFT Marketplace - NFT Battle Arena">
+    <meta property="og:description" content="Магазин NFT для NFT Battle Arena - купуйте та продавайте унікальні NFT-бійців та аксесуари">
+    <meta property="og:image" content="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png">
+    <meta property="og:type" content="website">
+    
+    <style>
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-tertiary: #1a1a1a;
+            --glass-bg: rgba(28, 28, 30, 0.68);
+            --glass-bg-strong: rgba(28, 28, 30, 0.88);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-border-strong: rgba(255, 255, 255, 0.15);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-tertiary: rgba(255, 255, 255, 0.55);
+            --text-quaternary: rgba(255, 255, 255, 0.3);
+            --accent-primary: #007aff;
+            --accent-secondary: #34c759;
+            --accent-danger: #ff3b30;
+            --accent-warning: #ff9500;
+            --blur-light: blur(20px);
+            --blur-medium: blur(40px);
+            --blur-heavy: blur(60px);
+            --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.37);
+            --shadow-elevated: 0 12px 48px rgba(0, 0, 0, 0.5);
+            --radius-xs: 0.375rem;
+            --radius-sm: 0.5rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.25rem;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            line-height: 1.6;
+            max-width: 100vw;
+        }
+
+        .glass-button-primary {
+            background: var(--glass-bg-strong);
+            backdrop-filter: var(--blur-light);
+            -webkit-backdrop-filter: var(--blur-light);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            min-height: 48px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-glass);
+            text-decoration: none;
+        }
+
+        .glass-button-primary:hover {
+            background: var(--glass-bg-strong);
+            border-color: var(--glass-border-strong);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .glass-button-accent {
+            background: var(--accent-primary);
+            border: none;
+            border-radius: var(--radius-2xl);
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            min-height: 48px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow-glass);
+            text-decoration: none;
+        }
+
+        .glass-button-accent:hover {
+            background: #0051d5;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-light);
+            -webkit-backdrop-filter: var(--blur-light);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-glass);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: var(--glass-bg-strong);
+            border-color: var(--glass-border-strong);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .glass-card-strong {
+            background: var(--glass-bg-strong);
+            backdrop-filter: var(--blur-medium);
+            -webkit-backdrop-filter: var(--blur-medium);
+            border: 1px solid var(--glass-border-strong);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .glass-nav {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-medium);
+            -webkit-backdrop-filter: var(--blur-medium);
+            border-bottom: 1px solid var(--glass-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .text-display {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .text-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .text-headline {
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        .text-body {
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .text-caption {
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--text-tertiary);
+        }
+
+        .glass-input {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur-light);
+            -webkit-backdrop-filter: var(--blur-light);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            color: var(--text-primary);
+            font-size: 1rem;
+            padding: 0.875rem 1rem;
+            transition: all 0.2s ease;
+            min-height: 44px;
+            width: 100%;
+        }
+
+        .glass-input:focus {
+            outline: none;
+            background: var(--glass-bg-strong);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .container-glass {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border-radius: var(--radius-2xl);
+            min-width: 80px;
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tabs-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: var(--glass-bg);
+            border-radius: var(--radius-2xl);
+            padding: 0.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-trigger {
+            background: transparent;
+            border: none;
+            color: var(--text-tertiary);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-xl);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .tab-trigger:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-trigger.active {
+            color: var(--text-primary);
+            background: var(--glass-bg-strong);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .scale-hover {
+            transition: transform 0.2s ease;
+        }
+
+        .scale-hover:hover {
+            transform: scale(1.02);
+        }
+
+        /* Mobile fixes */
+        @media (max-width: 768px) {
+            .glass-nav {
+                padding: 0.5rem 1rem;
+                box-sizing: border-box;
+                width: 100vw;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .container-glass {
+                padding: 0 1rem;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+            
+            .grid-4,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .glass-button-primary,
+            .glass-button-accent {
+                width: 100%;
+                min-height: 56px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-display {
+                font-size: 2.5rem;
+            }
+            
+            .text-title {
+                font-size: 1.75rem;
+            }
+            
+            .glass-nav {
+                padding: 0.5rem 0.75rem;
+            }
+            
+            .container-glass {
+                padding: 0 0.75rem;
+            }
+        }
+
+        /* Navigation specific styles */
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Language switcher styles */
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-trigger {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 0.5rem 0.75rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .language-trigger:hover {
+            background: var(--glass-bg-strong);
+            border-color: var(--glass-border-strong);
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 0.25rem;
+            background: var(--glass-bg-strong);
+            backdrop-filter: var(--blur-medium);
+            border: 1px solid var(--glass-border-strong);
+            border-radius: var(--radius-xl);
+            min-width: 140px;
+            box-shadow: var(--shadow-elevated);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+            z-index: 1001;
+        }
+
+        .language-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .language-option {
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            border-radius: var(--radius-lg);
+            margin: 0.25rem;
+        }
+
+        .language-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-3 > * + * {
+            margin-top: 0.75rem;
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .rounded-2xl {
+            border-radius: var(--radius-2xl);
+        }
+
+        .border {
+            border-width: 1px;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-8 {
+            padding: 2rem;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-48 {
+            height: 12rem;
+        }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+        }
+
+        .max-w-md {
+            max-width: 28rem;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .inset-0 {
+            inset: 0;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+
+        .opacity-20 {
+            opacity: 0.2;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        /* Custom utility classes */
+        .w-3 {
+            width: 0.75rem;
+        }
+
+        .h-3 {
+            height: 0.75rem;
+        }
+
+        .bg-red-400 {
+            background-color: #f87171;
+        }
+
+        .bg-green-400 {
+            background-color: #4ade80;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .text-blue-400 {
+            color: #60a5fa;
+        }
+
+        .text-yellow-400 {
+            color: #facc15;
+        }
+
+        .text-purple-400 {
+            color: #c084fc;
+        }
+
+        .border-green-500\/30 {
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .bg-green-500\/10 {
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+
+        .border-white\/20 {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .border-yellow-400 {
+            border-color: #facc15;
+        }
+
+        .border-purple-400 {
+            border-color: #c084fc;
+        }
+
+        .border-blue-400 {
+            border-color: #60a5fa;
+        }
+
+        .text-white\/70 {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .bg-gradient-to-br {
+            background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+        }
+
+        .from-purple-500 {
+            --tw-gradient-from: #8b5cf6;
+            --tw-gradient-to: rgb(139 92 246 / 0);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        }
+
+        .to-blue-600 {
+            --tw-gradient-to: #2563eb;
+        }
+
+        .from-cyan-500 {
+            --tw-gradient-from: #06b6d4;
+            --tw-gradient-to: rgb(6 182 212 / 0);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        }
+
+        .from-orange-500 {
+            --tw-gradient-from: #f97316;
+            --tw-gradient-to: rgb(249 115 22 / 0);
+            --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+        }
+
+        .to-red-600 {
+            --tw-gradient-to: #dc2626;
+        }
+
+        .text-green-400 {
+            color: #4ade80;
+        }
+
+        .justify-around {
+            justify-content: space-around;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .sm\\:inline {
+                display: inline;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="glass-nav" id="navigation">
+        <div class="container-glass">
+            <div class="nav-content">
+                <!-- Logo -->
+                <a href="nft-battle-arena.html" class="nav-logo">
+                    <div class="nav-logo-icon">🎮</div>
+                    <span class="text-headline">NFT Battle Arena</span>
+                </a>
+
+                <!-- Right Section -->
+                <div class="nav-right">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <div class="language-trigger" onclick="toggleLanguageDropdown()">
+                            🌍 <span id="current-lang">UA</span> ▼
+                        </div>
+                        <div class="language-dropdown" id="language-dropdown">
+                            <div class="language-option" onclick="changeLanguage('ua')">🇺🇦 Українська</div>
+                            <div class="language-option" onclick="changeLanguage('en')">🇺🇸 English</div>
+                            <div class="language-option" onclick="changeLanguage('pl')">🇵🇱 Polski</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://t.me/NFTBattleArenaBot" target="_blank" class="glass-button-accent" data-translate="nav.connect_telegram">Підключити Telegram</a>
+                    <a href="nft-battle-arena.html" class="glass-button-primary">← Назад</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-glass">
+            <!-- Header -->
+            <div class="text-center mb-12 space-y-6">
+                <h1 class="text-display">
+                    <span data-translate="marketplace.title">NFT Магазин</span> 🏪
+                </h1>
+                
+                <!-- Countdown Timer -->
+                <div class="space-y-6">
+                    <h2 class="text-title text-blue-400">
+                        <span data-translate="marketplace.coming_soon">Магазин буде доступний через</span> ⏳
+                    </h2>
+                    <div class="countdown-container" id="countdown"></div>
+                </div>
+
+                <!-- Connection Status -->
+                <div class="flex justify-center items-center gap-4">
+                    <div class="flex items-center gap-2 px-4 py-3 rounded-2xl border border-white/20 glass-card" id="connection-status">
+                        <div class="w-3 h-3 rounded-full bg-red-400" id="status-indicator"></div>
+                        <span class="text-body" id="status-text" data-translate="marketplace.telegram_not_connected">
+                            Telegram не підключено
+                        </span>
+                    </div>
+                    
+                    <button id="connect-btn" onclick="connectTelegram()" class="glass-button-accent">
+                        🔗 <span data-translate="marketplace.connect_account">Підключити акаунт</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Marketplace Interface -->
+            <div class="relative">
+                <!-- Disabled Overlay -->
+                <div class="absolute inset-0 glass-card-strong z-10 flex items-center justify-center rounded-3xl">
+                    <div class="glass-card-strong text-center max-w-md p-8">
+                        <div class="space-y-4">
+                            <h3 class="text-headline flex items-center justify-center gap-2">
+                                🕒 <span data-translate="marketplace.temporarily_unavailable">Магазин тимчасово недоступний</span>
+                            </h3>
+                            <p class="text-body" data-translate="marketplace.market_description">
+                                Ми працюємо над створенням найкращого досвіду покупки NFT. Магазин буде доступний через кілька місяців з усіма функціями!
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-center gap-2 text-body">
+                                    🛒 Покупка та продаж NFT
+                                </div>
+                                <div class="flex items-center justify-center gap-2 text-body">
+                                    💎 Рідкісні аксесуари
+                                </div>
+                                <div class="flex items-center justify-center gap-2 text-body">
+                                    🔍 Розширений пошук
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketplace UI Preview -->
+                <div class="opacity-20 space-y-8" style="margin-top: 2rem;">
+                    <div class="tabs-container">
+                        <div class="tabs-list">
+                            <button class="tab-trigger active">
+                                🔍 <span class="hidden sm:inline">Переглядати</span>
+                            </button>
+                            <button class="tab-trigger">
+                                ➕ <span class="hidden sm:inline">Продавати</span>
+                            </button>
+                            <button class="tab-trigger">
+                                🛒 <span class="hidden sm:inline">Кошик (0)</span>
+                            </button>
+                        </div>
+
+                        <div class="tab-content active space-y-6">
+                            <!-- Filters -->
+                            <div class="grid grid-3 gap-4">
+                                <input type="text" placeholder="Пошук NFT..." class="glass-input" />
+                                <select class="glass-input">
+                                    <option>Усі категорії</option>
+                                    <option>Воїни</option>
+                                    <option>Маги</option>
+                                    <option>Асасини</option>
+                                </select>
+                                <select class="glass-input">
+                                    <option>Усі ціни</option>
+                                    <option>< 100 ⭐</option>
+                                    <option>100-200 ⭐</option>
+                                    <option>> 200 ⭐</option>
+                                </select>
+                            </div>
+
+                            <!-- NFT Grid -->
+                            <div class="grid grid-4 gap-4">
+                                <!-- NFT Card 1 -->
+                                <div class="glass-card scale-hover">
+                                    <div class="p-4">
+                                        <img src="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png" 
+                                             alt="Warrior Dragon" class="w-full h-48 object-cover rounded-2xl mb-4" />
+                                        <h3 class="text-headline">Warrior Dragon</h3>
+                                        <p class="text-body mb-4">Legendary fire-breathing warrior</p>
+                                        
+                                        <div class="flex justify-center items-center mb-4" style="justify-content: space-between;">
+                                            <div class="text-blue-400 font-bold text-lg">150 ⭐</div>
+                                            <div class="text-sm px-3 py-1 border rounded-2xl text-yellow-400 border-yellow-400">
+                                                Легендарний
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex justify-around text-xs text-white/70 mb-4">
+                                            <div class="flex items-center gap-2">⚔️ <span>95</span></div>
+                                            <div class="flex items-center gap-2">🛡️ <span>80</span></div>
+                                            <div class="flex items-center gap-2">⭐ <span>70</span></div>
+                                        </div>
+                                        
+                                        <button class="w-full glass-button-accent">
+                                            🛒 Додати в кошик
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- NFT Card 2 -->
+                                <div class="glass-card scale-hover">
+                                    <div class="p-4">
+                                        <div class="w-full h-48 bg-gradient-to-br from-purple-500 to-blue-600 rounded-2xl mb-4 flex items-center justify-center text-6xl">
+                                            🥷
+                                        </div>
+                                        <h3 class="text-headline">Shadow Assassin</h3>
+                                        <p class="text-body mb-4">Stealthy fighter with critical strikes</p>
+                                        
+                                        <div class="flex justify-center items-center mb-4" style="justify-content: space-between;">
+                                            <div class="text-blue-400 font-bold text-lg">120 ⭐</div>
+                                            <div class="text-sm px-3 py-1 border rounded-2xl text-purple-400 border-purple-400">
+                                                Епічний
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex justify-around text-xs text-white/70 mb-4">
+                                            <div class="flex items-center gap-2">⚔️ <span>85</span></div>
+                                            <div class="flex items-center gap-2">🛡️ <span>60</span></div>
+                                            <div class="flex items-center gap-2">⭐ <span>95</span></div>
+                                        </div>
+                                        
+                                        <button class="w-full glass-button-accent">
+                                            🛒 Додати в кошик
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- NFT Card 3 -->
+                                <div class="glass-card scale-hover">
+                                    <div class="p-4">
+                                        <div class="w-full h-48 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl mb-4 flex items-center justify-center text-6xl">
+                                            🧙‍♂️
+                                        </div>
+                                        <h3 class="text-headline">Cyber Mage</h3>
+                                        <p class="text-body mb-4">Tech-enhanced spellcaster</p>
+                                        
+                                        <div class="flex justify-center items-center mb-4" style="justify-content: space-between;">
+                                            <div class="text-blue-400 font-bold text-lg">200 ⭐</div>
+                                            <div class="text-sm px-3 py-1 border rounded-2xl text-yellow-400 border-yellow-400">
+                                                Легендарний
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="flex justify-around text-xs text-white/70 mb-4">
+                                            <div class="flex items-center gap-2">⚔️ <span>90</span></div>
+                                            <div class="flex items-center gap-2">🛡️ <span>70</span></div>
+                                            <div class="flex items-center gap-2">⭐ <span>75</span></div>
+                                        </div>
+                                        
+                                        <button class="w-full glass-button-accent">
+                                            🛒 Додати в кошик
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Accessory Card -->
+                                <div class="glass-card scale-hover">
+                                    <div class="p-4">
+                                        <div class="w-full h-48 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl mb-4 flex items-center justify-center text-6xl">
+                                            🥊
+                                        </div>
+                                        <h3 class="text-headline">Power Gauntlets</h3>
+                                        <p class="text-body mb-4">Increases attack power by 15%</p>
+                                        
+                                        <div class="flex justify-center items-center mb-4" style="justify-content: space-between;">
+                                            <div class="text-blue-400 font-bold text-lg">50 ⭐</div>
+                                            <div class="text-sm px-3 py-1 border rounded-2xl text-blue-400 border-blue-400">
+                                                Аксесуар
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text-center text-xs text-green-400 mb-4">
+                                            +15% Атака
+                                        </div>
+                                        
+                                        <button class="w-full glass-button-accent">
+                                            🛒 Додати в кошик
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentLang = 'ua';
+        let isConnected = false;
+
+        // Translations
+        const translations = {
+            ua: {
+                nav: {
+                    connect_telegram: "Підключити Telegram"
+                },
+                marketplace: {
+                    title: "NFT Магазин",
+                    coming_soon: "Магазин буде доступний через",
+                    connect_account: "Підключити акаунт",
+                    temporarily_unavailable: "Магазин тимчасово недоступний",
+                    market_description: "Ми працюємо над створенням найкращого досвіду покупки NFT. Магазин буде доступний через кілька місяців з усіма функціями!",
+                    telegram_connected: "Telegram підключено",
+                    telegram_not_connected: "Telegram не підключено"
+                }
+            },
+            en: {
+                nav: {
+                    connect_telegram: "Connect Telegram"
+                },
+                marketplace: {
+                    title: "NFT Marketplace",
+                    coming_soon: "Marketplace will be available in",
+                    connect_account: "Connect Account",
+                    temporarily_unavailable: "Marketplace temporarily unavailable",
+                    market_description: "We're working on creating the best NFT shopping experience. The marketplace will be available in a few months with all features!",
+                    telegram_connected: "Telegram Connected",
+                    telegram_not_connected: "Telegram Not Connected"
+                }
+            },
+            pl: {
+                nav: {
+                    connect_telegram: "Połącz Telegram"
+                },
+                marketplace: {
+                    title: "Sklep NFT",
+                    coming_soon: "Sklep będzie dostępny za",
+                    connect_account: "Połącz Konto",
+                    temporarily_unavailable: "Sklep tymczasowo niedostępny",
+                    market_description: "Pracujemy nad stworzeniem najlepszego doświadczenia zakupów NFT. Sklep będzie dostępny za kilka miesięcy z wszystkimi funkcjami!",
+                    telegram_connected: "Telegram Połączony",
+                    telegram_not_connected: "Telegram Nie Połączony"
+                }
+            }
+        };
+
+        // Initialize when DOM loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+
+        // Language functions
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            updateLanguage();
+            toggleLanguageDropdown();
+        }
+
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('language-dropdown');
+            dropdown.classList.toggle('open');
+        }
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                const translation = getNestedTranslation(translations[currentLang], key);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+        }
+
+        function getNestedTranslation(obj, path) {
+            return path.split('.').reduce((o, i) => o ? o[i] : null, obj);
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const targetDate = new Date();
+            targetDate.setMonth(targetDate.getMonth() + 5);
+            
+            const now = new Date().getTime();
+            const timeLeft = targetDate.getTime() - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            const countdownContainer = document.getElementById('countdown');
+            if (countdownContainer && timeLeft > 0) {
+                const labels = {
+                    ua: ['дні', 'години', 'хвилини', 'секунди'],
+                    en: ['days', 'hours', 'minutes', 'seconds'],
+                    pl: ['dni', 'godziny', 'minuty', 'sekundy']
+                };
+                
+                const currentLabels = labels[currentLang] || labels.ua;
+                
+                countdownContainer.innerHTML = `
+                    <div class="countdown-item">
+                        <span class="countdown-number">${days}</span>
+                        <span class="countdown-label">${currentLabels[0]}</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${hours}</span>
+                        <span class="countdown-label">${currentLabels[1]}</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${minutes}</span>
+                        <span class="countdown-label">${currentLabels[2]}</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number">${seconds}</span>
+                        <span class="countdown-label">${currentLabels[3]}</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Connect Telegram function
+        function connectTelegram() {
+            isConnected = true;
+            const statusIndicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+            const connectionStatus = document.getElementById('connection-status');
+            const connectBtn = document.getElementById('connect-btn');
+            
+            statusIndicator.className = 'w-3 h-3 rounded-full bg-green-400';
+            statusText.textContent = translations[currentLang]?.marketplace?.telegram_connected || 'Telegram підключено';
+            connectionStatus.className = 'flex items-center gap-2 px-4 py-3 rounded-2xl border border-green-500/30 bg-green-500/10';
+            connectBtn.style.display = 'none';
+            
+            alert('Telegram акаунт успішно підключено! (Демо режим)');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageDropdown = document.getElementById('language-dropdown');
+            const languageSwitcher = document.querySelector('.language-switcher');
+            
+            if (!languageSwitcher.contains(event.target)) {
+                languageDropdown.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
