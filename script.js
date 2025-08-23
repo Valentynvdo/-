@@ -1306,87 +1306,176 @@ function initCountdownTimer() {
 }
 
 // Battle Demo Functions
-function toggleBattle() {
-    battleState.isPlaying = !battleState.isPlaying;
+function playerAction(action) {
+    if (battleState.gameResult || battleState.currentTurn !== 'player') return;
     
-    const toggleBtn = document.getElementById('toggleBattleBtn');
-    const battleIcon = document.getElementById('battleIcon');
-    const battleBtnText = document.getElementById('battleBtnText');
+    battleState.isActive = true;
+    battleState.turnCount++;
     
-    if (battleState.isPlaying) {
-        if (battleIcon) battleIcon.setAttribute('data-lucide', 'pause');
-        if (battleBtnText) {
-            const t = translations[currentLang] || translations.ua;
-            battleBtnText.textContent = t.battle.pause;
-        }
-        
+    const t = translations[currentLang] || translations.ua;
+    
+    // Disable all buttons temporarily
+    disableBattleButtons(true);
+    
+    // Player action
+    performPlayerAction(action);
+    
+    // Check if game ended
+    if (checkGameEnd()) return;
+    
+    // Switch to enemy turn
+    battleState.currentTurn = 'enemy';
+    updateBattleUI();
+    
+    // Enemy action after delay
+    setTimeout(() => {
         if (!battleState.gameResult) {
-            startBattleSimulation();
+            performEnemyAction();
+            checkGameEnd();
+            
+            // Switch back to player turn
+            if (!battleState.gameResult) {
+                battleState.currentTurn = 'player';
+                updateBattleUI();
+                disableBattleButtons(false);
+            }
         }
-    } else {
-        if (battleIcon) battleIcon.setAttribute('data-lucide', 'play');
-        if (battleBtnText) {
-            const t = translations[currentLang] || translations.ua;
-            battleBtnText.textContent = t.battle.start;
-        }
-        
-        stopBattleSimulation();
+    }, 1500);
+}
+
+function performPlayerAction(action) {
+    const damage = Math.floor(Math.random() * 40) + 20;
+    const heal = Math.floor(Math.random() * 20) + 20;
+    
+    if (action === 'attack') {
+        battleState.enemyHP = Math.max(0, battleState.enemyHP - damage);
+        battleState.playerEnergy = Math.min(100, battleState.playerEnergy + 15);
+        showActionFeedback(`⚔️ -${damage} урону!`, 'enemy');
+    } else if (action === 'defend') {
+        const healAmount = Math.min(heal, battleState.maxPlayerHP - battleState.playerHP);
+        battleState.playerHP = Math.min(battleState.maxPlayerHP, battleState.playerHP + healAmount);
+        battleState.playerEnergy = Math.min(100, battleState.playerEnergy + 10);
+        showActionFeedback(`🛡️ +${healAmount} здоров'я!`, 'player');
+    } else if (action === 'special' && battleState.playerEnergy >= 100) {
+        const specialDamage = damage * 2;
+        battleState.enemyHP = Math.max(0, battleState.enemyHP - specialDamage);
+        battleState.playerEnergy = 0;
+        showActionFeedback(`✨ -${specialDamage} критичний урон!`, 'enemy');
     }
     
-    // Disable button if game ended
-    if (toggleBtn && battleState.gameResult) {
-        toggleBtn.disabled = true;
+    updateBattleUI();
+}
+
+function performEnemyAction() {
+    const actions = ['attack', 'attack', 'special', 'defend'];
+    const action = actions[Math.floor(Math.random() * actions.length)];
+    const damage = Math.floor(Math.random() * 35) + 25;
+    const heal = Math.floor(Math.random() * 15) + 15;
+    
+    if (action === 'attack') {
+        battleState.playerHP = Math.max(0, battleState.playerHP - damage);
+        battleState.enemyEnergy = Math.min(100, battleState.enemyEnergy + 15);
+        showActionFeedback(`👹 -${damage} урону!`, 'player');
+    } else if (action === 'defend') {
+        const healAmount = Math.min(heal, battleState.maxEnemyHP - battleState.enemyHP);
+        battleState.enemyHP = Math.min(battleState.maxEnemyHP, battleState.enemyHP + healAmount);
+        battleState.enemyEnergy = Math.min(100, battleState.enemyEnergy + 10);
+        showActionFeedback(`👹 +${healAmount} здоров'я!`, 'enemy');
+    } else if (action === 'special' && battleState.enemyEnergy >= 100) {
+        const specialDamage = damage * 2;
+        battleState.playerHP = Math.max(0, battleState.playerHP - specialDamage);
+        battleState.enemyEnergy = 0;
+        showActionFeedback(`💥 -${specialDamage} критичний урон!`, 'player');
     }
     
-    // Recreate icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
+    updateBattleUI();
+}
+
+function showActionFeedback(message, target) {
+    // Create floating damage text
+    const battleArena = document.getElementById('battleArena');
+    const feedback = document.createElement('div');
+    feedback.className = 'absolute z-20 text-lg font-bold pointer-events-none';
+    feedback.style.cssText = `
+        top: 50%;
+        ${target === 'player' ? 'left: 25%' : 'right: 25%'};
+        transform: translate(-50%, -50%);
+        color: ${message.includes('+') ? '#4ade80' : '#f87171'};
+        animation: fadeUpOut 2s ease-out forwards;
+    `;
+    feedback.textContent = message;
+    
+    // Add animation keyframes if not exists
+    if (!document.querySelector('#damageAnimation')) {
+        const style = document.createElement('style');
+        style.id = 'damageAnimation';
+        style.textContent = `
+            @keyframes fadeUpOut {
+                0% { opacity: 1; transform: translate(-50%, -50%); }
+                100% { opacity: 0; transform: translate(-50%, -150%); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    battleArena.appendChild(feedback);
+    setTimeout(() => feedback.remove(), 2000);
+}
+
+function disableBattleButtons(disabled) {
+    const buttons = ['attackBtn', 'defendBtn', 'specialBtn'];
+    buttons.forEach(btnId => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+            btn.disabled = disabled;
+            if (disabled) {
+                btn.style.opacity = '0.5';
+                btn.style.pointerEvents = 'none';
+            } else {
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }
+        }
+    });
+    
+    // Special button logic
+    const specialBtn = document.getElementById('specialBtn');
+    if (specialBtn && !disabled) {
+        if (battleState.playerEnergy < 100) {
+            specialBtn.disabled = true;
+            specialBtn.style.opacity = '0.5';
+        }
     }
 }
 
 function resetBattle() {
     // Reset state
     battleState = {
-        isPlaying: false,
-        playerHP: 2000,
+        isActive: false,
+        playerHP: 2500,
         enemyHP: 2400,
         playerEnergy: 0,
         enemyEnergy: 0,
-        maxPlayerHP: 2000,
+        maxPlayerHP: 2500,
         maxEnemyHP: 2400,
         currentTurn: 'player',
         gameResult: null,
-        battleLog: []
+        turnCount: 0
     };
-    
-    // Stop simulation
-    stopBattleSimulation();
     
     // Update UI
     updateBattleUI();
     
-    // Reset buttons
-    const toggleBtn = document.getElementById('toggleBattleBtn');
-    const battleIcon = document.getElementById('battleIcon');
-    const battleBtnText = document.getElementById('battleBtnText');
-    
-    if (toggleBtn) toggleBtn.disabled = false;
-    if (battleIcon) battleIcon.setAttribute('data-lucide', 'play');
-    if (battleBtnText) {
-        const t = translations[currentLang] || translations.ua;
-        battleBtnText.textContent = t.battle.start;
-    }
+    // Enable buttons
+    disableBattleButtons(false);
     
     // Hide game result
     const gameResult = document.getElementById('gameResult');
     if (gameResult) gameResult.classList.add('hidden');
     
-    // Reset battle log
-    const battleLogContainer = document.getElementById('battleLogContainer');
-    if (battleLogContainer) {
-        const t = translations[currentLang] || translations.ua;
-        battleLogContainer.innerHTML = `<p class="text-body text-center opacity-60 battle-log-empty">${t.battle.battle_not_started}</p>`;
-    }
+    // Show battle controls
+    const battleControls = document.getElementById('battleControls');
+    if (battleControls) battleControls.style.display = 'block';
     
     // Recreate icons
     if (typeof lucide !== 'undefined') {
