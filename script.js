@@ -300,6 +300,8 @@ let battleState = {
 
 // Initialize the application
 function init() {
+    console.log('Initializing NFT Battle Arena...');
+    
     // Initialize Lucide icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
@@ -317,10 +319,12 @@ function init() {
     // Initialize countdown timer
     initCountdownTimer();
     
-    // Show home page
-    changePage('home');
+    // Show home page initially
+    setTimeout(() => {
+        changePage('home');
+    }, 100);
     
-    console.log('NFT Battle Arena initialized');
+    console.log('NFT Battle Arena initialized successfully');
 }
 
 // Set up all event listeners
