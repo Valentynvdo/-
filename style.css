@@ -388,8 +388,12 @@ body {
 
 /* Mobile-First Responsive Design */
 @media (max-width: 768px) {
+  .pt-32 {
+    padding-top: 6rem !important; /* Зменшено з 8rem до 6rem */
+  }
+  
   .glass-nav {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
   }
   
   .grid-glass-2,
@@ -419,6 +423,13 @@ body {
 
   #mobileMenu {
     display: block;
+  }
+  
+  /* Language dropdown mobile optimization */
+  #langDropdown {
+    min-width: 160px;
+    max-height: 70vh;
+    overflow-y: auto;
   }
 }
 
