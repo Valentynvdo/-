@@ -270,7 +270,37 @@ const translations = {
             cta_title: "Ready to try NFT Battle Arena?",
             cta_subtitle: "Join thousands of players and start your adventure in the world of NFT battles right now!",
             cta_start_game: "Start Game",
-            cta_demo: "Battle Demo"
+            cta_demo: "Battle Demo",
+            how_to_get: {
+                title: "How to Get NFT",
+                subtitle: "Learn all the ways to obtain unique NFT fighters and accessories in NFT Battle Arena",
+                free_nft_title: "Free Starter NFT",
+                free_nft_desc: "Every new player receives their first NFT fighter absolutely free through Airdrop system.",
+                purchase_title: "Purchase with Telegram Stars",
+                purchase_desc: "Additional unique NFTs and accessories can be purchased with Telegram Stars in the internal marketplace.",
+                rewards_title: "Achievement Rewards",
+                rewards_desc: "Get rare NFTs for participating in tournaments, achieving high ratings and completing special tasks."
+            },
+            rules: {
+                title: "Game Rules",
+                subtitle: "Get familiar with basic rules and game mechanics for successful start",
+                start_title: "Game Start & First NFT",
+                start_item_1: "On first login, player receives a free basic NFT fighter",
+                start_item_2: "This warrior is needed for initial battles against bot and earning first BP points",
+                start_item_3: "Starter NFT has basic characteristics that can be improved",
+                bp_title: "BP Points System",
+                bp_item_1: "BP points are earned for victories in battles against bot",
+                bp_item_2: "Player can get free BP points daily – once every 24 hours",
+                bp_item_3: "BP points can be converted to real rewards through special accessories",
+                battle_title: "Battle System",
+                battle_item_1: "Each fighter has 2500 HP (player) and 2400 HP (bot) for balance",
+                battle_item_2: "Three types of actions: attack, defense, special strike",
+                battle_item_3: "Victory brings BP points and experience to improve warrior",
+                economy_title: "Game Economy",
+                economy_item_1: "All NFTs and accessories are purchased exclusively with Telegram Stars",
+                economy_item_2: "BP points are NOT spent on purchases - only for withdrawal through accessories",
+                economy_item_3: "Transparent economy - all prices and withdrawal options are displayed honestly"
+            }
         },
         roadmap: {
             title: "Development Roadmap",
