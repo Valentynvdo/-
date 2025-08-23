@@ -1041,18 +1041,20 @@ function updateTranslations() {
     // Update battle demo
     updateElementByClass('battle-title', t.battle.title);
     updateElementByClass('battle-description', t.battle.description);
-    updateElementByClass('battle-start-text', t.battle.start);
     updateElementByClass('battle-reset-text', t.battle.reset);
     updateElementByClass('battle-player-hp', t.battle.player_hp);
     updateElementByClass('battle-enemy-hp', t.battle.enemy_hp);
     updateElementByClass('battle-player-turn', t.battle.player_turn);
-    updateElementByClass('battle-enemy-turn', t.battle.enemy_turn);
-    updateElementByClass('battle-battle-log', t.battle.battle_log);
-    updateElementByClass('battle-log-empty', t.battle.battle_not_started);
+    updateElementByClass('battle-choose-action', t.battle.choose_action);
+    updateElementByClass('battle-attack', t.battle.attack);
+    updateElementByClass('battle-defend', t.battle.defend);
+    updateElementByClass('battle-special', t.battle.special);
+    updateElementByClass('battle-health-restored', t.battle.health_restored);
     updateElementByClass('battle-demo-info', t.battle.demo_info);
     updateElementByClass('battle-demo-description', t.battle.demo_description);
     updateElementByClass('battle-play-real-game', t.battle.play_real_game);
     updateElementByClass('battle-you-win', t.battle.you_win);
+    updateElementByClass('battle-play-again', 'Грати знову');
 }
 
 // Helper function to update element by class
