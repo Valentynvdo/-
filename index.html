@@ -1088,14 +1088,14 @@
                         <!-- Battle Arena -->
                         <div class="max-w-4xl mx-auto space-y-6">
                             <!-- Battle UI -->
-                            <div class="glass-card-strong p-8 relative" id="battleArena">
+                            <div class="glass-card-strong p-4 md:p-8 relative" id="battleArena">
                                 <!-- HP Bars -->
-                                <div class="flex justify-between items-center mb-8 gap-8">
+                                <div class="flex justify-between items-center mb-6 md:mb-8 gap-4 md:gap-8">
                                     <!-- Player HP -->
                                     <div class="flex-1 space-y-2">
                                         <div class="flex items-center justify-between">
                                             <span class="text-caption font-semibold battle-player-hp">HP Гравця</span>
-                                            <span class="text-caption"><span id="playerHP">2000</span>/<span id="maxPlayerHP">2000</span></span>
+                                            <span class="text-caption"><span id="playerHP">2500</span>/<span id="maxPlayerHP">2500</span></span>
                                         </div>
                                         <div class="h-3 bg-black/60 rounded-xl overflow-hidden">
                                             <div id="playerHPBar" class="h-full bg-gradient-to-r from-red-500 to-green-500 transition-all duration-500 rounded-xl" style="width: 100%"></div>
@@ -1106,8 +1106,8 @@
                                     </div>
 
                                     <!-- Turn Indicator -->
-                                    <div class="text-center px-6">
-                                        <div class="text-3xl mb-2" id="turnEmoji">👤</div>
+                                    <div class="text-center px-2 md:px-6">
+                                        <div class="text-2xl md:text-3xl mb-2" id="turnEmoji">👤</div>
                                         <div class="text-caption" id="turnText">
                                             <span class="battle-player-turn">Хід гравця</span>
                                         </div>
@@ -1129,61 +1129,71 @@
                                 </div>
 
                                 <!-- Characters -->
-                                <div class="flex justify-between items-end px-8 py-12">
+                                <div class="flex justify-between items-end px-4 md:px-8 py-8 md:py-12">
                                     <div id="playerChar" class="transition-all duration-300">
-                                        <div class="w-24 h-32 bg-gradient-to-b from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center">
-                                            <span class="emoji text-4xl">🦸‍♂️</span>
+                                        <div class="w-16 h-20 md:w-24 md:h-32 bg-gradient-to-b from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center">
+                                            <span class="emoji text-2xl md:text-4xl">🦸‍♂️</span>
                                         </div>
                                         <div class="text-center mt-2 text-caption">Player</div>
                                     </div>
 
                                     <div class="text-center">
-                                        <span class="emoji text-6xl">⚡</span>
+                                        <span class="emoji text-4xl md:text-6xl">⚡</span>
                                         <div class="mt-2 text-headline text-blue-400">VS</div>
                                     </div>
 
                                     <div id="enemyChar" class="transition-all duration-300">
-                                        <div class="w-24 h-32 bg-gradient-to-b from-red-500 to-red-700 rounded-2xl flex items-center justify-center">
-                                            <span class="emoji text-4xl">👹</span>
+                                        <div class="w-16 h-20 md:w-24 md:h-32 bg-gradient-to-b from-red-500 to-red-700 rounded-2xl flex items-center justify-center">
+                                            <span class="emoji text-2xl md:text-4xl">👹</span>
                                         </div>
                                         <div class="text-center mt-2 text-caption">Enemy</div>
+                                    </div>
+                                </div>
+
+                                <!-- Interactive Controls -->
+                                <div id="battleControls" class="space-y-4">
+                                    <div class="text-center">
+                                        <p class="text-body mb-4 battle-choose-action">Оберіть свою дію:</p>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+                                        <button id="attackBtn" class="glass-button-accent p-3 md:p-4 text-center" onclick="playerAction('attack')">
+                                            <i data-lucide="sword" class="w-5 h-5 mx-auto mb-2"></i>
+                                            <div class="font-semibold battle-attack">Атака</div>
+                                            <div class="text-sm opacity-70">20-60 урону</div>
+                                        </button>
+                                        
+                                        <button id="defendBtn" class="glass-button-primary p-3 md:p-4 text-center" onclick="playerAction('defend')">
+                                            <i data-lucide="shield" class="w-5 h-5 mx-auto mb-2"></i>
+                                            <div class="font-semibold battle-defend">Захист</div>
+                                            <div class="text-sm opacity-70 battle-health-restored">+20-40 здоров'я</div>
+                                        </button>
+                                        
+                                        <button id="specialBtn" class="glass-button-accent p-3 md:p-4 text-center" onclick="playerAction('special')">
+                                            <i data-lucide="zap" class="w-5 h-5 mx-auto mb-2"></i>
+                                            <div class="font-semibold battle-special">Спец-удар</div>
+                                            <div class="text-sm opacity-70">100 енергії</div>
+                                        </button>
                                     </div>
                                 </div>
 
                                 <!-- Game Result -->
                                 <div id="gameResult" class="absolute inset-0 glass-card-strong flex items-center justify-center rounded-2xl hidden">
                                     <div class="text-center space-y-6">
-                                        <div class="text-6xl" id="resultEmoji">🏆</div>
+                                        <div class="text-4xl md:text-6xl" id="resultEmoji">🏆</div>
                                         <div class="text-title text-blue-400" id="resultText">
                                             <span class="battle-you-win">ВИ ПЕРЕМОГЛИ!</span>
                                         </div>
                                         <button class="glass-button-accent" onclick="resetBattle()">
-                                            Play Again
+                                            <span class="battle-play-again">Грати знову</span>
                                         </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Battle Log -->
-                            <div class="glass-card">
-                                <div class="p-6 space-y-4">
-                                    <h3 class="text-headline flex items-center">
-                                        <i data-lucide="info" class="w-5 h-5 mr-2"></i>
-                                        <span class="battle-battle-log">Лог бою</span>
-                                    </h3>
-                                </div>
-                                <div class="p-6 pt-0">
-                                    <div id="battleLogContainer" class="space-y-2 h-32 overflow-y-auto">
-                                        <p class="text-body text-center opacity-60 battle-log-empty">
-                                            Бій ще не почався...
-                                        </p>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Demo Info -->
                             <div class="glass-card text-center">
-                                <div class="p-8 space-y-6">
+                                <div class="p-6 md:p-8 space-y-6">
                                     <div class="flex items-center justify-center">
                                         <i data-lucide="info" class="w-6 h-6 text-blue-400 mr-2"></i>
                                         <span class="text-headline battle-demo-info">Це демо версія</span>
