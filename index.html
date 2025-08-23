@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Battle Arena - Play2Earn гра в Telegram</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Отримай свій перший NFT, бийся на арені з суперниками та збирай унікальну колекцію. Це не просто гра – це битва за нагороди, престиж і справжню силу!">
+    <meta name="keywords" content="NFT Battle Arena, NFT гра, Telegram Mini App, Play2Earn, blockchain gaming, NFT бійці, крипто ігри, NFT колекція, GameFi, battle arena">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="NFT Battle Arena - Play2Earn гра в Telegram">
+    <meta property="og:description" content="Отримай свій перший NFT, бійся на арені з суперниками та збирай унікальну колекцію. Це не просто гра – це битва за нагороди, престиж і справжню силу!">
+    <meta property="og:image" content="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="NFT Battle Arena - Play2Earn гра в Telegram">
+    <meta name="twitter:description" content="Отримай свій перший NFT, бійся на арені з суперниками та збирай унікальну колекцію. Це не просто гра – це битва за нагороди, престиж і справжню силу!">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="App bg-black min-h-screen text-white">
+        <!-- Navigation -->
+        <nav id="navigation" class="glass-nav">
+            <div class="container-glass">
+                <div class="flex items-center justify-between py-4">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3 cursor-pointer group" onclick="changePage('home')">
+                        <div class="p-2 glass-card">
+                            <i data-lucide="gamepad-2" class="w-6 h-6 text-blue-400"></i>
+                        </div>
+                        <span class="text-headline hidden md:block">NFT Battle Arena</span>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden lg:flex items-center space-x-1">
+                        <button onclick="changePage('home')" class="nav-btn px-4 py-2 rounded-xl transition-all duration-200 text-body" data-page="home">
+                            <span class="nav-text">Головна</span>
+                        </button>
+                        <button onclick="changePage('game_info')" class="nav-btn px-4 py-2 rounded-xl transition-all duration-200 text-body" data-page="game_info">
+                            <span class="nav-text">Про гру</span>
+                        </button>
+                        <button onclick="changePage('marketplace')" class="nav-btn px-4 py-2 rounded-xl transition-all duration-200 text-body" data-page="marketplace">
+                            <span class="nav-text">Магазин</span>
+                        </button>
+                        <button onclick="changePage('battle_demo')" class="nav-btn px-4 py-2 rounded-xl transition-all duration-200 text-body" data-page="battle_demo">
+                            <span class="nav-text">Демо бою</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Section -->
+                    <div class="flex items-center space-x-3">
+                        <!-- Language Switcher -->
+                        <div class="relative">
+                            <button id="langBtn" class="flex items-center gap-2 px-3 py-2 rounded-xl glass-input text-sm border-0 bg-white/5 backdrop-blur-md">
+                                <i data-lucide="globe" class="w-4 h-4 text-white/70"></i>
+                                <span id="currentLangFlag">🇺🇦</span>
+                                <span id="currentLangCode" class="hidden sm:inline text-sm">UA</span>
+                                <i data-lucide="chevron-down" class="w-4 h-4 text-white/50"></i>
+                            </button>
+                            <div id="langDropdown" class="absolute top-full right-0 mt-1 glass-card-strong border-0 min-w-[140px] rounded-xl p-1 z-50 hidden">
+                                <div class="lang-option flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10" data-lang="ua">
+                                    <span>🇺🇦</span>
+                                    <span class="text-sm">Українська</span>
+                                </div>
+                                <div class="lang-option flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10" data-lang="en">
+                                    <span>🇺🇸</span>
+                                    <span class="text-sm">English</span>
+                                </div>
+                                <div class="lang-option flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10" data-lang="pl">
+                                    <span>🇵🇱</span>
+                                    <span class="text-sm">Polski</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="hidden lg:flex glass-button-accent text-sm px-4 py-2" onclick="window.open('https://t.me/NFTBattleArenaBot', '_blank')">
+                            <span class="telegram-text">Підключити Telegram</span>
+                        </button>
+
+                        <!-- Mobile menu button -->
+                        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-xl hover:bg-white/10">
+                            <i id="menuIcon" data-lucide="menu" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu -->
+                <div id="mobileMenu" class="lg:hidden hidden">
+                    <div class="glass-card mt-4 p-4 space-y-3">
+                        <button onclick="changePage('home')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl transition-all duration-200" data-page="home">
+                            <span class="nav-text">Головна</span>
+                        </button>
+                        <button onclick="changePage('game_info')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl transition-all duration-200" data-page="game_info">
+                            <span class="nav-text">Про гру</span>
+                        </button>
+                        <button onclick="changePage('marketplace')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl transition-all duration-200" data-page="marketplace">
+                            <span class="nav-text">Магазин</span>
+                        </button>
+                        <button onclick="changePage('battle_demo')" class="mobile-nav-btn w-full text-left px-4 py-3 rounded-xl transition-all duration-200" data-page="battle_demo">
+                            <span class="nav-text">Демо бою</span>
+                        </button>
+                        
+                        <button class="w-full mt-4 glass-button-accent" onclick="window.open('https://t.me/NFTBattleArenaBot', '_blank')">
+                            <span class="telegram-text">Підключити Telegram</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="relative">
+            <!-- Home Page -->
+            <div id="homePage" class="page-content">
+                <div class="min-h-screen bg-black text-white">
+                    <!-- Hero Section -->
+                    <section class="relative pt-32 pb-20 overflow-hidden">
+                        <div class="container-glass">
+                            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                                <!-- Left Content -->
+                                <div class="text-center lg:text-left space-y-8">
+                                    <div class="inline-flex items-center space-x-2 px-4 py-2 glass-card">
+                                        <span class="emoji">🌟</span>
+                                        <span class="text-blue-400 font-semibold tracking-wider uppercase text-sm">Play2Earn</span>
+                                        <span class="emoji">🚀</span>
+                                    </div>
+                                    
+                                    <h1 class="text-display">
+                                        <span class="text-white hero-title">NFT Battle Arena</span>
+                                        <br />
+                                        <span class="text-blue-400">Battle Arena</span>
+                                    </h1>
+                                    
+                                    <p class="text-body max-w-xl mx-auto lg:mx-0 text-lg hero-description">
+                                        Отримай свій перший NFT, бийся на арені з суперниками та збирай унікальну колекцію.
+                                    </p>
+                                    
+                                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                        <button class="glass-button-accent px-8 py-4 text-lg" onclick="window.open('https://t.me/NFTBattleArenaBot', '_blank')">
+                                            <i data-lucide="play" class="w-5 h-5 mr-2"></i>
+                                            <span class="hero-play-now">Грати зараз</span>
+                                        </button>
+                                        
+                                        <button class="glass-button-primary px-8 py-4 text-lg" onclick="changePage('game_info')">
+                                            <i data-lucide="info" class="w-5 h-5 mr-2"></i>
+                                            <span class="hero-learn-more">Дізнатися більше</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Right Content - Hero Image -->
+                                <div class="flex justify-center lg:justify-end">
+                                    <div class="relative">
+                                        <div class="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
+                                        <img 
+                                            src="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png"
+                                            alt="NFT Battle Character"
+                                            class="relative z-10 w-full max-w-md lg:max-w-lg object-contain rounded-3xl scale-hover"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Game Stats -->
+                    <section class="section-glass">
+                        <div class="container-glass">
+                            <div class="grid-glass grid-glass-4">
+                                <div class="glass-card p-6 text-center">
+                                    <div class="flex justify-center items-center mb-4 text-blue-400">
+                                        <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-title text-white mb-2">12,847</div>
+                                    <div class="text-caption stats-active-players">Активних гравців</div>
+                                </div>
+                                <div class="glass-card p-6 text-center">
+                                    <div class="flex justify-center items-center mb-4 text-yellow-400">
+                                        <i data-lucide="star" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-title text-white mb-2">3,420</div>
+                                    <div class="text-caption stats-nft-in-game">NFT у грі</div>
+                                </div>
+                                <div class="glass-card p-6 text-center">
+                                    <div class="flex justify-center items-center mb-4 text-green-400">
+                                        <i data-lucide="trophy" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-title text-white mb-2">89,234</div>
+                                    <div class="text-caption stats-battles-fought">Боїв проведено</div>
+                                </div>
+                                <div class="glass-card p-6 text-center">
+                                    <div class="flex justify-center items-center mb-4 text-purple-400">
+                                        <i data-lucide="zap" class="w-5 h-5"></i>
+                                    </div>
+                                    <div class="text-title text-white mb-2">₴45,890</div>
+                                    <div class="text-caption stats-rewards-paid">Нагород виплачено</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Features Section -->
+                    <section class="section-glass">
+                        <div class="container-glass">
+                            <div class="text-center mb-16 space-y-4">
+                                <h2 class="text-title features-why-choose-title">
+                                    Чому обирають NFT Battle Arena
+                                </h2>
+                                <p class="text-body max-w-3xl mx-auto features-why-choose-subtitle">
+                                    Унікальна комбінація NFT колекціонування, динамічних боїв та можливостей заробітку
+                                </p>
+                            </div>
+                            
+                            <div class="grid-glass grid-glass-3">
+                                <div class="glass-card p-6 text-center scale-hover">
+                                    <div class="space-y-4">
+                                        <div class="flex justify-center">
+                                            <div class="w-12 h-12 rounded-2xl bg-green-500/20 flex items-center justify-center">
+                                                <span class="emoji text-2xl">🎁</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="text-headline features-free-nft-title">Безкоштовний NFT</h3>
+                                    </div>
+                                    <div class="mt-4">
+                                        <p class="text-body features-free-nft-desc">
+                                            Отримай свого першого бійця безкоштовно та почни пригоди в арені
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="glass-card p-6 text-center scale-hover">
+                                    <div class="space-y-4">
+                                        <div class="flex justify-center">
+                                            <div class="w-12 h-12 rounded-2xl bg-red-500/20 flex items-center justify-center">
+                                                <span class="emoji text-2xl">⚔️</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="text-headline features-epic-battles-title">Епічні бої</h3>
+                                    </div>
+                                    <div class="mt-4">
+                                        <p class="text-body features-epic-battles-desc">
+                                            Бийся проти ботів та інших гравців за нагороди та рейтинг
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div class="glass-card p-6 text-center scale-hover">
+                                    <div class="space-y-4">
+                                        <div class="flex justify-center">
+                                            <div class="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                                                <span class="emoji text-2xl">💰</span>
+                                            </div>
+                                        </div>
+                                        <h3 class="text-headline features-earn-bp-title">Заробляй BP</h3>
+                                    </div>
+                                    <div class="mt-4">
+                                        <p class="text-body features-earn-bp-desc">
+                                            Конвертуй свої BP поінти в реальні нагороди через Telegram Stars
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CTA Section -->
+                    <section class="section-glass">
+                        <div class="container-glass">
+                            <div class="glass-card-strong text-center p-12">
+                                <div class="space-y-6">
+                                    <h2 class="text-title cta-ready-title">
+                                        Готовий почати пригоду? <span class="emoji">🚀</span>
+                                    </h2>
+                                    <p class="text-body max-w-2xl mx-auto cta-ready-subtitle">
+                                        Приєднуйся до тисяч гравців у NFT Battle Arena та почни заробляти разом з нами!
+                                    </p>
+                                    
+                                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                                        <button class="glass-button-accent px-12 py-4 text-lg" onclick="window.open('https://t.me/NFTBattleArenaBot', '_blank')">
+                                            <i data-lucide="users" class="w-5 h-5 mr-2"></i>
+                                            <span class="cta-start-now">Почати гру зараз</span>
+                                        </button>
+                                        
+                                        <button class="glass-button-primary px-8 py-4 text-lg" onclick="changePage('battle_demo')">
+                                            <i data-lucide="eye" class="w-5 h-5 mr-2"></i>
+                                            <span class="cta-watch-demo">Дивитись демо бою</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Game Info Page -->
+            <div id="gameInfoPage" class="page-content hidden">
+                <div class="min-h-screen bg-black text-white pt-32 pb-16">
+                    <div class="container-glass">
+                        <!-- Header -->
+                        <div class="text-center mb-12 space-y-6">
+                            <h1 class="text-display gameinfo-title">
+                                Про гру NFT Battle Arena <span class="emoji">📖</span>
+                            </h1>
+                            <p class="text-body text-lg max-w-3xl mx-auto gameinfo-subtitle">
+                                Дізнайтесь все про механіку гри, правила та можливості заробітку
+                            </p>
+                        </div>
+
+                        <!-- Tabs -->
+                        <div class="w-full">
+                            <div class="grid w-full grid-cols-4 glass-card rounded-2xl p-1 mb-8">
+                                <button class="tab-btn rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium transition-all" data-tab="how-to-get">
+                                    <i data-lucide="gift" class="w-4 h-4"></i>
+                                    <span class="hidden sm:inline">NFT</span>
+                                </button>
+                                <button class="tab-btn rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium transition-all" data-tab="rules">
+                                    <i data-lucide="sword" class="w-4 h-4"></i>
+                                    <span class="hidden sm:inline">Правила</span>
+                                </button>
+                                <button class="tab-btn rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium transition-all" data-tab="roadmap">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                    <span class="hidden sm:inline">Roadmap</span>
+                                </button>
+                                <button class="tab-btn rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium transition-all" data-tab="faq">
+                                    <i data-lucide="help-circle" class="w-4 h-4"></i>
+                                    <span class="hidden sm:inline">FAQ</span>
+                                </button>
+                            </div>
+
+                            <!-- Tab Content: How to Get NFT -->
+                            <div id="how-to-get" class="tab-content space-y-8">
+                                <div class="text-center space-y-4">
+                                    <h2 class="text-title">
+                                        Як отримати NFT <span class="emoji">🎁</span>
+                                    </h2>
+                                    <p class="text-body max-w-2xl mx-auto">
+                                        Дізнайтесь усі способи отримання унікальних NFT-бійців та аксесуарів у NFT Battle Arena
+                                    </p>
+                                </div>
+                                
+                                <div class="grid-glass grid-glass-3">
+                                    <div class="glass-card scale-hover p-6 text-center">
+                                        <div class="space-y-4 mb-6">
+                                            <div class="flex justify-center">
+                                                <div class="w-16 h-16 rounded-2xl bg-green-500/20 flex items-center justify-center">
+                                                    <i data-lucide="gift" class="w-8 h-8 text-green-400"></i>
+                                                </div>
+                                            </div>
+                                            <h3 class="text-headline flex items-center justify-center gap-2">
+                                                <span class="emoji">🎁</span>
+                                                Безкоштовний стартовий NFT
+                                            </h3>
+                                        </div>
+                                        <div>
+                                            <p class="text-body">
+                                                Кожен новий гравець отримує свого першого NFT-бійця абсолютно безкоштовно через Airdrop систему.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover p-6 text-center">
+                                        <div class="space-y-4 mb-6">
+                                            <div class="flex justify-center">
+                                                <div class="w-16 h-16 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+                                                    <i data-lucide="star" class="w-8 h-8 text-blue-400"></i>
+                                                </div>
+                                            </div>
+                                            <h3 class="text-headline flex items-center justify-center gap-2">
+                                                <span class="emoji">⭐</span>
+                                                Покупка за Telegram Stars
+                                            </h3>
+                                        </div>
+                                        <div>
+                                            <p class="text-body">
+                                                Додаткові унікальні NFT та аксесуари можна придбати за Telegram Stars у внутрішньому магазині.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover p-6 text-center">
+                                        <div class="space-y-4 mb-6">
+                                            <div class="flex justify-center">
+                                                <div class="w-16 h-16 rounded-2xl bg-yellow-500/20 flex items-center justify-center">
+                                                    <i data-lucide="trophy" class="w-8 h-8 text-yellow-400"></i>
+                                                </div>
+                                            </div>
+                                            <h3 class="text-headline flex items-center justify-center gap-2">
+                                                <span class="emoji">🏆</span>
+                                                Нагороди за досягнення
+                                            </h3>
+                                        </div>
+                                        <div>
+                                            <p class="text-body">
+                                                Отримуйте рідкісні NFT за участь у турнірах, досягнення високих рейтингів та виконання спеціальних завдань.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab Content: Rules -->
+                            <div id="rules" class="tab-content space-y-8 hidden">
+                                <div class="text-center space-y-4">
+                                    <h2 class="text-title">
+                                        Правила гри <span class="emoji">📜</span>
+                                    </h2>
+                                    <p class="text-body max-w-2xl mx-auto">
+                                        Ознайомтесь з основними правилами та механікою гри для успішного старту
+                                    </p>
+                                </div>
+
+                                <div class="space-y-6">
+                                    <div class="glass-card">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-center gap-3">
+                                                <span class="emoji text-2xl">🚀</span>
+                                                Початок гри і перший NFT
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-3">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>При першому вході гравець отримує безкоштовного базового NFT-бійця</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Цей воїн потрібен для початкових боїв проти бота та отримання перших BP-поінтів</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Стартовий NFT має базові характеристики, які можна покращити</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-center gap-3">
+                                                <span class="emoji text-2xl">💎</span>
+                                                Система BP-поінтів
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-3">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>BP-поінти нараховуються за перемогу в боях проти бота</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Гравець може отримувати безкоштовні BP-поінти щодня – раз на 24 години</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>BP-поінти можна конвертувати в реальні нагороди через спеціальні аксесуари</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-center gap-3">
+                                                <span class="emoji text-2xl">⚔️</span>
+                                                Бойова система
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-3">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Кожен боєць має 2000 HP (гравець) та 2400 HP (бот) для балансу</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Три типи дій: атака, захист, спеціальний удар</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Перемога приносить BP-поінти і досвід для покращення воїна</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-center gap-3">
+                                                <span class="emoji text-2xl">💰</span>
+                                                Економіка гри
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-3">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Всі NFT та аксесуари купуються виключно за Telegram Stars</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>BP-поінти НЕ витрачаються на покупки - тільки на вивід через аксесуари</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                                    <span>Прозора економіка - всі ціни та можливості виводу відображаються чесно</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab Content: Roadmap -->
+                            <div id="roadmap" class="tab-content space-y-8 hidden">
+                                <div class="text-center space-y-4">
+                                    <h2 class="text-title">
+                                        Roadmap розвитку <span class="emoji">🗺️</span>
+                                    </h2>
+                                    <p class="text-body max-w-2xl mx-auto">
+                                        Плани розвитку NFT Battle Arena на найближчі роки
+                                    </p>
+                                </div>
+
+                                <div class="space-y-6">
+                                    <div class="glass-card border-l-4 border-l-blue-400">
+                                        <div class="p-6 space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <h3 class="text-headline">PvE Розширення</h3>
+                                                <div class="px-3 py-1 rounded-xl text-sm border border-blue-400/30 text-blue-400 bg-blue-400/10">
+                                                    Осінь 2025
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-2">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Запуск PvE-режимів із сюжетними квестами</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Битви проти легендарних босів з рідкісними NFT</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Покращення UI/UX у Telegram Mini App</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card border-l-4 border-l-blue-400">
+                                        <div class="p-6 space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <h3 class="text-headline">Командна гра</h3>
+                                                <div class="px-3 py-1 rounded-xl text-sm border border-blue-400/30 text-blue-400 bg-blue-400/10">
+                                                    Зима 2025
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-2">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Запуск Guild Wars – кланових битв 5х5</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Сезонні батл-паси з ексклюзивними аксесуарами</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Система рейтингів і щотижневі турніри</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card border-l-4 border-l-white/20">
+                                        <div class="p-6 space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <h3 class="text-headline">Інтерактивний світ</h3>
+                                                <div class="px-3 py-1 rounded-xl text-sm border border-white/20 text-white/70 bg-white/5">
+                                                    Весна 2026
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-2">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Запуск інтерактивної карти скарбів із гео-локаційними NFT</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Розширення системи аксесуарів</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Перший міжрегіональний турнір з призовим фондом</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card border-l-4 border-l-white/20">
+                                        <div class="p-6 space-y-4">
+                                            <div class="flex items-center justify-between">
+                                                <h3 class="text-headline">Блокчейн інтеграція</h3>
+                                                <div class="px-3 py-1 rounded-xl text-sm border border-white/20 text-white/70 bg-white/5">
+                                                    Літо 2026
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <ul class="space-y-2">
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Запуск мобільного додатку для iOS та Android</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Інтеграція з блокчейном для справжніх NFT-транзакцій</span>
+                                                </li>
+                                                <li class="flex items-start gap-3 text-body">
+                                                    <i data-lucide="target" class="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0"></i>
+                                                    <span>Впровадження внутрішнього маркетплейсу</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab Content: FAQ -->
+                            <div id="faq" class="tab-content space-y-8 hidden">
+                                <div class="text-center space-y-4">
+                                    <h2 class="text-title">
+                                        Часті питання <span class="emoji">❓</span>
+                                    </h2>
+                                    <p class="text-body max-w-2xl mx-auto">
+                                        Відповіді на найпоширеніші запитання про NFT Battle Arena
+                                    </p>
+                                </div>
+
+                                <div class="space-y-4">
+                                    <div class="glass-card scale-hover">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-start gap-2">
+                                                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
+                                                Що таке NFT Battle Arena?
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <p class="text-body leading-relaxed">NFT Battle Arena – це інноваційна Play2Earn гра у форматі Telegram Mini App. Кожен гравець отримує безкоштовного NFT-бійця, щоб розпочати битви на арені та збирати унікальну колекцію.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-start gap-2">
+                                                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
+                                                Чи потрібно мати криптовалюту для гри?
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <p class="text-body leading-relaxed">Ні, криптовалюта не потрібна. Усі транзакції в грі здійснюються через Telegram Stars, що робить її доступною для всіх.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-start gap-2">
+                                                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
+                                                Як я можу заробити гроші у грі?
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <p class="text-body leading-relaxed">Ви можете заробляти BP-поінти за перемоги в боях, які можна конвертувати в реальні нагороди через спеціальні аксесуари. Також можна продавати NFT на майбутньому маркетплейсі.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-start gap-2">
+                                                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
+                                                Чи є мультиплеєрні бої?
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <p class="text-body leading-relaxed">Наразі доступні бої проти ботів. PvP-битви між реальними гравцями та глобальні турніри заплановані на зиму 2025.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-start gap-2">
+                                                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
+                                                Як захищена гра від шахрайства?
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <p class="text-body leading-relaxed">Ми використовуємо систему антиспам та перевірки акаунтів. Використання ботів або мультиакаунтів призводить до безумовного бану.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="glass-card scale-hover">
+                                        <div class="p-6 space-y-4">
+                                            <h3 class="text-headline flex items-start gap-2">
+                                                <i data-lucide="help-circle" class="w-5 h-5 text-blue-400 mt-1 flex-shrink-0"></i>
+                                                Де завантажити гру?
+                                            </h3>
+                                        </div>
+                                        <div class="p-6 pt-0">
+                                            <p class="text-body leading-relaxed">Гра доступна в Telegram Mini App. У майбутньому планується реліз у Play Store та App Store.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="text-center mt-16">
+                            <div class="glass-card-strong p-8">
+                                <div class="space-y-6">
+                                    <h3 class="text-title">
+                                        Готові спробувати NFT Battle Arena? <span class="emoji">🚀</span>
+                                    </h3>
+                                    <p class="text-body max-w-xl mx-auto">
+                                        Приєднуйтесь до тисяч гравців та почніть свою пригоду в світі NFT боїв прямо зараз!
+                                    </p>
+                                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                        <button class="glass-button-accent" onclick="window.open('https://t.me/NFTBattleArenaBot', '_blank')">
+                                            <i data-lucide="users" class="w-5 h-5 mr-2"></i>
+                                            Почати гру
+                                        </button>
+                                        <button class="glass-button-primary" onclick="changePage('battle_demo')">
+                                            <i data-lucide="zap" class="w-5 h-5 mr-2"></i>
+                                            Демо бою
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketplace Page -->
+            <div id="marketplacePage" class="page-content hidden">
+                <div class="min-h-screen bg-black text-white pt-32 pb-16">
+                    <div class="container-glass">
+                        <!-- Header -->
+                        <div class="text-center mb-12 space-y-6">
+                            <h1 class="text-display marketplace-title">
+                                NFT Магазин <span class="emoji">🏪</span>
+                            </h1>
+                            
+                            <!-- Countdown Timer -->
+                            <div class="space-y-6">
+                                <h2 class="text-title text-blue-400 marketplace-coming-soon">
+                                    Магазин буде доступний через <span class="emoji">⏳</span>
+                                </h2>
+                                <div id="countdownTimer" class="flex flex-col items-center space-y-4">
+                                    <div class="flex items-center space-x-2 text-blue-400">
+                                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                                        <i data-lucide="clock" class="w-5 h-5"></i>
+                                        <span class="emoji">⏳</span>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-5 gap-4 text-center">
+                                        <div class="bg-black/40 backdrop-blur-md border border-white/20 p-4 rounded-none">
+                                            <div id="months" class="text-2xl font-bold text-blue-400">5</div>
+                                            <div class="text-xs text-white/70">Місяців</div>
+                                        </div>
+                                        <div class="bg-black/40 backdrop-blur-md border border-white/20 p-4 rounded-none">
+                                            <div id="days" class="text-2xl font-bold text-blue-400">0</div>
+                                            <div class="text-xs text-white/70">Днів</div>
+                                        </div>
+                                        <div class="bg-black/40 backdrop-blur-md border border-white/20 p-4 rounded-none">
+                                            <div id="hours" class="text-2xl font-bold text-blue-400">0</div>
+                                            <div class="text-xs text-white/70">Годин</div>
+                                        </div>
+                                        <div class="bg-black/40 backdrop-blur-md border border-white/20 p-4 rounded-none">
+                                            <div id="minutes" class="text-2xl font-bold text-blue-400">0</div>
+                                            <div class="text-xs text-white/70">Хвилин</div>
+                                        </div>
+                                        <div class="bg-black/40 backdrop-blur-md border border-white/20 p-4 rounded-none">
+                                            <div id="seconds" class="text-2xl font-bold text-blue-400">0</div>
+                                            <div class="text-xs text-white/70">Секунд</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Connection Status -->
+                            <div class="flex justify-center items-center gap-4">
+                                <div id="connectionStatus" class="flex items-center gap-2 px-4 py-3 rounded-2xl border border-white/20 glass-card">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <span class="text-body connection-status-text">Telegram не підключено</span>
+                                </div>
+                                
+                                <button id="connectBtn" class="glass-button-accent" onclick="connectTelegram()">
+                                    <i data-lucide="link" class="w-4 h-4 mr-2"></i>
+                                    <span class="connect-account-text">Підключити акаунт</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Marketplace Interface (Disabled) -->
+                        <div class="relative">
+                            <!-- Disabled Overlay -->
+                            <div class="absolute inset-0 glass-card-strong z-10 flex items-center justify-center rounded-3xl">
+                                <div class="glass-card-strong text-center max-w-md p-8">
+                                    <div class="space-y-4 mb-6">
+                                        <h3 class="text-headline flex items-center justify-center gap-2">
+                                            <i data-lucide="clock" class="w-6 h-6 text-blue-400"></i>
+                                            <span class="marketplace-temp-unavailable">Магазин тимчасово недоступний</span>
+                                        </h3>
+                                    </div>
+                                    <div class="space-y-6">
+                                        <p class="text-body marketplace-description">
+                                            Ми працюємо над створенням найкращого досвіду покупки NFT. Магазин буде доступний через кілька місяців з усіма функціями!
+                                        </p>
+                                        <div class="flex flex-col gap-3">
+                                            <div class="flex items-center justify-center gap-2 text-body">
+                                                <span class="emoji">🛒</span>
+                                                Покупка та продаж NFT
+                                            </div>
+                                            <div class="flex items-center justify-center gap-2 text-body">
+                                                <span class="emoji">💎</span>
+                                                Рідкісні аксесуари
+                                            </div>
+                                            <div class="flex items-center justify-center gap-2 text-body">
+                                                <span class="emoji">🔍</span>
+                                                Розширений пошук
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Marketplace UI Preview -->
+                            <div class="opacity-20 space-y-8">
+                                <div class="w-full">
+                                    <div class="grid w-full grid-cols-3 glass-card rounded-2xl p-1">
+                                        <button class="rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium bg-white/10 text-white">
+                                            <i data-lucide="search" class="w-4 h-4"></i>
+                                            <span class="hidden sm:inline">Переглядати</span>
+                                        </button>
+                                        <button class="rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium text-white/70">
+                                            <i data-lucide="plus" class="w-4 h-4"></i>
+                                            <span class="hidden sm:inline">Продавати</span>
+                                        </button>
+                                        <button class="rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-medium text-white/70">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                            <span class="hidden sm:inline">Кошик (0)</span>
+                                        </button>
+                                    </div>
+
+                                    <div class="space-y-6 mt-8">
+                                        <!-- Filters -->
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                            <div class="relative">
+                                                <i data-lucide="search" class="absolute left-3 top-3.5 w-4 h-4 text-white/50"></i>
+                                                <input type="text" placeholder="Пошук NFT..." class="pl-10 glass-input w-full" />
+                                            </div>
+                                            
+                                            <select class="glass-input">
+                                                <option>Усі категорії</option>
+                                                <option>Воїни</option>
+                                                <option>Маги</option>
+                                                <option>Асасини</option>
+                                            </select>
+
+                                            <select class="glass-input">
+                                                <option>Усі ціни</option>
+                                                <option>&lt; 100 ⭐</option>
+                                                <option>100-200 ⭐</option>
+                                                <option>&gt; 200 ⭐</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- NFT Grid -->
+                                        <div class="grid-glass grid-glass-4">
+                                            <div class="glass-card scale-hover">
+                                                <div class="p-4">
+                                                    <img src="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png" alt="Warrior Dragon" class="w-full h-48 object-cover rounded-2xl mb-4" />
+                                                    <h3 class="text-headline">Warrior Dragon</h3>
+                                                    <p class="text-body mb-4">Legendary fire-breathing warrior</p>
+                                                </div>
+                                                <div class="p-4 pt-0 space-y-4">
+                                                    <div class="flex justify-between items-center">
+                                                        <div class="text-blue-400 font-bold text-lg">150 ⭐</div>
+                                                        <div class="text-sm px-3 py-1 border border-yellow-400 text-yellow-400 rounded-xl">
+                                                            Легендарний
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="flex justify-around text-xs text-white/70">
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="sword" class="w-3 h-3"></i>
+                                                            <span>95</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="shield" class="w-3 h-3"></i>
+                                                            <span>80</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="star" class="w-3 h-3"></i>
+                                                            <span>70</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <button class="w-full glass-button-accent">
+                                                        <i data-lucide="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                                        Додати в кошик
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="glass-card scale-hover">
+                                                <div class="p-4">
+                                                    <img src="https://via.placeholder.com/300x400?text=Shadow+Assassin" alt="Shadow Assassin" class="w-full h-48 object-cover rounded-2xl mb-4 bg-gray-800" />
+                                                    <h3 class="text-headline">Shadow Assassin</h3>
+                                                    <p class="text-body mb-4">Stealthy fighter with critical strikes</p>
+                                                </div>
+                                                <div class="p-4 pt-0 space-y-4">
+                                                    <div class="flex justify-between items-center">
+                                                        <div class="text-blue-400 font-bold text-lg">120 ⭐</div>
+                                                        <div class="text-sm px-3 py-1 border border-purple-400 text-purple-400 rounded-xl">
+                                                            Епічний
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="flex justify-around text-xs text-white/70">
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="sword" class="w-3 h-3"></i>
+                                                            <span>85</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="shield" class="w-3 h-3"></i>
+                                                            <span>60</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="star" class="w-3 h-3"></i>
+                                                            <span>95</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <button class="w-full glass-button-accent">
+                                                        <i data-lucide="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                                        Додати в кошик
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="glass-card scale-hover">
+                                                <div class="p-4">
+                                                    <img src="https://via.placeholder.com/300x400?text=Cyber+Mage" alt="Cyber Mage" class="w-full h-48 object-cover rounded-2xl mb-4 bg-gray-800" />
+                                                    <h3 class="text-headline">Cyber Mage</h3>
+                                                    <p class="text-body mb-4">Tech-enhanced spellcaster</p>
+                                                </div>
+                                                <div class="p-4 pt-0 space-y-4">
+                                                    <div class="flex justify-between items-center">
+                                                        <div class="text-blue-400 font-bold text-lg">200 ⭐</div>
+                                                        <div class="text-sm px-3 py-1 border border-yellow-400 text-yellow-400 rounded-xl">
+                                                            Легендарний
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="flex justify-around text-xs text-white/70">
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="sword" class="w-3 h-3"></i>
+                                                            <span>90</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="shield" class="w-3 h-3"></i>
+                                                            <span>70</span>
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <i data-lucide="star" class="w-3 h-3"></i>
+                                                            <span>75</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <button class="w-full glass-button-accent">
+                                                        <i data-lucide="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                                        Додати в кошик
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="glass-card scale-hover">
+                                                <div class="p-4">
+                                                    <img src="https://via.placeholder.com/200x200?text=Power+Gauntlets" alt="Power Gauntlets" class="w-full h-48 object-cover rounded-2xl mb-4 bg-gray-800" />
+                                                    <h3 class="text-headline">Power Gauntlets</h3>
+                                                    <p class="text-body mb-4">Increases attack power by 15%</p>
+                                                </div>
+                                                <div class="p-4 pt-0 space-y-4">
+                                                    <div class="flex justify-between items-center">
+                                                        <div class="text-blue-400 font-bold text-lg">50 ⭐</div>
+                                                        <div class="text-sm px-3 py-1 border border-gray-400 text-gray-400 rounded-xl">
+                                                            Аксесуар
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <button class="w-full glass-button-accent">
+                                                        <i data-lucide="shopping-cart" class="w-4 h-4 mr-2"></i>
+                                                        Додати в кошик
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battle Demo Page -->
+            <div id="battleDemoPage" class="page-content hidden">
+                <div class="min-h-screen bg-black text-white pt-32 pb-16">
+                    <div class="container-glass">
+                        <!-- Header -->
+                        <div class="text-center mb-12 space-y-6">
+                            <h1 class="text-display battle-title">
+                                Демо бою <span class="emoji">⚔️</span>
+                            </h1>
+                            <p class="text-body text-lg max-w-2xl mx-auto battle-description">
+                                Подивіться, як виглядає бій в NFT Battle Arena
+                            </p>
+                            
+                            <div class="flex justify-center gap-4">
+                                <button id="toggleBattleBtn" class="glass-button-accent px-6 py-3" onclick="toggleBattle()">
+                                    <i id="battleIcon" data-lucide="play" class="w-4 h-4 mr-2"></i>
+                                    <span id="battleBtnText" class="battle-start-text">Почати</span>
+                                </button>
+                                
+                                <button class="glass-button-primary px-6 py-3" onclick="resetBattle()">
+                                    <i data-lucide="rotate-ccw" class="w-4 h-4 mr-2"></i>
+                                    <span class="battle-reset-text">Скинути</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Battle Arena -->
+                        <div class="max-w-4xl mx-auto space-y-6">
+                            <!-- Battle UI -->
+                            <div class="glass-card-strong p-8 relative" id="battleArena">
+                                <!-- HP Bars -->
+                                <div class="flex justify-between items-center mb-8 gap-8">
+                                    <!-- Player HP -->
+                                    <div class="flex-1 space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-caption font-semibold battle-player-hp">HP Гравця</span>
+                                            <span class="text-caption"><span id="playerHP">2000</span>/<span id="maxPlayerHP">2000</span></span>
+                                        </div>
+                                        <div class="h-3 bg-black/60 rounded-xl overflow-hidden">
+                                            <div id="playerHPBar" class="h-full bg-gradient-to-r from-red-500 to-green-500 transition-all duration-500 rounded-xl" style="width: 100%"></div>
+                                        </div>
+                                        <div class="h-2 bg-black/60 rounded-xl overflow-hidden">
+                                            <div id="playerEnergyBar" class="h-full bg-yellow-400 transition-all duration-500 rounded-xl" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Turn Indicator -->
+                                    <div class="text-center px-6">
+                                        <div class="text-3xl mb-2" id="turnEmoji">👤</div>
+                                        <div class="text-caption" id="turnText">
+                                            <span class="battle-player-turn">Хід гравця</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Enemy HP -->
+                                    <div class="flex-1 space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-caption"><span id="enemyHP">2400</span>/<span id="maxEnemyHP">2400</span></span>
+                                            <span class="text-caption font-semibold battle-enemy-hp">HP Ворога</span>
+                                        </div>
+                                        <div class="h-3 bg-black/60 rounded-xl overflow-hidden">
+                                            <div id="enemyHPBar" class="h-full bg-gradient-to-l from-red-500 to-green-500 transition-all duration-500 ml-auto rounded-xl" style="width: 100%"></div>
+                                        </div>
+                                        <div class="h-2 bg-black/60 rounded-xl overflow-hidden">
+                                            <div id="enemyEnergyBar" class="h-full bg-yellow-400 transition-all duration-500 ml-auto rounded-xl" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Characters -->
+                                <div class="flex justify-between items-end px-8 py-12">
+                                    <div id="playerChar" class="transition-all duration-300">
+                                        <div class="w-24 h-32 bg-gradient-to-b from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center">
+                                            <span class="emoji text-4xl">🦸‍♂️</span>
+                                        </div>
+                                        <div class="text-center mt-2 text-caption">Player</div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <span class="emoji text-6xl">⚡</span>
+                                        <div class="mt-2 text-headline text-blue-400">VS</div>
+                                    </div>
+
+                                    <div id="enemyChar" class="transition-all duration-300">
+                                        <div class="w-24 h-32 bg-gradient-to-b from-red-500 to-red-700 rounded-2xl flex items-center justify-center">
+                                            <span class="emoji text-4xl">👹</span>
+                                        </div>
+                                        <div class="text-center mt-2 text-caption">Enemy</div>
+                                    </div>
+                                </div>
+
+                                <!-- Game Result -->
+                                <div id="gameResult" class="absolute inset-0 glass-card-strong flex items-center justify-center rounded-2xl hidden">
+                                    <div class="text-center space-y-6">
+                                        <div class="text-6xl" id="resultEmoji">🏆</div>
+                                        <div class="text-title text-blue-400" id="resultText">
+                                            <span class="battle-you-win">ВИ ПЕРЕМОГЛИ!</span>
+                                        </div>
+                                        <button class="glass-button-accent" onclick="resetBattle()">
+                                            Play Again
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Battle Log -->
+                            <div class="glass-card">
+                                <div class="p-6 space-y-4">
+                                    <h3 class="text-headline flex items-center">
+                                        <i data-lucide="info" class="w-5 h-5 mr-2"></i>
+                                        <span class="battle-battle-log">Лог бою</span>
+                                    </h3>
+                                </div>
+                                <div class="p-6 pt-0">
+                                    <div id="battleLogContainer" class="space-y-2 h-32 overflow-y-auto">
+                                        <p class="text-body text-center opacity-60 battle-log-empty">
+                                            Бій ще не почався...
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Demo Info -->
+                            <div class="glass-card text-center">
+                                <div class="p-8 space-y-6">
+                                    <div class="flex items-center justify-center">
+                                        <i data-lucide="info" class="w-6 h-6 text-blue-400 mr-2"></i>
+                                        <span class="text-headline battle-demo-info">Це демо версія</span>
+                                    </div>
+                                    <p class="text-body battle-demo-description">
+                                        У справжній грі ви зможете контролювати всі дії персонажа, використовувати різні NFT з унікальними здібностями та заробляти BP поінти за перемоги.
+                                    </p>
+                                    <button class="glass-button-accent" onclick="window.open('https://t.me/NFTBattleArenaBot', '_blank')">
+                                        <i data-lucide="play" class="w-4 h-4 mr-2"></i>
+                                        <span class="battle-play-real-game">Грати справжню гру</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- JSON-LD Structured Data -->
+        <script type="application/ld+json" id="structuredData">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": "NFT Battle Arena",
+            "url": "https://nft-battle-arena.com",
+            "image": "https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png",
+            "description": "NFT Battle Arena — грай, збирай NFT та бийся на арені. Почни з першого NFT і розвивай армію воїнів.",
+            "author": {
+                "@type": "Organization",
+                "name": "NFT Battle Arena Team"
+            },
+            "publisher": {
+                "@type": "Organization", 
+                "name": "NFT Battle Arena"
+            },
+            "applicationCategory": "Game",
+            "operatingSystem": "Web, Android, iOS",
+            "genre": ["Blockchain Game", "P2E", "NFT", "Battle Arena"],
+            "inLanguage": ["uk", "en", "pl"],
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+        </script>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
