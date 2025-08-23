@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Menu, X, Gamepad2 } from 'lucide-react';
-import { AnimatedEmoji } from './AnimatedEmoji';
 
 export const Navigation = ({ currentLang, onLanguageChange, translations, currentPage, onPageChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   
   const t = translations[currentLang]?.nav || translations.en.nav;
 
   const menuItems = [
-    { key: 'home', label: t.home, icon: '🏠' },
-    { key: 'game_info', label: t.game_info, icon: '📖' },
-    { key: 'marketplace', label: t.marketplace, icon: '🏪' },
-    { key: 'battle_demo', label: t.battle_demo, icon: '⚔️' }
+    { key: 'home', label: t.home },
+    { key: 'game_info', label: t.game_info },
+    { key: 'marketplace', label: t.marketplace },
+    { key: 'battle_demo', label: t.battle_demo }
   ];
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handlePageChange = (page) => {
     onPageChange(page);
@@ -22,49 +31,48 @@ export const Navigation = ({ currentLang, onLanguageChange, translations, curren
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/25 backdrop-blur-md border-b border-white/10">
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
+    <nav className={`glass-nav ${isScrolled ? 'scrolled' : ''}`}>
+      <div className="container-glass">
+        <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div 
-            className="flex items-center space-x-2 cursor-pointer"
+            className="flex items-center space-x-3 cursor-pointer group"
             onClick={() => handlePageChange('home')}
           >
-            <Gamepad2 className="w-8 h-8 text-[#00FFD1]" />
-            <span className="font-bold text-xl text-white">NFT Battle Arena</span>
-            <AnimatedEmoji emoji="🚀" animation="float" />
+            <div className="p-2 glass-card">
+              <Gamepad2 className="w-6 h-6 text-blue-400" />
+            </div>
+            <span className="text-headline hidden md:block">NFT Battle Arena</span>
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-1">
             {menuItems.map((item) => (
               <button
                 key={item.key}
                 onClick={() => handlePageChange(item.key)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-none transition-all duration-300 ${
+                className={`px-4 py-2 rounded-xl transition-all duration-200 text-body ${
                   currentPage === item.key 
-                    ? 'text-[#00FFD1] bg-white/10' 
+                    ? 'bg-white/10 text-white' 
                     : 'text-white/70 hover:text-white hover:bg-white/5'
                 }`}
               >
-                <span>{item.icon}</span>
-                <span>{item.label}</span>
+                {item.label}
               </button>
             ))}
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <LanguageSwitcher 
               currentLang={currentLang} 
               onLanguageChange={onLanguageChange} 
             />
             
             <Button 
-              className="hidden lg:flex bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold"
+              className="hidden lg:flex glass-button-accent text-sm px-4 py-2"
               onClick={() => window.open('https://t.me/NFTBattleArenaBot', '_blank')}
             >
-              <AnimatedEmoji emoji="📱" animation="bounce" className="mr-2" />
               {t.connect_telegram}
             </Button>
 
@@ -72,38 +80,36 @@ export const Navigation = ({ currentLang, onLanguageChange, translations, curren
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden text-white"
+              className="lg:hidden p-2 rounded-xl hover:bg-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
           </div>
         </div>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-white/10">
-            <div className="flex flex-col space-y-3 mt-4">
+          <div className="lg:hidden">
+            <div className="glass-card mt-4 p-4 space-y-3">
               {menuItems.map((item) => (
                 <button
                   key={item.key}
                   onClick={() => handlePageChange(item.key)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-none transition-all duration-300 ${
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 ${
                     currentPage === item.key 
-                      ? 'text-[#00FFD1] bg-white/10' 
+                      ? 'bg-white/10 text-white' 
                       : 'text-white/70 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <span>{item.icon}</span>
-                  <span>{item.label}</span>
+                  {item.label}
                 </button>
               ))}
               
               <Button 
-                className="mt-4 bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold"
+                className="w-full mt-4 glass-button-accent"
                 onClick={() => window.open('https://t.me/NFTBattleArenaBot', '_blank')}
               >
-                <AnimatedEmoji emoji="📱" animation="bounce" className="mr-2" />
                 {t.connect_telegram}
               </Button>
             </div>
