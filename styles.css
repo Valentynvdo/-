@@ -657,6 +657,27 @@ body {
     .text-display { font-size: 2.5rem; }
     .text-title { font-size: 1.75rem; }
     .glass-card { border-radius: var(--radius-xl); margin-bottom: 1rem; }
-    .glass-nav { padding: 0.5rem 0.75rem; }
+    .glass-nav { 
+        padding: 0.5rem 0.75rem;
+        /* Ensure border consistency on small screens */
+        border-bottom: 1px solid var(--glass-border);
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
     .container-glass { padding: 0 0.75rem; }
+}
+
+/* Additional border stability rules */
+@media (max-width: 320px) {
+    .glass-nav {
+        /* Ultra small screens - ensure single border */
+        border-bottom: 1px solid var(--glass-border);
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        width: 100vw;
+        max-width: 100%;
+        min-width: 0;
+    }
 }
