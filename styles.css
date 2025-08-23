@@ -595,7 +595,7 @@ body {
 @media (max-width: 768px) {
     .glass-nav {
         padding: 0.5rem 1rem;
-        border-bottom: 1px solid var(--glass-border);
+        /* Border is already defined in main .glass-nav rule - no duplication */
         box-sizing: border-box;
         width: 100vw;
         max-width: 100%;
