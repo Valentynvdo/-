@@ -625,7 +625,37 @@ const translations = {
             cta_title: "Prêt à essayer NFT Battle Arena ?",
             cta_subtitle: "Rejoignez des milliers de joueurs et commencez votre aventure dans le monde des batailles NFT dès maintenant !",
             cta_start_game: "Commencer le Jeu",
-            cta_demo: "Démo Bataille"
+            cta_demo: "Démo Bataille",
+            how_to_get: {
+                title: "Comment Obtenir des NFT",
+                subtitle: "Apprenez toutes les façons d'obtenir des combattants NFT uniques et des accessoires dans NFT Battle Arena",
+                free_nft_title: "NFT de Démarrage Gratuit",
+                free_nft_desc: "Chaque nouveau joueur reçoit son premier combattant NFT gratuitement via le système Airdrop.",
+                purchase_title: "Achat avec Telegram Stars",
+                purchase_desc: "Des NFT uniques supplémentaires et des accessoires peuvent être achetés avec Telegram Stars dans le marché interne.",
+                rewards_title: "Récompenses d'Accomplissement",
+                rewards_desc: "Obtenez des NFT rares en participant aux tournois, en atteignant des classements élevés et en accomplissant des tâches spéciales."
+            },
+            rules: {
+                title: "Règles du Jeu",
+                subtitle: "Familiarisez-vous avec les règles de base et la mécanique du jeu pour un démarrage réussi",
+                start_title: "Début du Jeu & Premier NFT",
+                start_item_1: "À la première connexion, le joueur reçoit un combattant NFT de base gratuit",
+                start_item_2: "Ce guerrier est nécessaire pour les batailles initiales contre le bot et gagner les premiers points BP",
+                start_item_3: "Le NFT de démarrage a des caractéristiques de base qui peuvent être améliorées",
+                bp_title: "Système de Points BP",
+                bp_item_1: "Les points BP sont gagnés pour les victoires dans les batailles contre le bot",
+                bp_item_2: "Le joueur peut obtenir des points BP gratuits quotidiennement – une fois toutes les 24 heures",
+                bp_item_3: "Les points BP peuvent être convertis en vraies récompenses via des accessoires spéciaux",
+                battle_title: "Système de Bataille",
+                battle_item_1: "Chaque combattant a 2500 HP (joueur) et 2400 HP (bot) pour l'équilibre",
+                battle_item_2: "Trois types d'actions : attaque, défense, frappe spéciale",
+                battle_item_3: "La victoire apporte des points BP et de l'expérience pour améliorer le guerrier",
+                economy_title: "Économie du Jeu",
+                economy_item_1: "Tous les NFT et accessoires sont achetés exclusivement avec Telegram Stars",
+                economy_item_2: "Les points BP ne sont PAS dépensés pour les achats - seulement pour le retrait via les accessoires",
+                economy_item_3: "Économie transparente - tous les prix et options de retrait sont affichés honnêtement"
+            }
         },
         roadmap: {
             title: "Feuille de Route de Développement",
