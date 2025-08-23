@@ -145,7 +145,6 @@
             background: var(--glass-bg);
             backdrop-filter: var(--blur-medium);
             -webkit-backdrop-filter: var(--blur-medium);
-            border-bottom: 1px solid var(--glass-border);
             position: fixed;
             top: 0;
             left: 0;
@@ -153,6 +152,15 @@
             width: 100%;
             z-index: 1000;
             transition: all 0.3s ease;
+            box-sizing: border-box;
+            max-width: 100vw;
+            overflow-x: hidden;
+            /* Single thin border at the bottom */
+            border-bottom: 1px solid var(--glass-border);
+            /* Ensure no other borders */
+            border-top: none;
+            border-left: none;
+            border-right: none;
         }
 
         .text-display {
