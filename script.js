@@ -1627,7 +1627,7 @@ window.addEventListener('load', () => {
 window.changePage = changePage;
 window.changeLanguage = changeLanguage;
 window.connectTelegram = connectTelegram;
-window.toggleBattle = toggleBattle;
+window.playerAction = playerAction;
 window.resetBattle = resetBattle;
 
 console.log('NFT Battle Arena script loaded');
