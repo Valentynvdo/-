@@ -1112,6 +1112,7 @@ function updateTranslations() {
     
     // Update hero section
     updateElementByClass('hero-title', t.hero.title);
+    updateElementByClass('hero-subtitle', t.hero.subtitle);
     updateElementByClass('hero-description', t.hero.description);
     updateElementByClass('hero-play-now', t.hero.play_now);
     updateElementByClass('hero-learn-more', t.hero.learn_more);
@@ -1141,6 +1142,56 @@ function updateTranslations() {
     // Update game info page
     updateElementByClass('gameinfo-title', t.game_info.title);
     updateElementByClass('gameinfo-subtitle', t.game_info.subtitle);
+    updateElementByClass('how-to-get-free-nft-title', t.game_info.free_nft_title);
+    updateElementByClass('how-to-get-free-nft-desc', t.game_info.free_nft_desc);
+    updateElementByClass('gameinfo-cta-title', t.game_info.cta_title);
+    updateElementByClass('gameinfo-cta-subtitle', t.game_info.cta_subtitle);
+    updateElementByClass('gameinfo-cta-start-game', t.game_info.cta_start_game);
+    updateElementByClass('gameinfo-cta-demo', t.game_info.cta_demo);
+    
+    // Update roadmap section
+    if (t.roadmap) {
+        updateElementByClass('roadmap-title', t.roadmap.title);
+        updateElementByClass('roadmap-subtitle', t.roadmap.subtitle);
+        updateElementByClass('roadmap-q3-2025-title', t.roadmap.q3_2025_title);
+        updateElementByClass('roadmap-q3-2025-date', t.roadmap.q3_2025_date);
+        updateElementByClass('roadmap-q3-item-1', t.roadmap.q3_item_1);
+        updateElementByClass('roadmap-q3-item-2', t.roadmap.q3_item_2);
+        updateElementByClass('roadmap-q3-item-3', t.roadmap.q3_item_3);
+        updateElementByClass('roadmap-q4-2025-title', t.roadmap.q4_2025_title);
+        updateElementByClass('roadmap-q4-2025-date', t.roadmap.q4_2025_date);
+        updateElementByClass('roadmap-q4-item-1', t.roadmap.q4_item_1);
+        updateElementByClass('roadmap-q4-item-2', t.roadmap.q4_item_2);
+        updateElementByClass('roadmap-q4-item-3', t.roadmap.q4_item_3);
+        updateElementByClass('roadmap-q1-2026-title', t.roadmap.q1_2026_title);
+        updateElementByClass('roadmap-q1-2026-date', t.roadmap.q1_2026_date);
+        updateElementByClass('roadmap-q1-item-1', t.roadmap.q1_item_1);
+        updateElementByClass('roadmap-q1-item-2', t.roadmap.q1_item_2);
+        updateElementByClass('roadmap-q1-item-3', t.roadmap.q1_item_3);
+        updateElementByClass('roadmap-q2-2026-title', t.roadmap.q2_2026_title);
+        updateElementByClass('roadmap-q2-2026-date', t.roadmap.q2_2026_date);
+        updateElementByClass('roadmap-q2-item-1', t.roadmap.q2_item_1);
+        updateElementByClass('roadmap-q2-item-2', t.roadmap.q2_item_2);
+        updateElementByClass('roadmap-q2-item-3', t.roadmap.q2_item_3);
+    }
+    
+    // Update FAQ section
+    if (t.faq) {
+        updateElementByClass('faq-title', t.faq.title);
+        updateElementByClass('faq-subtitle', t.faq.subtitle);
+        updateElementByClass('faq-q1-question', t.faq.q1_question);
+        updateElementByClass('faq-q1-answer', t.faq.q1_answer);
+        updateElementByClass('faq-q2-question', t.faq.q2_question);
+        updateElementByClass('faq-q2-answer', t.faq.q2_answer);
+        updateElementByClass('faq-q3-question', t.faq.q3_question);
+        updateElementByClass('faq-q3-answer', t.faq.q3_answer);
+        updateElementByClass('faq-q4-question', t.faq.q4_question);
+        updateElementByClass('faq-q4-answer', t.faq.q4_answer);
+        updateElementByClass('faq-q5-question', t.faq.q5_question);
+        updateElementByClass('faq-q5-answer', t.faq.q5_answer);
+        updateElementByClass('faq-q6-question', t.faq.q6_question);
+        updateElementByClass('faq-q6-answer', t.faq.q6_answer);
+    }
     
     // Update marketplace
     updateElementByClass('marketplace-title', t.marketplace.title);
@@ -1149,6 +1200,15 @@ function updateTranslations() {
     updateElementByClass('marketplace-description', t.marketplace.market_description);
     updateElementByClass('connect-account-text', t.marketplace.connect_account);
     updateElementByClass('connection-status-text', isConnected ? t.marketplace.telegram_connected : t.marketplace.telegram_not_connected);
+    
+    // Update countdown
+    if (t.countdown) {
+        updateElementByClass('countdown-months', t.countdown.months);
+        updateElementByClass('countdown-days', t.countdown.days);
+        updateElementByClass('countdown-hours', t.countdown.hours);
+        updateElementByClass('countdown-minutes', t.countdown.minutes);
+        updateElementByClass('countdown-seconds', t.countdown.seconds);
+    }
     
     // Update battle demo
     updateElementByClass('battle-title', t.battle.title);
@@ -1166,7 +1226,7 @@ function updateTranslations() {
     updateElementByClass('battle-demo-description', t.battle.demo_description);
     updateElementByClass('battle-play-real-game', t.battle.play_real_game);
     updateElementByClass('battle-you-win', t.battle.you_win);
-    updateElementByClass('battle-play-again', 'Грати знову');
+    updateElementByClass('battle-play-again', t.battle.play_again);
 }
 
 // Helper function to update element by class
