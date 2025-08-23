@@ -221,9 +221,9 @@ export const Marketplace = ({ currentLang, translations }) => {
                     </SelectTrigger>
                     <SelectContent className="bg-black/90 backdrop-blur-md border-white/20 rounded-none">
                       <SelectItem value="all" className="text-white hover:bg-white/10 rounded-none">Усі ціни</SelectItem>
-                      <SelectItem value="low" className="text-white hover:bg-white/10 rounded-none">< 100 ⭐</SelectItem>
+                      <SelectItem value="low" className="text-white hover:bg-white/10 rounded-none">&lt; 100 ⭐</SelectItem>
                       <SelectItem value="mid" className="text-white hover:bg-white/10 rounded-none">100-200 ⭐</SelectItem>
-                      <SelectItem value="high" className="text-white hover:bg-white/10 rounded-none">> 200 ⭐</SelectItem>
+                      <SelectItem value="high" className="text-white hover:bg-white/10 rounded-none">&gt; 200 ⭐</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
