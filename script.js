@@ -1293,6 +1293,50 @@ function updateTranslations() {
     updateElementByClass('gameinfo-cta-start-game', t.game_info.cta_start_game);
     updateElementByClass('gameinfo-cta-demo', t.game_info.cta_demo);
     
+    // Update how-to-get tab content - Added for how-to-get tab translations
+    if (t.game_info.how_to_get) {
+        updateElementById('how-to-get-title', t.game_info.how_to_get.title);
+        updateElementById('how-to-get-subtitle', t.game_info.how_to_get.subtitle);
+        updateElementById('how-to-get-free-nft-title', t.game_info.how_to_get.free_nft_title);
+        updateElementById('how-to-get-free-nft-desc', t.game_info.how_to_get.free_nft_desc);
+        updateElementById('how-to-get-purchase-title', t.game_info.how_to_get.purchase_title);
+        updateElementById('how-to-get-purchase-desc', t.game_info.how_to_get.purchase_desc);
+        updateElementById('how-to-get-rewards-title', t.game_info.how_to_get.rewards_title);
+        updateElementById('how-to-get-rewards-desc', t.game_info.how_to_get.rewards_desc);
+    }
+    
+    // Update rules tab content - Added for rules tab translations
+    if (t.game_info.rules) {
+        updateElementById('rules-title', t.game_info.rules.title);
+        updateElementById('rules-subtitle', t.game_info.rules.subtitle);
+        updateElementById('rules-start-title', t.game_info.rules.start_title);
+        updateElementById('rules-bp-title', t.game_info.rules.bp_title);
+        updateElementById('rules-battle-title', t.game_info.rules.battle_title);
+        updateElementById('rules-economy-title', t.game_info.rules.economy_title);
+        
+        // Update lists for rules sections
+        updateElementsByClass('rules-start-item', [
+            t.game_info.rules.start_item_1,
+            t.game_info.rules.start_item_2,
+            t.game_info.rules.start_item_3
+        ]);
+        updateElementsByClass('rules-bp-item', [
+            t.game_info.rules.bp_item_1,
+            t.game_info.rules.bp_item_2,
+            t.game_info.rules.bp_item_3
+        ]);
+        updateElementsByClass('rules-battle-item', [
+            t.game_info.rules.battle_item_1,
+            t.game_info.rules.battle_item_2,
+            t.game_info.rules.battle_item_3
+        ]);
+        updateElementsByClass('rules-economy-item', [
+            t.game_info.rules.economy_item_1,
+            t.game_info.rules.economy_item_2,
+            t.game_info.rules.economy_item_3
+        ]);
+    }
+    
     // Update roadmap section
     if (t.roadmap) {
         updateElementByClass('roadmap-title', t.roadmap.title);
