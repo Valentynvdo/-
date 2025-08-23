@@ -838,16 +838,16 @@ let isMobileMenuOpen = false;
 let isConnected = false;
 let battleInterval = null;
 let battleState = {
-    isPlaying: false,
-    playerHP: 2000,
+    isActive: false,
+    playerHP: 2500,
     enemyHP: 2400,
     playerEnergy: 0,
     enemyEnergy: 0,
-    maxPlayerHP: 2000,
+    maxPlayerHP: 2500,
     maxEnemyHP: 2400,
     currentTurn: 'player',
     gameResult: null,
-    battleLog: []
+    turnCount: 0
 };
 
 // Initialize the application
