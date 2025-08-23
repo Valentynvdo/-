@@ -1297,6 +1297,14 @@ function updateElementsByClass(className, texts) {
     });
 }
 
+// Helper function to update element by ID - Added for how-to-get and rules tabs
+function updateElementById(id, text) {
+    const element = document.getElementById(id);
+    if (element && text) {
+        element.textContent = text;
+    }
+}
+
 // Update SEO meta tags
 function updateSEOMeta() {
     const t = translations[currentLang] || translations.ua;
