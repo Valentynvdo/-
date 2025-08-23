@@ -268,6 +268,552 @@ const translations = {
             cancel: "Anuluj",
             confirm: "Potwierdź"
         }
+    },
+    es: {
+        nav: {
+            home: "Inicio",
+            game_info: "Información del Juego",
+            marketplace: "Mercado",
+            battle_demo: "Demo de Batalla",
+            connect_telegram: "Conectar Telegram"
+        },
+        hero: {
+            title: "NFT Battle Arena",
+            subtitle: "Juego Play2Earn en Telegram Mini App",
+            description: "Consigue tu primer NFT, lucha en la arena contra oponentes y colecciona una colección única. ¡Esto no es solo un juego - es una batalla por recompensas, prestigio y poder real!",
+            play_now: "Jugar Ahora",
+            learn_more: "Saber Más",
+            watch_demo: "Ver Demo",
+            start_journey: "Comenzar Aventura"
+        },
+        stats: {
+            active_players: "Jugadores Activos",
+            nft_in_game: "NFTs en Juego",
+            battles_fought: "Batallas Peleadas",
+            rewards_paid: "Recompensas Pagadas"
+        },
+        features: {
+            free_nft_title: "NFT Gratis",
+            free_nft_desc: "Consigue tu primer luchador gratis y comienza aventuras en la arena",
+            epic_battles_title: "Batallas Épicas",
+            epic_battles_desc: "Lucha contra bots y otros jugadores por recompensas y ranking",
+            earn_bp_title: "Ganar BP",
+            earn_bp_desc: "Convierte tus puntos BP en recompensas reales a través de Telegram Stars",
+            why_choose_title: "Por qué elegir NFT Battle Arena",
+            why_choose_subtitle: "Combinación única de coleccionismo de NFT, batallas dinámicas y oportunidades de ganancias"
+        },
+        cta: {
+            ready_title: "¿Listo para comenzar la aventura?",
+            ready_subtitle: "¡Únete a miles de jugadores en NFT Battle Arena y comienza a ganar con nosotros!",
+            start_now: "Empezar Juego Ahora",
+            watch_demo: "Ver Demo de Batalla"
+        },
+        marketplace: {
+            title: "Mercado NFT",
+            coming_soon: "El mercado estará disponible en",
+            connect_account: "Conectar Cuenta",
+            temporarily_unavailable: "Mercado temporalmente no disponible",
+            market_description: "Estamos trabajando en crear la mejor experiencia de compra de NFT. ¡El mercado estará disponible en unos meses con todas las funciones!",
+            telegram_connected: "Telegram Conectado",
+            telegram_not_connected: "Telegram No Conectado"
+        },
+        battle: {
+            title: "Demo de Batalla",
+            description: "Ve cómo se ven las batallas en NFT Battle Arena",
+            player_hp: "HP del Jugador",
+            enemy_hp: "HP del Enemigo",
+            attack: "Atacar",
+            defend: "Defender",
+            special: "Especial",
+            fight: "¡LUCHA!",
+            you_win: "¡GANASTE!",
+            you_lose: "¡PERDISTE!",
+            draw: "¡EMPATE!",
+            start: "Comenzar",
+            pause: "Pausa",
+            reset: "Reiniciar",
+            battle_log: "Registro de Batalla",
+            battle_not_started: "La batalla aún no ha comenzado...",
+            demo_info: "Esta es la versión demo",
+            demo_description: "En el juego real puedes controlar todas las acciones del personaje, usar diferentes NFTs con habilidades únicas y ganar puntos BP por victorias.",
+            play_real_game: "Jugar Juego Real",
+            player_turn: "Turno del Jugador",
+            enemy_turn: "Turno del Enemigo",
+            choose_action: "Elige tu acción:",
+            health_restored: "¡Salud restaurada!"
+        },
+        game_info: {
+            title: "Sobre el Juego NFT Battle Arena",
+            subtitle: "Aprende todo sobre las mecánicas del juego, reglas y oportunidades de ganancias",
+            how_to_get_nft: "Cómo Obtener NFT",
+            game_rules: "Reglas del Juego",
+            roadmap: "Hoja de Ruta",
+            faq: "FAQ"
+        },
+        common: {
+            loading: "Cargando...",
+            error: "Error",
+            success: "Éxito",
+            close: "Cerrar",
+            save: "Guardar",
+            cancel: "Cancelar",
+            confirm: "Confirmar"
+        }
+    },
+    fr: {
+        nav: {
+            home: "Accueil",
+            game_info: "Info du Jeu",
+            marketplace: "Marché",
+            battle_demo: "Démo de Bataille",
+            connect_telegram: "Connecter Telegram"
+        },
+        hero: {
+            title: "NFT Battle Arena",
+            subtitle: "Jeu Play2Earn dans Telegram Mini App",
+            description: "Obtenez votre premier NFT, combattez dans l'arène contre des adversaires et collectionnez une collection unique. Ce n'est pas juste un jeu - c'est une bataille pour des récompenses, du prestige et du vrai pouvoir !",
+            play_now: "Jouer Maintenant",
+            learn_more: "En Savoir Plus",
+            watch_demo: "Voir la Démo",
+            start_journey: "Commencer l'Aventure"
+        },
+        stats: {
+            active_players: "Joueurs Actifs",
+            nft_in_game: "NFTs en Jeu",
+            battles_fought: "Batailles Menées",
+            rewards_paid: "Récompenses Payées"
+        },
+        features: {
+            free_nft_title: "NFT Gratuit",
+            free_nft_desc: "Obtenez votre premier combattant gratuitement et commencez les aventures dans l'arène",
+            epic_battles_title: "Batailles Épiques",
+            epic_battles_desc: "Combattez contre des bots et d'autres joueurs pour des récompenses et du classement",
+            earn_bp_title: "Gagner BP",
+            earn_bp_desc: "Convertissez vos points BP en vraies récompenses via Telegram Stars",
+            why_choose_title: "Pourquoi choisir NFT Battle Arena",
+            why_choose_subtitle: "Combinaison unique de collection NFT, batailles dynamiques et opportunités de gains"
+        },
+        cta: {
+            ready_title: "Prêt à commencer l'aventure ?",
+            ready_subtitle: "Rejoignez des milliers de joueurs dans NFT Battle Arena et commencez à gagner avec nous !",
+            start_now: "Commencer le Jeu Maintenant",
+            watch_demo: "Voir la Démo de Bataille"
+        },
+        marketplace: {
+            title: "Marché NFT",
+            coming_soon: "Le marché sera disponible dans",
+            connect_account: "Connecter le Compte",
+            temporarily_unavailable: "Marché temporairement indisponible",
+            market_description: "Nous travaillons sur la création de la meilleure expérience d'achat NFT. Le marché sera disponible dans quelques mois avec toutes les fonctionnalités !",
+            telegram_connected: "Telegram Connecté",
+            telegram_not_connected: "Telegram Non Connecté"
+        },
+        battle: {
+            title: "Démo de Bataille",
+            description: "Voyez à quoi ressemblent les batailles dans NFT Battle Arena",
+            player_hp: "HP du Joueur",
+            enemy_hp: "HP de l'Ennemi",
+            attack: "Attaquer",
+            defend: "Défendre",
+            special: "Spécial",
+            fight: "COMBAT !",
+            you_win: "VOUS GAGNEZ !",
+            you_lose: "VOUS PERDEZ !",
+            draw: "ÉGALITÉ !",
+            start: "Commencer",
+            pause: "Pause",
+            reset: "Réinitialiser",
+            battle_log: "Journal de Bataille",
+            battle_not_started: "La bataille n'a pas encore commencé...",
+            demo_info: "Ceci est la version démo",
+            demo_description: "Dans le vrai jeu, vous pouvez contrôler toutes les actions du personnage, utiliser différents NFTs avec des capacités uniques et gagner des points BP pour les victoires.",
+            play_real_game: "Jouer au Vrai Jeu",
+            player_turn: "Tour du Joueur",
+            enemy_turn: "Tour de l'Ennemi",
+            choose_action: "Choisissez votre action :",
+            health_restored: "Santé restaurée !"
+        },
+        game_info: {
+            title: "À Propos du Jeu NFT Battle Arena",
+            subtitle: "Apprenez tout sur les mécaniques du jeu, les règles et les opportunités de gains",
+            how_to_get_nft: "Comment Obtenir des NFT",
+            game_rules: "Règles du Jeu",
+            roadmap: "Feuille de Route",
+            faq: "FAQ"
+        },
+        common: {
+            loading: "Chargement...",
+            error: "Erreur",
+            success: "Succès",
+            close: "Fermer",
+            save: "Sauvegarder",
+            cancel: "Annuler",
+            confirm: "Confirmer"
+        }
+    },
+    de: {
+        nav: {
+            home: "Startseite",
+            game_info: "Spiel-Info",
+            marketplace: "Marktplatz",
+            battle_demo: "Kampf-Demo",
+            connect_telegram: "Telegram Verbinden"
+        },
+        hero: {
+            title: "NFT Battle Arena",
+            subtitle: "Play2Earn Spiel in Telegram Mini App",
+            description: "Hol dir dein erstes NFT, kämpfe in der Arena gegen Gegner und sammle eine einzigartige Sammlung. Das ist nicht nur ein Spiel - es ist ein Kampf um Belohnungen, Prestige und wahre Macht!",
+            play_now: "Jetzt Spielen",
+            learn_more: "Mehr Erfahren",
+            watch_demo: "Demo Ansehen",
+            start_journey: "Abenteuer Beginnen"
+        },
+        stats: {
+            active_players: "Aktive Spieler",
+            nft_in_game: "NFTs im Spiel",
+            battles_fought: "Kämpfe Gefochten",
+            rewards_paid: "Belohnungen Bezahlt"
+        },
+        features: {
+            free_nft_title: "Kostenloses NFT",
+            free_nft_desc: "Hol dir deinen ersten Kämpfer kostenlos und beginne Abenteuer in der Arena",
+            epic_battles_title: "Epische Kämpfe",
+            epic_battles_desc: "Kämpfe gegen Bots und andere Spieler um Belohnungen und Ranking",
+            earn_bp_title: "BP Verdienen",
+            earn_bp_desc: "Wandle deine BP-Punkte in echte Belohnungen über Telegram Stars um",
+            why_choose_title: "Warum NFT Battle Arena wählen",
+            why_choose_subtitle: "Einzigartige Kombination aus NFT-Sammeln, dynamischen Kämpfen und Verdienstmöglichkeiten"
+        },
+        cta: {
+            ready_title: "Bereit, das Abenteuer zu beginnen?",
+            ready_subtitle: "Schließe dich Tausenden von Spielern in der NFT Battle Arena an und beginne mit uns zu verdienen!",
+            start_now: "Spiel Jetzt Starten",
+            watch_demo: "Kampf-Demo Ansehen"
+        },
+        marketplace: {
+            title: "NFT Marktplatz",
+            coming_soon: "Der Marktplatz wird verfügbar sein in",
+            connect_account: "Konto Verbinden",
+            temporarily_unavailable: "Marktplatz vorübergehend nicht verfügbar",
+            market_description: "Wir arbeiten daran, die beste NFT-Shopping-Erfahrung zu schaffen. Der Marktplatz wird in wenigen Monaten mit allen Funktionen verfügbar sein!",
+            telegram_connected: "Telegram Verbunden",
+            telegram_not_connected: "Telegram Nicht Verbunden"
+        },
+        battle: {
+            title: "Kampf-Demo",
+            description: "Sieh, wie Kämpfe in der NFT Battle Arena aussehen",
+            player_hp: "Spieler HP",
+            enemy_hp: "Gegner HP",
+            attack: "Angreifen",
+            defend: "Verteidigen",
+            special: "Spezial",
+            fight: "KAMPF!",
+            you_win: "DU GEWINNST!",
+            you_lose: "DU VERLIERST!",
+            draw: "UNENTSCHIEDEN!",
+            start: "Starten",
+            pause: "Pause",
+            reset: "Zurücksetzen",
+            battle_log: "Kampfprotokoll",
+            battle_not_started: "Der Kampf hat noch nicht begonnen...",
+            demo_info: "Das ist die Demo-Version",
+            demo_description: "Im echten Spiel kannst du alle Charakter-Aktionen kontrollieren, verschiedene NFTs mit einzigartigen Fähigkeiten nutzen und BP-Punkte für Siege verdienen.",
+            play_real_game: "Echtes Spiel Spielen",
+            player_turn: "Spielerzug",
+            enemy_turn: "Gegnerzug",
+            choose_action: "Wähle deine Aktion:",
+            health_restored: "Gesundheit wiederhergestellt!"
+        },
+        game_info: {
+            title: "Über das NFT Battle Arena Spiel",
+            subtitle: "Lerne alles über Spielmechaniken, Regeln und Verdienstmöglichkeiten",
+            how_to_get_nft: "Wie man NFTs bekommt",
+            game_rules: "Spielregeln",
+            roadmap: "Roadmap",
+            faq: "FAQ"
+        },
+        common: {
+            loading: "Laden...",
+            error: "Fehler",
+            success: "Erfolg",
+            close: "Schließen",
+            save: "Speichern",
+            cancel: "Abbrechen",
+            confirm: "Bestätigen"
+        }
+    },
+    it: {
+        nav: {
+            home: "Home",
+            game_info: "Info Gioco",
+            marketplace: "Mercato",
+            battle_demo: "Demo Battaglia",
+            connect_telegram: "Connetti Telegram"
+        },
+        hero: {
+            title: "NFT Battle Arena",
+            subtitle: "Gioco Play2Earn in Telegram Mini App",
+            description: "Ottieni il tuo primo NFT, combatti nell'arena contro avversari e raccogli una collezione unica. Questo non è solo un gioco - è una battaglia per ricompense, prestigio e vero potere!",
+            play_now: "Gioca Ora",
+            learn_more: "Scopri di Più",
+            watch_demo: "Guarda Demo",
+            start_journey: "Inizia l'Avventura"
+        },
+        stats: {
+            active_players: "Giocatori Attivi",
+            nft_in_game: "NFT nel Gioco",
+            battles_fought: "Battaglie Combattute",
+            rewards_paid: "Ricompense Pagate"
+        },
+        features: {
+            free_nft_title: "NFT Gratuito",
+            free_nft_desc: "Ottieni il tuo primo combattente gratis e inizia le avventure nell'arena",
+            epic_battles_title: "Battaglie Epiche",
+            epic_battles_desc: "Combatti contro bot e altri giocatori per ricompense e classifiche",
+            earn_bp_title: "Guadagna BP",
+            earn_bp_desc: "Converti i tuoi punti BP in vere ricompense tramite Telegram Stars",
+            why_choose_title: "Perché scegliere NFT Battle Arena",
+            why_choose_subtitle: "Combinazione unica di collezionismo NFT, battaglie dinamiche e opportunità di guadagno"
+        },
+        cta: {
+            ready_title: "Pronto a iniziare l'avventura?",
+            ready_subtitle: "Unisciti a migliaia di giocatori in NFT Battle Arena e inizia a guadagnare con noi!",
+            start_now: "Inizia il Gioco Ora",
+            watch_demo: "Guarda Demo Battaglia"
+        },
+        marketplace: {
+            title: "Mercato NFT",
+            coming_soon: "Il mercato sarà disponibile tra",
+            connect_account: "Connetti Account",
+            temporarily_unavailable: "Mercato temporaneamente non disponibile",
+            market_description: "Stiamo lavorando per creare la migliore esperienza di acquisto NFT. Il mercato sarà disponibile tra qualche mese con tutte le funzionalità!",
+            telegram_connected: "Telegram Connesso",
+            telegram_not_connected: "Telegram Non Connesso"
+        },
+        battle: {
+            title: "Demo Battaglia",
+            description: "Vedi come appaiono le battaglie in NFT Battle Arena",
+            player_hp: "HP Giocatore",
+            enemy_hp: "HP Nemico",
+            attack: "Attaccare",
+            defend: "Difendere",
+            special: "Speciale",
+            fight: "COMBATTI!",
+            you_win: "HAI VINTO!",
+            you_lose: "HAI PERSO!",
+            draw: "PAREGGIO!",
+            start: "Inizia",
+            pause: "Pausa",
+            reset: "Ripristina",
+            battle_log: "Registro Battaglia",
+            battle_not_started: "La battaglia non è ancora iniziata...",
+            demo_info: "Questa è la versione demo",
+            demo_description: "Nel gioco reale puoi controllare tutte le azioni del personaggio, usare diversi NFT con abilità uniche e guadagnare punti BP per le vittorie.",
+            play_real_game: "Gioca al Gioco Vero",
+            player_turn: "Turno del Giocatore",
+            enemy_turn: "Turno del Nemico",
+            choose_action: "Scegli la tua azione:",
+            health_restored: "Salute ripristinata!"
+        },
+        game_info: {
+            title: "Informazioni sul Gioco NFT Battle Arena",
+            subtitle: "Impara tutto sulle meccaniche di gioco, regole e opportunità di guadagno",
+            how_to_get_nft: "Come Ottenere NFT",
+            game_rules: "Regole del Gioco",
+            roadmap: "Roadmap",
+            faq: "FAQ"
+        },
+        common: {
+            loading: "Caricamento...",
+            error: "Errore",
+            success: "Successo",
+            close: "Chiudi",
+            save: "Salva",
+            cancel: "Annulla",
+            confirm: "Conferma"
+        }
+    },
+    pt: {
+        nav: {
+            home: "Início",
+            game_info: "Info do Jogo",
+            marketplace: "Mercado",
+            battle_demo: "Demo de Batalha",
+            connect_telegram: "Conectar Telegram"
+        },
+        hero: {
+            title: "NFT Battle Arena",
+            subtitle: "Jogo Play2Earn no Telegram Mini App",
+            description: "Obtenha seu primeiro NFT, lute na arena contra oponentes e colete uma coleção única. Isso não é apenas um jogo - é uma batalha por recompensas, prestígio e poder real!",
+            play_now: "Jogar Agora",
+            learn_more: "Saber Mais",
+            watch_demo: "Ver Demo",
+            start_journey: "Começar Aventura"
+        },
+        stats: {
+            active_players: "Jogadores Ativos",
+            nft_in_game: "NFTs no Jogo",
+            battles_fought: "Batalhas Lutadas",
+            rewards_paid: "Recompensas Pagas"
+        },
+        features: {
+            free_nft_title: "NFT Grátis",
+            free_nft_desc: "Obtenha seu primeiro lutador gratuitamente e comece aventuras na arena",
+            epic_battles_title: "Batalhas Épicas",
+            epic_battles_desc: "Lute contra bots e outros jogadores por recompensas e ranking",
+            earn_bp_title: "Ganhar BP",
+            earn_bp_desc: "Converta seus pontos BP em recompensas reais através do Telegram Stars",
+            why_choose_title: "Por que escolher NFT Battle Arena",
+            why_choose_subtitle: "Combinação única de colecionismo NFT, batalhas dinâmicas e oportunidades de ganhos"
+        },
+        cta: {
+            ready_title: "Pronto para começar a aventura?",
+            ready_subtitle: "Junte-se a milhares de jogadores no NFT Battle Arena e comece a ganhar conosco!",
+            start_now: "Começar Jogo Agora",
+            watch_demo: "Ver Demo de Batalha"
+        },
+        marketplace: {
+            title: "Mercado NFT",
+            coming_soon: "O mercado estará disponível em",
+            connect_account: "Conectar Conta",
+            temporarily_unavailable: "Mercado temporariamente indisponível",
+            market_description: "Estamos trabalhando para criar a melhor experiência de compra NFT. O mercado estará disponível em alguns meses com todas as funcionalidades!",
+            telegram_connected: "Telegram Conectado",
+            telegram_not_connected: "Telegram Não Conectado"
+        },
+        battle: {
+            title: "Demo de Batalha",
+            description: "Veja como são as batalhas no NFT Battle Arena",
+            player_hp: "HP do Jogador",
+            enemy_hp: "HP do Inimigo",
+            attack: "Atacar",
+            defend: "Defender",
+            special: "Especial",
+            fight: "LUTA!",
+            you_win: "VOCÊ VENCEU!",
+            you_lose: "VOCÊ PERDEU!",
+            draw: "EMPATE!",
+            start: "Iniciar",
+            pause: "Pausar",
+            reset: "Resetar",
+            battle_log: "Log da Batalha",
+            battle_not_started: "A batalha ainda não começou...",
+            demo_info: "Esta é a versão demo",
+            demo_description: "No jogo real você pode controlar todas as ações do personagem, usar diferentes NFTs com habilidades únicas e ganhar pontos BP pelas vitórias.",
+            play_real_game: "Jogar Jogo Real",
+            player_turn: "Turno do Jogador",
+            enemy_turn: "Turno do Inimigo",
+            choose_action: "Escolha sua ação:",
+            health_restored: "Saúde restaurada!"
+        },
+        game_info: {
+            title: "Sobre o Jogo NFT Battle Arena",
+            subtitle: "Aprenda tudo sobre as mecânicas do jogo, regras e oportunidades de ganhos",
+            how_to_get_nft: "Como Obter NFT",
+            game_rules: "Regras do Jogo",
+            roadmap: "Roadmap",
+            faq: "FAQ"
+        },
+        common: {
+            loading: "Carregando...",
+            error: "Erro",
+            success: "Sucesso",
+            close: "Fechar",
+            save: "Salvar",
+            cancel: "Cancelar",
+            confirm: "Confirmar"
+        }
+    },
+    ru: {
+        nav: {
+            home: "Главная",
+            game_info: "О игре",
+            marketplace: "Магазин",
+            battle_demo: "Демо боя",
+            connect_telegram: "Подключить Telegram"
+        },
+        hero: {
+            title: "NFT Battle Arena",
+            subtitle: "Play2Earn игра в Telegram Mini App",
+            description: "Получи свой первый NFT, сражайся на арене с противниками и собирай уникальную коллекцию. Это не просто игра – это битва за награды, престиж и настоящую силу!",
+            play_now: "Играть сейчас",
+            learn_more: "Узнать больше",
+            watch_demo: "Смотреть демо",
+            start_journey: "Начать приключение"
+        },
+        stats: {
+            active_players: "Активных игроков",
+            nft_in_game: "NFT в игре",
+            battles_fought: "Боев проведено",
+            rewards_paid: "Наград выплачено"
+        },
+        features: {
+            free_nft_title: "Бесплатный NFT",
+            free_nft_desc: "Получи своего первого бойца бесплатно и начни приключения на арене",
+            epic_battles_title: "Эпические бои",
+            epic_battles_desc: "Сражайся против ботов и других игроков за награды и рейтинг",
+            earn_bp_title: "Зарабатывай BP",
+            earn_bp_desc: "Конвертируй свои BP поинты в реальные награды через Telegram Stars",
+            why_choose_title: "Почему выбирают NFT Battle Arena",
+            why_choose_subtitle: "Уникальная комбинация NFT коллекционирования, динамичных боев и возможностей заработка"
+        },
+        cta: {
+            ready_title: "Готов начать приключение?",
+            ready_subtitle: "Присоединяйся к тысячам игроков в NFT Battle Arena и начни зарабатывать вместе с нами!",
+            start_now: "Начать игру сейчас",
+            watch_demo: "Смотреть демо боя"
+        },
+        marketplace: {
+            title: "NFT Магазин",
+            coming_soon: "Магазин будет доступен через",
+            connect_account: "Подключить аккаунт",
+            temporarily_unavailable: "Магазин временно недоступен",
+            market_description: "Мы работаем над созданием лучшего опыта покупки NFT. Магазин будет доступен через несколько месяцев со всеми функциями!",
+            telegram_connected: "Telegram подключен",
+            telegram_not_connected: "Telegram не подключен"
+        },
+        battle: {
+            title: "Демо боя",
+            description: "Посмотрите, как выглядят бои в NFT Battle Arena",
+            player_hp: "HP Игрока",
+            enemy_hp: "HP Врага",
+            attack: "Атака",
+            defend: "Защита",
+            special: "Спец-удар",
+            fight: "БОЙ!",
+            you_win: "ВЫ ПОБЕДИЛИ!",
+            you_lose: "ВЫ ПРОИГРАЛИ!",
+            draw: "НИЧЬЯ!",
+            start: "Начать",
+            pause: "Пауза",
+            reset: "Сброс",
+            battle_log: "Лог боя",
+            battle_not_started: "Бой еще не начался...",
+            demo_info: "Это демо версия",
+            demo_description: "В настоящей игре вы сможете контролировать все действия персонажа, использовать разные NFT с уникальными способностями и зарабатывать BP поинты за победы.",
+            play_real_game: "Играть в настоящую игру",
+            player_turn: "Ход игрока",
+            enemy_turn: "Ход врага",
+            choose_action: "Выберите действие:",
+            health_restored: "Здоровье восстановлено!"
+        },
+        game_info: {
+            title: "О игре NFT Battle Arena",
+            subtitle: "Узнайте все о механиках игры, правилах и возможностях заработка",
+            how_to_get_nft: "Как получить NFT",
+            game_rules: "Правила игры",
+            roadmap: "Roadmap",
+            faq: "FAQ"
+        },
+        common: {
+            loading: "Загрузка...",
+            error: "Ошибка",
+            success: "Успешно",
+            close: "Закрыть",
+            save: "Сохранить",
+            cancel: "Отменить",
+            confirm: "Подтвердить"
+        }
     }
 };
 
