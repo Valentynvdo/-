@@ -560,14 +560,33 @@ function updateSEOMeta() {
 
 // Change page function
 function changePage(page) {
+    console.log('Attempting to change page to:', page);
+    
     if (currentPage === page) return;
     
     // Hide all pages
     const pages = document.querySelectorAll('.page-content');
-    pages.forEach(p => p.classList.add('hidden'));
+    console.log('Found pages:', pages.length);
+    pages.forEach(p => {
+        p.classList.add('hidden');
+        console.log('Hidden page:', p.id);
+    });
     
     // Show selected page
-    const targetPage = document.getElementById(page + 'Page');
+    let targetPageId;
+    if (page === 'home') {
+        targetPageId = 'homePage';
+    } else if (page === 'game_info') {
+        targetPageId = 'gameInfoPage';
+    } else if (page === 'marketplace') {
+        targetPageId = 'marketplacePage';
+    } else if (page === 'battle_demo') {
+        targetPageId = 'battleDemoPage';
+    }
+    
+    const targetPage = document.getElementById(targetPageId);
+    console.log('Looking for page:', targetPageId, 'Found:', targetPage);
+    
     if (targetPage) {
         targetPage.classList.remove('hidden');
         currentPage = page;
@@ -586,9 +605,9 @@ function changePage(page) {
         
         // Initialize page-specific functionality
         if (page === 'game_info') {
-            switchTab('how-to-get');
+            setTimeout(() => switchTab('how-to-get'), 100);
         } else if (page === 'battle_demo') {
-            resetBattle();
+            setTimeout(() => resetBattle(), 100);
         }
         
         // Recreate icons
@@ -599,7 +618,9 @@ function changePage(page) {
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        console.log('Changed to page:', page);
+        console.log('Successfully changed to page:', page);
+    } else {
+        console.error('Page not found:', targetPageId);
     }
 }
 
