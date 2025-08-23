@@ -16,7 +16,7 @@ export const LanguageSwitcher = ({ currentLang, onLanguageChange }) => {
   return (
     <Select value={currentLang} onValueChange={onLanguageChange}>
       <SelectTrigger className="w-[120px] glass-input text-sm border-0 bg-white/5 backdrop-blur-md">
-        <div className="w-4 h-4 mr-2 text-white/70 flex items-center justify-center">🌐</div>
+        <Globe className="w-4 h-4 mr-2 text-white/70" />
         <SelectValue>
           {currentLanguage ? (
             <span className="flex items-center gap-1">
