@@ -1,29 +1,47 @@
-/* NFT Battle Arena - Custom Dark Theme CSS following uix-labs guidelines */
+/* NFT Battle Arena - iOS 18 Dark Glass UI Theme */
 
-/* Dark Theme Foundation Colors */
+/* iOS 18 Dark Glass Design System */
 :root {
-  /* Backgrounds - Dark Theme Foundation */
+  /* Background Layers */
   --bg-primary: #000000;
-  --bg-secondary: #121212;
-  --bg-overlay: rgba(255, 255, 255, 0.1);
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #1a1a1a;
   
-  /* Text - High Contrast for Dark Theme */
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.85);
-  --text-muted: #4D4D4D;
+  /* Glass Morphism - iOS 18 Style */
+  --glass-bg: rgba(28, 28, 30, 0.68);
+  --glass-bg-strong: rgba(28, 28, 30, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-strong: rgba(255, 255, 255, 0.15);
   
-  /* Borders - Subtle Dark Theme */
-  --border-subtle: rgba(255, 255, 255, 0.25);
-  --border-medium: rgba(255, 255, 255, 0.4);
+  /* Text Hierarchy - High Contrast */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-tertiary: rgba(255, 255, 255, 0.55);
+  --text-quaternary: rgba(255, 255, 255, 0.3);
   
-  /* MAIN ACCENT COLORS - Brand Colors Only */
-  --brand-primary: #00FFD1;
-  --brand-hover: rgba(0, 255, 209, 0.1);
-  --brand-active: #6FD2C0;
+  /* Brand Colors - Refined */
+  --accent-primary: #007aff;
+  --accent-secondary: #34c759;
+  --accent-danger: #ff3b30;
+  --accent-warning: #ff9500;
   
-  /* Glass morphism */
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  /* Glass Effects */
+  --blur-light: blur(20px);
+  --blur-medium: blur(40px);
+  --blur-heavy: blur(60px);
+  
+  /* Shadows - iOS 18 Style */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.37);
+  --shadow-elevated: 0 12px 48px rgba(0, 0, 0, 0.5);
+  
+  /* Border Radius - iOS 18 Rounded */
+  --radius-xs: 0.375rem; /* 6px */
+  --radius-sm: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-xl: 1.25rem;  /* 20px */
+  --radius-2xl: 1.5rem;  /* 24px */
+  --radius-3xl: 2rem;    /* 32px */
 }
 
 /* Global Reset & Base Styles */
