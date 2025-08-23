@@ -482,7 +482,7 @@ const translations = {
         },
         hero: {
             title: "NFT Battle Arena",
-            subtitle: "Jeu Play2Earn dans Telegram Mini App",
+            subtitle: "Battle Arena",
             description: "Obtenez votre premier NFT, combattez dans l'arène contre des adversaires et collectionnez une collection unique. Ce n'est pas juste un jeu - c'est une bataille pour des récompenses, du prestige et du vrai pouvoir !",
             play_now: "Jouer Maintenant",
             learn_more: "En Savoir Plus",
@@ -491,7 +491,7 @@ const translations = {
         },
         stats: {
             active_players: "Joueurs Actifs",
-            nft_in_game: "NFTs en Jeu",
+            nft_in_game: "NFT dans le Jeu",
             battles_fought: "Batailles Menées",
             rewards_paid: "Récompenses Payées"
         },
@@ -520,6 +520,13 @@ const translations = {
             telegram_connected: "Telegram Connecté",
             telegram_not_connected: "Telegram Non Connecté"
         },
+        countdown: {
+            months: "Mois",
+            days: "Jours", 
+            hours: "Heures",
+            minutes: "Minutes",
+            seconds: "Secondes"
+        },
         battle: {
             title: "Démo de Bataille",
             description: "Voyez à quoi ressemblent les batailles dans NFT Battle Arena",
@@ -538,12 +545,13 @@ const translations = {
             battle_log: "Journal de Bataille",
             battle_not_started: "La bataille n'a pas encore commencé...",
             demo_info: "Ceci est la version démo",
-            demo_description: "Dans le vrai jeu, vous pouvez contrôler toutes les actions du personnage, utiliser différents NFTs avec des capacités uniques et gagner des points BP pour les victoires.",
+            demo_description: "Dans le vrai jeu, vous pouvez contrôler toutes les actions du personnage, utiliser différents NFT avec des capacités uniques et gagner des points BP pour les victoires.",
             play_real_game: "Jouer au Vrai Jeu",
             player_turn: "Tour du Joueur",
             enemy_turn: "Tour de l'Ennemi",
             choose_action: "Choisissez votre action :",
-            health_restored: "Santé restaurée !"
+            health_restored: "Santé restaurée !",
+            play_again: "Rejouer"
         },
         game_info: {
             title: "À Propos du Jeu NFT Battle Arena",
@@ -551,7 +559,53 @@ const translations = {
             how_to_get_nft: "Comment Obtenir des NFT",
             game_rules: "Règles du Jeu",
             roadmap: "Feuille de Route",
-            faq: "FAQ"
+            faq: "FAQ",
+            free_nft_title: "NFT de Démarrage Gratuit",
+            free_nft_desc: "Chaque nouveau joueur reçoit son premier combattant NFT gratuitement via le système Airdrop.",
+            cta_title: "Prêt à essayer NFT Battle Arena ?",
+            cta_subtitle: "Rejoignez des milliers de joueurs et commencez votre aventure dans le monde des batailles NFT dès maintenant !",
+            cta_start_game: "Commencer le Jeu",
+            cta_demo: "Démo Bataille"
+        },
+        roadmap: {
+            title: "Feuille de Route de Développement",
+            subtitle: "Plans de développement NFT Battle Arena pour les années à venir",
+            q3_2025_title: "Expansion PvE",
+            q3_2025_date: "Automne 2025",
+            q3_item_1: "Lancement des modes PvE avec quêtes narratives",
+            q3_item_2: "Batailles contre des boss légendaires avec NFT rares",
+            q3_item_3: "Améliorations UI/UX dans Telegram Mini App",
+            q4_2025_title: "Jeu d'Équipe",
+            q4_2025_date: "Hiver 2025",
+            q4_item_1: "Lancement Guild Wars – batailles de clan 5v5",
+            q4_item_2: "Passes de bataille saisonniers avec accessoires exclusifs",
+            q4_item_3: "Système de classement et tournois hebdomadaires",
+            q1_2026_title: "Monde Interactif",
+            q1_2026_date: "Printemps 2026",
+            q1_item_1: "Lancement carte aux trésors interactive avec NFT géolocalisés",
+            q1_item_2: "Expansion du système d'accessoires",
+            q1_item_3: "Premier tournoi inter-régional avec prize pool",
+            q2_2026_title: "Intégration Blockchain",
+            q2_2026_date: "Été 2026",
+            q2_item_1: "Lancement app mobile pour iOS et Android",
+            q2_item_2: "Intégration blockchain pour vraies transactions NFT",
+            q2_item_3: "Implémentation du marketplace interne"
+        },
+        faq: {
+            title: "Questions Fréquemment Posées",
+            subtitle: "Réponses aux questions les plus courantes sur NFT Battle Arena",
+            q1_question: "Qu'est-ce que NFT Battle Arena ?",
+            q1_answer: "NFT Battle Arena est un jeu Play2Earn innovant au format Telegram Mini App. Chaque joueur obtient un combattant NFT gratuit pour commencer ses batailles d'arène et collecter une collection unique.",
+            q2_question: "Ai-je besoin de cryptomonnaie pour jouer ?",
+            q2_answer: "Non, aucune cryptomonnaie n'est requise. Toutes les transactions dans le jeu se font via Telegram Stars, le rendant accessible à tous.",
+            q3_question: "Comment puis-je gagner de l'argent dans le jeu ?",
+            q3_answer: "Vous pouvez gagner des points BP pour vos victoires en bataille, qui peuvent être convertis en vraies récompenses via des accessoires spéciaux. Vous pouvez aussi vendre des NFT sur le futur marketplace.",
+            q4_question: "Y a-t-il des batailles multijoueur ?",
+            q4_answer: "Actuellement, les batailles contre les bots sont disponibles. Les batailles PvP entre vrais joueurs et tournois globaux sont prévus pour l'hiver 2025.",
+            q5_question: "Comment le jeu est-il protégé contre la fraude ?",
+            q5_answer: "Nous utilisons des systèmes anti-spam et de vérification de compte. L'utilisation de bots ou comptes multiples mène à un ban inconditionnel.",
+            q6_question: "Où télécharger le jeu ?",
+            q6_answer: "Le jeu est disponible dans Telegram Mini App. Une future sortie sur Play Store et App Store est prévue."
         },
         common: {
             loading: "Chargement...",
