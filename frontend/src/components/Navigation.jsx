@@ -82,7 +82,11 @@ export const Navigation = ({ currentLang, onLanguageChange, translations, curren
               className="lg:hidden p-2 rounded-xl hover:bg-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? (
+                <div className="w-5 h-5 flex items-center justify-center text-lg">✕</div>
+              ) : (
+                <div className="w-5 h-5 flex items-center justify-center text-lg">☰</div>
+              )}
             </Button>
           </div>
         </div>
