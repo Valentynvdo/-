@@ -1483,87 +1483,6 @@ function resetBattle() {
     }
 }
 
-function startBattleSimulation() {
-    if (battleInterval) clearInterval(battleInterval);
-    
-    battleInterval = setInterval(() => {
-        if (battleState.isPlaying && !battleState.gameResult) {
-            simulateBattleTurn();
-        }
-    }, 1500);
-}
-
-function stopBattleSimulation() {
-    if (battleInterval) {
-        clearInterval(battleInterval);
-        battleInterval = null;
-    }
-}
-
-function simulateBattleTurn() {
-    if (battleState.gameResult) return;
-    
-    const actions = ['attack', 'attack', 'special', 'defend'];
-    const randomAction = actions[Math.floor(Math.random() * actions.length)];
-    
-    if (battleState.currentTurn === 'player') {
-        performAction('player', randomAction);
-        battleState.currentTurn = 'enemy';
-    } else {
-        performAction('enemy', randomAction);
-        battleState.currentTurn = 'player';
-    }
-    
-    updateBattleUI();
-    checkGameEnd();
-}
-
-function performAction(actor, action) {
-    const damage = Math.floor(Math.random() * 50) + 20;
-    const energyGain = Math.floor(Math.random() * 15) + 5;
-    const t = translations[currentLang] || translations.ua;
-    
-    if (actor === 'player') {
-        if (action === 'attack') {
-            battleState.enemyHP = Math.max(0, battleState.enemyHP - damage);
-            battleState.playerEnergy = Math.min(100, battleState.playerEnergy + energyGain);
-            addToBattleLog(`⚔️ ${t.battle.player_turn} attacks for ${damage} damage!`);
-        } else if (action === 'special' && battleState.playerEnergy >= 100) {
-            const specialDamage = damage * 2;
-            battleState.enemyHP = Math.max(0, battleState.enemyHP - specialDamage);
-            battleState.playerEnergy = 0;
-            addToBattleLog(`✨ ${t.battle.player_turn} uses special attack for ${specialDamage} damage!`);
-        } else if (action === 'defend') {
-            addToBattleLog(`🛡️ ${t.battle.player_turn} defends!`);
-        }
-    } else {
-        if (action === 'attack') {
-            battleState.playerHP = Math.max(0, battleState.playerHP - damage);
-            battleState.enemyEnergy = Math.min(100, battleState.enemyEnergy + energyGain);
-            addToBattleLog(`👹 ${t.battle.enemy_turn} attacks for ${damage} damage!`);
-        } else if (action === 'special' && battleState.enemyEnergy >= 100) {
-            const specialDamage = damage * 2;
-            battleState.playerHP = Math.max(0, battleState.playerHP - specialDamage);
-            battleState.enemyEnergy = 0;
-            addToBattleLog(`💥 ${t.battle.enemy_turn} uses special attack for ${specialDamage} damage!`);
-        }
-    }
-}
-
-function addToBattleLog(message) {
-    battleState.battleLog.push(message);
-    if (battleState.battleLog.length > 5) {
-        battleState.battleLog.shift();
-    }
-    
-    const battleLogContainer = document.getElementById('battleLogContainer');
-    if (battleLogContainer) {
-        battleLogContainer.innerHTML = battleState.battleLog
-            .map(log => `<div class="text-body">${log}</div>`)
-            .join('');
-    }
-}
-
 function updateBattleUI() {
     // Update HP displays
     const playerHP = document.getElementById('playerHP');
@@ -1607,17 +1526,10 @@ function updateBattleUI() {
     if (turnText) {
         const t = translations[currentLang] || translations.ua;
         const battlePlayerTurn = turnText.querySelector('.battle-player-turn');
-        const battleEnemyTurn = turnText.querySelector('.battle-enemy-turn');
         
-        if (battleState.currentTurn === 'player') {
-            if (battlePlayerTurn) battlePlayerTurn.style.display = 'inline';
-            if (battleEnemyTurn) battleEnemyTurn.style.display = 'none';
-        } else {
-            if (battlePlayerTurn) battlePlayerTurn.style.display = 'none';
-            if (battleEnemyTurn) {
-                battleEnemyTurn.style.display = 'inline';
-                battleEnemyTurn.textContent = t.battle.enemy_turn;
-            }
+        if (battlePlayerTurn) {
+            battlePlayerTurn.textContent = battleState.currentTurn === 'player' ? 
+                t.battle.player_turn : t.battle.enemy_turn;
         }
     }
     
@@ -1637,28 +1549,40 @@ function updateBattleUI() {
             enemyChar.classList.remove('active');
         }
     }
+    
+    // Update special button state
+    const specialBtn = document.getElementById('specialBtn');
+    if (specialBtn) {
+        if (battleState.playerEnergy >= 100) {
+            specialBtn.style.opacity = '1';
+            specialBtn.disabled = false;
+        } else {
+            specialBtn.style.opacity = '0.5';
+            specialBtn.disabled = true;
+        }
+    }
 }
 
 function checkGameEnd() {
     if (battleState.playerHP <= 0) {
         battleState.gameResult = 'lose';
-        battleState.isPlaying = false;
         const t = translations[currentLang] || translations.ua;
-        addToBattleLog(`💀 ${t.battle.you_lose}`);
         showGameResult('lose');
+        return true;
     } else if (battleState.enemyHP <= 0) {
         battleState.gameResult = 'win';
-        battleState.isPlaying = false;
         const t = translations[currentLang] || translations.ua;
-        addToBattleLog(`🏆 ${t.battle.you_win}`);
         showGameResult('win');
+        return true;
     }
+    return false;
 }
 
 function showGameResult(result) {
     const gameResultEl = document.getElementById('gameResult');
     const resultEmoji = document.getElementById('resultEmoji');
     const resultText = document.getElementById('resultText');
+    const battleControls = document.getElementById('battleControls');
     
     if (gameResultEl && resultEmoji && resultText) {
         const t = translations[currentLang] || translations.ua;
@@ -1673,19 +1597,13 @@ function showGameResult(result) {
         gameResultEl.classList.remove('hidden');
     }
     
-    // Update toggle button
-    const toggleBtn = document.getElementById('toggleBattleBtn');
-    const battleIcon = document.getElementById('battleIcon');
-    const battleBtnText = document.getElementById('battleBtnText');
-    
-    if (toggleBtn) toggleBtn.disabled = true;
-    if (battleIcon) battleIcon.setAttribute('data-lucide', 'play');
-    if (battleBtnText) {
-        const t = translations[currentLang] || translations.ua;
-        battleBtnText.textContent = t.battle.start;
+    // Hide battle controls
+    if (battleControls) {
+        battleControls.style.display = 'none';
     }
     
-    stopBattleSimulation();
+    // Disable all buttons
+    disableBattleButtons(true);
     
     // Recreate icons
     if (typeof lucide !== 'undefined') {
