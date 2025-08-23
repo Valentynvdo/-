@@ -1,4 +1,4 @@
-// Mock data for NFT Battle Arena
+// Enhanced translation system for NFT Battle Arena
 
 export const translations = {
   ua: {
@@ -14,7 +14,31 @@ export const translations = {
       subtitle: "Play2Earn гра в Telegram Mini App",
       description: "Отримай свій перший NFT, бийся на арені з суперниками та збирай унікальну колекцію. Це не просто гра – це битва за нагороди, престиж і справжню силу!",
       play_now: "Грати зараз",
-      learn_more: "Дізнатися більше"
+      learn_more: "Дізнатися більше",
+      watch_demo: "Дивитись демо",
+      start_journey: "Почати пригоду"
+    },
+    stats: {
+      active_players: "Активних гравців",
+      nft_in_game: "NFT у грі",
+      battles_fought: "Боїв проведено",
+      rewards_paid: "Нагород виплачено"
+    },
+    features: {
+      free_nft_title: "Безкоштовний NFT",
+      free_nft_desc: "Отримай свого першого бійця безкоштовно та почни пригоди в арені",
+      epic_battles_title: "Епічні бої",
+      epic_battles_desc: "Бийся проти ботів та інших гравців за нагороди та рейтинг",
+      earn_bp_title: "Заробляй BP",
+      earn_bp_desc: "Конвертуй свої BP поінти в реальні нагороди через Telegram Stars",
+      why_choose_title: "Чому обирають NFT Battle Arena",
+      why_choose_subtitle: "Унікальна комбінація NFT колекціонування, динамічних боїв та можливостей заробітку"
+    },
+    cta: {
+      ready_title: "Готовий почати пригоду?",
+      ready_subtitle: "Приєднуйся до тисяч гравців у NFT Battle Arena та почни заробляти разом з нами!",
+      start_now: "Почати гру зараз",
+      watch_demo: "Дивитись демо бою"
     },
     marketplace: {
       title: "NFT Магазин",
@@ -25,7 +49,15 @@ export const translations = {
       categories: "Категорії",
       price_range: "Діапазон цін",
       cart: "Кошик",
-      remove_from_cart: "Видалити з кошика"
+      remove_from_cart: "Видалити з кошика",
+      add_to_cart: "Додати в кошик",
+      checkout: "Оформити замовлення",
+      total: "Всього",
+      empty_cart: "Кошик пустий",
+      temporarily_unavailable: "Магазин тимчасово недоступний",
+      market_description: "Ми працюємо над створенням найкращого досвіду покупки NFT. Магазин буде доступний через кілька місяців з усіма функціями!",
+      telegram_connected: "Telegram підключено",
+      telegram_not_connected: "Telegram не підключено"
     },
     battle: {
       title: "Демо бою",
@@ -38,7 +70,17 @@ export const translations = {
       fight: "БІЙ!",
       you_win: "ВИ ПЕРЕМОГЛИ!",
       you_lose: "ВИ ПРОГРАЛИ!",
-      draw: "НІЧИЯ!"
+      draw: "НІЧИЯ!",
+      start: "Почати",
+      pause: "Пауза",
+      reset: "Скинути",
+      battle_log: "Лог бою",
+      battle_not_started: "Бій ще не почався...",
+      demo_info: "Це демо версія",
+      demo_description: "У справжній грі ви зможете контролювати всі дії персонажа, використовувати різні NFT з унікальними здібностями та заробляти BP поінти за перемоги.",
+      play_real_game: "Грати справжню гру",
+      player_turn: "Хід гравця",
+      enemy_turn: "Хід ворога"
     },
     game_info: {
       title: "Про гру NFT Battle Arena",
@@ -47,6 +89,15 @@ export const translations = {
       game_rules: "Правила гри",
       roadmap: "Roadmap",
       faq: "FAQ"
+    },
+    common: {
+      loading: "Завантаження...",
+      error: "Помилка",
+      success: "Успішно",
+      close: "Закрити",
+      save: "Зберегти",
+      cancel: "Скасувати",
+      confirm: "Підтвердити"
     }
   },
   en: {
@@ -62,7 +113,31 @@ export const translations = {
       subtitle: "Play2Earn game in Telegram Mini App",
       description: "Get your first NFT, fight in arena against opponents and collect unique collection. This is not just a game – it's a battle for rewards, prestige and real power!",
       play_now: "Play Now",
-      learn_more: "Learn More"
+      learn_more: "Learn More",
+      watch_demo: "Watch Demo",
+      start_journey: "Start Journey"
+    },
+    stats: {
+      active_players: "Active Players",
+      nft_in_game: "NFTs in Game",
+      battles_fought: "Battles Fought",
+      rewards_paid: "Rewards Paid"
+    },
+    features: {
+      free_nft_title: "Free NFT",
+      free_nft_desc: "Get your first fighter for free and start adventures in the arena",
+      epic_battles_title: "Epic Battles",
+      epic_battles_desc: "Fight against bots and other players for rewards and ranking",
+      earn_bp_title: "Earn BP",
+      earn_bp_desc: "Convert your BP points into real rewards through Telegram Stars",
+      why_choose_title: "Why Choose NFT Battle Arena",
+      why_choose_subtitle: "Unique combination of NFT collecting, dynamic battles and earning opportunities"
+    },
+    cta: {
+      ready_title: "Ready to Start Adventure?",
+      ready_subtitle: "Join thousands of players in NFT Battle Arena and start earning with us!",
+      start_now: "Start Game Now",
+      watch_demo: "Watch Battle Demo"
     },
     marketplace: {
       title: "NFT Marketplace",
@@ -73,7 +148,15 @@ export const translations = {
       categories: "Categories",
       price_range: "Price Range",
       cart: "Cart",
-      remove_from_cart: "Remove from cart"
+      remove_from_cart: "Remove from cart",
+      add_to_cart: "Add to Cart",
+      checkout: "Checkout",
+      total: "Total",
+      empty_cart: "Cart is empty",
+      temporarily_unavailable: "Marketplace temporarily unavailable",
+      market_description: "We're working on creating the best NFT shopping experience. The marketplace will be available in a few months with all features!",
+      telegram_connected: "Telegram Connected",
+      telegram_not_connected: "Telegram Not Connected"
     },
     battle: {
       title: "Battle Demo",
@@ -86,7 +169,17 @@ export const translations = {
       fight: "FIGHT!",
       you_win: "YOU WIN!",
       you_lose: "YOU LOSE!",
-      draw: "DRAW!"
+      draw: "DRAW!",
+      start: "Start",
+      pause: "Pause",
+      reset: "Reset",
+      battle_log: "Battle Log",
+      battle_not_started: "Battle hasn't started yet...",
+      demo_info: "This is demo version",
+      demo_description: "In the real game you can control all character actions, use different NFTs with unique abilities and earn BP points for victories.",
+      play_real_game: "Play Real Game",
+      player_turn: "Player Turn",
+      enemy_turn: "Enemy Turn"
     },
     game_info: {
       title: "About NFT Battle Arena Game",
@@ -95,54 +188,114 @@ export const translations = {
       game_rules: "Game Rules",
       roadmap: "Roadmap",
       faq: "FAQ"
+    },
+    common: {
+      loading: "Loading...",
+      error: "Error",
+      success: "Success",
+      close: "Close",
+      save: "Save",
+      cancel: "Cancel",
+      confirm: "Confirm"
     }
   },
-  es: {
+  pl: {
     nav: {
-      home: "Inicio",
-      game_info: "Info del Juego",
-      marketplace: "Mercado",
-      battle_demo: "Demo de Batalla",
-      connect_telegram: "Conectar Telegram"
+      home: "Główna",
+      game_info: "O Grze",
+      marketplace: "Sklep",
+      battle_demo: "Demo Walki",
+      connect_telegram: "Połącz Telegram"
     },
     hero: {
       title: "NFT Battle Arena",
-      subtitle: "Juego Play2Earn en Telegram Mini App",
-      description: "Obtén tu primer NFT, lucha en la arena contra oponentes y colecciona una colección única. ¡Esto no es solo un juego: es una batalla por recompensas, prestigio y poder real!",
-      play_now: "Jugar Ahora",
-      learn_more: "Saber Más"
+      subtitle: "Gra Play2Earn w Telegram Mini App",
+      description: "Zdobądź swój pierwszy NFT, walcz na arenie z przeciwnikami i zbieraj unikalną kolekcję. To nie tylko gra – to walka o nagrody, prestiż i prawdziwą siłę!",
+      play_now: "Graj Teraz",
+      learn_more: "Dowiedz Się Więcej",
+      watch_demo: "Zobacz Demo",
+      start_journey: "Rozpocznij Przygodę"
+    },
+    stats: {
+      active_players: "Aktywni Gracze",
+      nft_in_game: "NFT w Grze",
+      battles_fought: "Stoczone Bitwy",
+      rewards_paid: "Wypłacone Nagrody"
+    },
+    features: {
+      free_nft_title: "Darmowe NFT",
+      free_nft_desc: "Otrzymaj swojego pierwszego wojownika za darmo i rozpocznij przygody na arenie",
+      epic_battles_title: "Epické Bitwy",
+      epic_battles_desc: "Walcz przeciwko botom i innym graczom o nagrody i ranking",
+      earn_bp_title: "Zarabiaj BP",
+      earn_bp_desc: "Konwertuj swoje punkty BP na prawdziwe nagrody poprzez Telegram Stars",
+      why_choose_title: "Dlaczego Wybierać NFT Battle Arena",
+      why_choose_subtitle: "Unikalna kombinacja kolekcjonowania NFT, dynamicznych walk i możliwości zarabiania"
+    },
+    cta: {
+      ready_title: "Gotowy Rozpocząć Przygodę?",
+      ready_subtitle: "Dołącz do tysięcy graczy w NFT Battle Arena i zacznij zarabiać z nami!",
+      start_now: "Rozpocznij Grę Teraz",
+      watch_demo: "Zobacz Demo Walki"
     },
     marketplace: {
-      title: "Mercado NFT",
-      coming_soon: "El mercado estará disponible en",
-      connect_account: "Conectar Cuenta",
-      list_nft: "Listar NFT",
-      search_placeholder: "Buscar NFTs...",
-      categories: "Categorías",
-      price_range: "Rango de Precios",
-      cart: "Carrito",
-      remove_from_cart: "Eliminar del carrito"
+      title: "Sklep NFT",
+      coming_soon: "Sklep będzie dostępny za",
+      connect_account: "Połącz Konto",
+      list_nft: "Wystaw NFT",
+      search_placeholder: "Szukaj NFT...",
+      categories: "Kategorie",
+      price_range: "Zakres Cen",
+      cart: "Koszyk",
+      remove_from_cart: "Usuń z koszyka",
+      add_to_cart: "Dodaj do Koszyka",
+      checkout: "Finalizuj Zamówienie",
+      total: "Razem",
+      empty_cart: "Koszyk jest pusty",
+      temporarily_unavailable: "Sklep tymczasowo niedostępny",
+      market_description: "Pracujemy nad stworzeniem najlepszego doświadczenia zakupów NFT. Sklep będzie dostępny za kilka miesięcy z wszystkimi funkcjami!",
+      telegram_connected: "Telegram Połączony",
+      telegram_not_connected: "Telegram Nie Połączony"
     },
     battle: {
-      title: "Demo de Batalla",
-      description: "Ve cómo se ven las batallas en NFT Battle Arena",
-      player_hp: "HP del Jugador",
-      enemy_hp: "HP del Enemigo",
-      attack: "Ataque",
-      defend: "Defender",
-      special: "Especial",
-      fight: "¡LUCHA!",
-      you_win: "¡GANASTE!",
-      you_lose: "¡PERDISTE!",
-      draw: "¡EMPATE!"
+      title: "Demo Walki",
+      description: "Zobacz jak wyglądają walki w NFT Battle Arena",
+      player_hp: "HP Gracza",
+      enemy_hp: "HP Wroga",
+      attack: "Atak",
+      defend: "Obrona",
+      special: "Specjalny",
+      fight: "WALKA!",
+      you_win: "WYGRAŁEŚ!",
+      you_lose: "PRZEGRAŁEŚ!",
+      draw: "REMIS!",
+      start: "Start",
+      pause: "Pauza",
+      reset: "Reset",
+      battle_log: "Log Walki",
+      battle_not_started: "Walka jeszcze się nie rozpoczęła...",
+      demo_info: "To jest wersja demo",
+      demo_description: "W prawdziwej grze możesz kontrolować wszystkie akcje postaci, używać różnych NFT z unikalnymi umiejętnościami i zarabiać punkty BP za zwycięstwa.",
+      play_real_game: "Graj w Prawdziwą Grę",
+      player_turn: "Tura Gracza",
+      enemy_turn: "Tura Wroga"
     },
     game_info: {
-      title: "Sobre el Juego NFT Battle Arena",
-      subtitle: "Aprende todo sobre las mecánicas del juego, reglas y oportunidades de ganar",
-      how_to_get_nft: "Cómo Obtener NFT",
-      game_rules: "Reglas del Juego",
-      roadmap: "Hoja de Ruta",
-      faq: "Preguntas Frecuentes"
+      title: "O Grze NFT Battle Arena",
+      subtitle: "Dowiedz się wszystkiego o mechanice gry, zasadach i możliwościach zarabiania",
+      how_to_get_nft: "Jak Zdobyć NFT",
+      game_rules: "Zasady Gry",
+      roadmap: "Mapa Drogowa",
+      faq: "FAQ"
+    },
+    common: {
+      loading: "Ładowanie...",
+      error: "Błąd",
+      success: "Sukces",
+      close: "Zamknij",
+      save: "Zapisz",
+      cancel: "Anuluj",
+      confirm: "Potwierdź"
     }
   }
 };
@@ -203,24 +356,6 @@ export const mockAccessories = [
     image: "https://via.placeholder.com/200x200?text=Shield",
     type: "shield",
     bonus: { defense: 20 }
-  }
-];
-
-export const gameFeatures = [
-  {
-    icon: "🎁",
-    titleKey: "free_nft",
-    descriptionKey: "free_nft_desc"
-  },
-  {
-    icon: "⚔️",
-    titleKey: "epic_battles",
-    descriptionKey: "epic_battles_desc"
-  },
-  {
-    icon: "💰",
-    titleKey: "earn_rewards",
-    descriptionKey: "earn_rewards_desc"
   }
 ];
 
