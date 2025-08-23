@@ -298,12 +298,11 @@ body {
   opacity: 1;
   transform: translateX(0);
   transition: all 0.3s ease;
+  display: block;
 }
 
 .page-content.hidden {
   display: none !important;
-  opacity: 0;
-  transform: translateX(100px);
 }
 
 /* Emoji styles */
