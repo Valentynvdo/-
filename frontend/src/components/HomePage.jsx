@@ -1,81 +1,104 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Play, Info, Gamepad2, Trophy, Star, Zap } from 'lucide-react';
-import { AnimatedEmoji } from './AnimatedEmoji';
+import { Play, Info, Gamepad2, Trophy, Star, Zap, Users, Eye } from 'lucide-react';
+import { Emoji } from './AnimatedEmoji';
 
 export const HomePage = ({ currentLang, translations, onPageChange }) => {
   const t = translations[currentLang] || translations.en;
 
-  const features = [
-    {
-      icon: <AnimatedEmoji emoji="🎁" animation="bounce" />,
-      title: "Безкоштовний NFT",
-      description: "Отримай свого першого бійця безкоштовно та почни пригоди в арені"
+  const gameStats = [
+    { 
+      label: t.stats?.active_players || "Active Players", 
+      value: "12,847", 
+      icon: <Gamepad2 className="w-5 h-5" />,
+      color: "text-blue-400"
     },
-    {
-      icon: <AnimatedEmoji emoji="⚔️" animation="pulse" />,
-      title: "Епічні бої",
-      description: "Бийся проти ботів та інших гравців за нагороди та рейтинг"
+    { 
+      label: t.stats?.nft_in_game || "NFTs in Game", 
+      value: "3,420", 
+      icon: <Star className="w-5 h-5" />,
+      color: "text-yellow-400"
     },
-    {
-      icon: <AnimatedEmoji emoji="💰" animation="float" />,
-      title: "Заробляй BP",
-      description: "Конвертуй свої BP поінти в реальні нагороди через Telegram Stars"
+    { 
+      label: t.stats?.battles_fought || "Battles Fought", 
+      value: "89,234", 
+      icon: <Trophy className="w-5 h-5" />,
+      color: "text-green-400"
+    },
+    { 
+      label: t.stats?.rewards_paid || "Rewards Paid", 
+      value: "₴45,890", 
+      icon: <Zap className="w-5 h-5" />,
+      color: "text-purple-400"
     }
   ];
 
-  const gameStats = [
-    { label: "Активних гравців", value: "12,847", icon: <Gamepad2 className="w-6 h-6" /> },
-    { label: "NFT у грі", value: "3,420", icon: <Star className="w-6 h-6" /> },
-    { label: "Боїв проведено", value: "89,234", icon: <Trophy className="w-6 h-6" /> },
-    { label: "Нагород виплачено", value: "₴45,890", icon: <Zap className="w-6 h-6" /> }
+  const features = [
+    {
+      icon: <div className="w-12 h-12 rounded-2xl bg-green-500/20 flex items-center justify-center">
+        <Emoji emoji="🎁" />
+      </div>,
+      title: t.features?.free_nft_title || "Free NFT",
+      description: t.features?.free_nft_desc || "Get your first fighter for free and start adventures in the arena"
+    },
+    {
+      icon: <div className="w-12 h-12 rounded-2xl bg-red-500/20 flex items-center justify-center">
+        <Emoji emoji="⚔️" />
+      </div>,
+      title: t.features?.epic_battles_title || "Epic Battles",
+      description: t.features?.epic_battles_desc || "Fight against bots and other players for rewards and ranking"
+    },
+    {
+      icon: <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center">
+        <Emoji emoji="💰" />
+      </div>,
+      title: t.features?.earn_bp_title || "Earn BP",
+      description: t.features?.earn_bp_desc || "Convert your BP points into real rewards through Telegram Stars"
+    }
   ];
 
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="container mx-auto px-6">
+      <section className="relative pt-32 pb-20 overflow-hidden">
+        <div className="container-glass">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start space-x-2 mb-6">
-                <AnimatedEmoji emoji="🌟" animation="pulse" className="text-2xl" />
-                <span className="text-[#00FFD1] font-semibold tracking-wider uppercase">Play2Earn</span>
-                <AnimatedEmoji emoji="🚀" animation="bounce" className="text-2xl" />
+            <div className="text-center lg:text-left space-y-8">
+              <div className="inline-flex items-center space-x-2 px-4 py-2 glass-card">
+                <Emoji emoji="🌟" />
+                <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">Play2Earn</span>
+                <Emoji emoji="🚀" />
               </div>
               
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-white">{t.hero.title}</span>
+              <h1 className="text-display">
+                <span className="text-white">{t.hero?.title || "NFT Battle Arena"}</span>
                 <br />
-                <span className="text-[#00FFD1]">Battle Arena</span>
-                <AnimatedEmoji emoji="⚡" animation="pulse" className="ml-3 text-3xl lg:text-5xl" />
+                <span className="text-blue-400">Battle Arena</span>
               </h1>
               
-              <p className="text-lg text-white/80 mb-8 max-w-xl mx-auto lg:mx-0">
-                {t.hero.description}
+              <p className="text-body max-w-xl mx-auto lg:mx-0 text-lg">
+                {t.hero?.description || "Get your first NFT, fight in arena against opponents and collect unique collection."}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button 
                   size="lg"
-                  className="bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold text-lg px-8 py-4"
+                  className="glass-button-accent px-8 py-4 text-lg"
                   onClick={() => window.open('https://t.me/NFTBattleArenaBot', '_blank')}
                 >
                   <Play className="w-5 h-5 mr-2" />
-                  {t.hero.play_now}
-                  <AnimatedEmoji emoji="🎮" animation="bounce" className="ml-2" />
+                  {t.hero?.play_now || "Play Now"}
                 </Button>
                 
                 <Button 
                   size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10 rounded-none font-bold text-lg px-8 py-4"
+                  className="glass-button-primary px-8 py-4 text-lg"
                   onClick={() => onPageChange('game_info')}
                 >
                   <Info className="w-5 h-5 mr-2" />
-                  {t.hero.learn_more}
+                  {t.hero?.learn_more || "Learn More"}
                 </Button>
               </div>
             </div>
@@ -83,11 +106,11 @@ export const HomePage = ({ currentLang, translations, onPageChange }) => {
             {/* Right Content - Hero Image */}
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="absolute inset-0 bg-[#00FFD1]/20 blur-3xl rounded-full animate-pulse"></div>
+                <div className="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
                 <img 
                   src="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png"
                   alt="NFT Battle Character"
-                  className="relative z-10 w-full max-w-md lg:max-w-lg object-contain animate-pulse hover:animate-bounce transition-all duration-500"
+                  className="relative z-10 w-full max-w-md lg:max-w-lg object-contain rounded-3xl scale-hover"
                 />
               </div>
             </div>
@@ -96,16 +119,16 @@ export const HomePage = ({ currentLang, translations, onPageChange }) => {
       </section>
 
       {/* Game Stats */}
-      <section className="py-16 bg-black/40 backdrop-blur-md border-y border-white/10">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="section-glass">
+        <div className="container-glass">
+          <div className="grid-glass grid-glass-4">
             {gameStats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="flex justify-center items-center mb-3 text-[#00FFD1]">
+              <div key={index} className="glass-card p-6 text-center">
+                <div className={`flex justify-center items-center mb-4 ${stat.color}`}>
                   {stat.icon}
                 </div>
-                <div className="text-2xl lg:text-3xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-sm text-white/70">{stat.label}</div>
+                <div className="text-title text-white mb-2">{stat.value}</div>
+                <div className="text-caption">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -113,29 +136,28 @@ export const HomePage = ({ currentLang, translations, onPageChange }) => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">
-              Чому обирають NFT Battle Arena
-              <AnimatedEmoji emoji="🔥" animation="bounce" className="ml-3" />
+      <section className="section-glass">
+        <div className="container-glass">
+          <div className="text-center mb-16 space-y-4">
+            <h2 className="text-title">
+              {t.features?.why_choose_title || "Why Choose NFT Battle Arena"}
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Унікальна комбінація NFT колекціонування, динамічних боїв та можливостей заробітку
+            <p className="text-body max-w-3xl mx-auto">
+              {t.features?.why_choose_subtitle || "Unique combination of NFT collecting, dynamic battles and earning opportunities"}
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid-glass grid-glass-3">
             {features.map((feature, index) => (
-              <Card key={index} className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-center hover:bg-black/60 transition-all duration-300">
-                <CardHeader>
-                  <div className="text-6xl mb-4 flex justify-center">
+              <Card key={index} className="glass-card p-6 text-center scale-hover">
+                <CardHeader className="space-y-4">
+                  <div className="flex justify-center">
                     {feature.icon}
                   </div>
-                  <CardTitle className="text-white text-xl">{feature.title}</CardTitle>
+                  <CardTitle className="text-headline">{feature.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-white/80 text-base">
+                  <CardDescription className="text-body">
                     {feature.description}
                   </CardDescription>
                 </CardContent>
@@ -146,37 +168,38 @@ export const HomePage = ({ currentLang, translations, onPageChange }) => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-black/60 to-[#00FFD1]/10">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-white">
-            Готовий почати пригоду?
-            <AnimatedEmoji emoji="🚀" animation="bounce" className="ml-3" />
-          </h2>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Приєднуйся до тисяч гравців у NFT Battle Arena та почни заробляти разом з нами!
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg"
-              className="bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold text-lg px-12 py-4"
-              onClick={() => window.open('https://t.me/NFTBattleArenaBot', '_blank')}
-            >
-              <Play className="w-5 h-5 mr-2" />
-              Почати гру зараз
-              <AnimatedEmoji emoji="🎯" animation="pulse" className="ml-2" />
-            </Button>
-            
-            <Button 
-              size="lg"
-              variant="outline"
-              className="border-white/20 text-white hover:bg-white/10 rounded-none font-bold text-lg px-8 py-4"
-              onClick={() => onPageChange('battle_demo')}
-            >
-              Дивитись демо бою
-              <AnimatedEmoji emoji="👀" animation="bounce" className="ml-2" />
-            </Button>
-          </div>
+      <section className="section-glass">
+        <div className="container-glass">
+          <Card className="glass-card-strong text-center p-12">
+            <CardContent className="space-y-6">
+              <h2 className="text-title">
+                {t.cta?.ready_title || "Ready to Start Adventure?"} <Emoji emoji="🚀" />
+              </h2>
+              <p className="text-body max-w-2xl mx-auto">
+                {t.cta?.ready_subtitle || "Join thousands of players in NFT Battle Arena and start earning with us!"}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+                <Button 
+                  size="lg"
+                  className="glass-button-accent px-12 py-4 text-lg"
+                  onClick={() => window.open('https://t.me/NFTBattleArenaBot', '_blank')}
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  {t.cta?.start_now || "Start Game Now"}
+                </Button>
+                
+                <Button 
+                  size="lg"
+                  className="glass-button-primary px-8 py-4 text-lg"
+                  onClick={() => onPageChange('battle_demo')}
+                >
+                  <Eye className="w-5 h-5 mr-2" />
+                  {t.cta?.watch_demo || "Watch Battle Demo"}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </div>
