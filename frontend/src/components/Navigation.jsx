@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { Menu, X, Gamepad2 } from './ui/icons';
 
 export const Navigation = ({ currentLang, onLanguageChange, translations, currentPage, onPageChange }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
