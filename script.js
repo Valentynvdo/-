@@ -275,7 +275,13 @@ const translations = {
 const languages = [
     { code: 'ua', name: 'Українська', flag: '🇺🇦' },
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'pl', name: 'Polski', flag: '🇵🇱' }
+    { code: 'pl', name: 'Polski', flag: '🇵🇱' },
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'fr', name: 'Français', flag: '🇫🇷' },
+    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+    { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+    { code: 'pt', name: 'Português', flag: '🇵🇹' },
+    { code: 'ru', name: 'Русский', flag: '🇷🇺' }
 ];
 
 // Global state
