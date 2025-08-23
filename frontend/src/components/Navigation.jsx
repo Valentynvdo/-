@@ -39,7 +39,7 @@ export const Navigation = ({ currentLang, onLanguageChange, translations, curren
             onClick={() => handlePageChange('home')}
           >
             <div className="p-2 glass-card">
-              <Gamepad2 className="w-6 h-6 text-blue-400" />
+              <div className="w-6 h-6 text-blue-400 flex items-center justify-center font-bold text-lg">🎮</div>
             </div>
             <span className="text-headline hidden md:block">NFT Battle Arena</span>
           </div>
