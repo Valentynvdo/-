@@ -157,7 +157,7 @@ const translations = {
         },
         hero: {
             title: "NFT Battle Arena",
-            subtitle: "Play2Earn game in Telegram Mini App",
+            subtitle: "Battle Arena",
             description: "Get your first NFT, fight in arena against opponents and collect unique collection. This is not just a game – it's a battle for rewards, prestige and real power!",
             play_now: "Play Now",
             learn_more: "Learn More",
@@ -195,6 +195,13 @@ const translations = {
             telegram_connected: "Telegram Connected",
             telegram_not_connected: "Telegram Not Connected"
         },
+        countdown: {
+            months: "Months",
+            days: "Days", 
+            hours: "Hours",
+            minutes: "Minutes",
+            seconds: "Seconds"
+        },
         battle: {
             title: "Battle Demo",
             description: "See how battles look in NFT Battle Arena",
@@ -216,7 +223,10 @@ const translations = {
             demo_description: "In the real game you can control all character actions, use different NFTs with unique abilities and earn BP points for victories.",
             play_real_game: "Play Real Game",
             player_turn: "Player Turn",
-            enemy_turn: "Enemy Turn"
+            enemy_turn: "Enemy Turn",
+            choose_action: "Choose your action:",
+            health_restored: "Health restored!",
+            play_again: "Play Again"
         },
         game_info: {
             title: "About NFT Battle Arena Game",
@@ -224,7 +234,53 @@ const translations = {
             how_to_get_nft: "How to Get NFT",
             game_rules: "Game Rules",
             roadmap: "Roadmap",
-            faq: "FAQ"
+            faq: "FAQ",
+            free_nft_title: "Free Starter NFT",
+            free_nft_desc: "Every new player receives their first NFT fighter absolutely free through Airdrop system.",
+            cta_title: "Ready to try NFT Battle Arena?",
+            cta_subtitle: "Join thousands of players and start your adventure in the world of NFT battles right now!",
+            cta_start_game: "Start Game",
+            cta_demo: "Battle Demo"
+        },
+        roadmap: {
+            title: "Development Roadmap",
+            subtitle: "NFT Battle Arena development plans for the coming years",
+            q3_2025_title: "PvE Expansion",
+            q3_2025_date: "Fall 2025",
+            q3_item_1: "Launch of PvE modes with story quests",
+            q3_item_2: "Battles against legendary bosses with rare NFTs",
+            q3_item_3: "UI/UX improvements in Telegram Mini App",
+            q4_2025_title: "Team Play",
+            q4_2025_date: "Winter 2025",
+            q4_item_1: "Launch Guild Wars – 5v5 clan battles",
+            q4_item_2: "Seasonal battle passes with exclusive accessories",
+            q4_item_3: "Rating system and weekly tournaments",
+            q1_2026_title: "Interactive World",
+            q1_2026_date: "Spring 2026",
+            q1_item_1: "Launch interactive treasure map with geo-location NFTs",
+            q1_item_2: "Expansion of accessory system",
+            q1_item_3: "First inter-regional tournament with prize pool",
+            q2_2026_title: "Blockchain Integration",
+            q2_2026_date: "Summer 2026",
+            q2_item_1: "Launch mobile app for iOS and Android",
+            q2_item_2: "Blockchain integration for real NFT transactions",
+            q2_item_3: "Implementation of internal marketplace"
+        },
+        faq: {
+            title: "Frequently Asked Questions",
+            subtitle: "Answers to the most common questions about NFT Battle Arena",
+            q1_question: "What is NFT Battle Arena?",
+            q1_answer: "NFT Battle Arena is an innovative Play2Earn game in Telegram Mini App format. Every player gets a free NFT fighter to start arena battles and collect unique collection.",
+            q2_question: "Do I need cryptocurrency to play?",
+            q2_answer: "No, cryptocurrency is not required. All in-game transactions are made through Telegram Stars, making it accessible to everyone.",
+            q3_question: "How can I earn money in the game?",
+            q3_answer: "You can earn BP points for battle victories, which can be converted into real rewards through special accessories. You can also sell NFTs on the future marketplace.",
+            q4_question: "Are there multiplayer battles?",
+            q4_answer: "Currently, battles against bots are available. PvP battles between real players and global tournaments are planned for winter 2025.",
+            q5_question: "How is the game protected from fraud?",
+            q5_answer: "We use anti-spam and account verification systems. Using bots or multi-accounts leads to unconditional ban.",
+            q6_question: "Where to download the game?",
+            q6_answer: "The game is available in Telegram Mini App. Future release in Play Store and App Store is planned."
         },
         common: {
             loading: "Loading...",
