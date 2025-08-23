@@ -1,151 +1,807 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-        <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Battle Arena – Play2Earn гра в Telegram Mini App</title>
+    <meta name="description" content="NFT Battle Arena – бойова арена в Telegram Mini App. Отримуй перший NFT, бийся з суперниками, збирай колекцію та заробляй нагороди.">
+    <meta name="keywords" content="NFT Battle Arena, NFT гра, Telegram Mini App, Play2Earn, blockchain gaming, NFT бійці, крипто ігри, NFT колекція, GameFi, battle arena">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="NFT Battle Arena – Play2Earn гра в Telegram">
+    <meta property="og:description" content="Отримай свій перший NFT, бийся на арені та збирай колекцію. NFT Battle Arena – твій шанс стати легендою Web3 світу.">
+    <meta property="og:image" content="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NFT Battle Arena – Play2Earn гра в Telegram">
+    <meta name="twitter:description" content="Отримай перший NFT та бийся на арені!">
+    <meta name="twitter:image" content="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="glass-nav" id="navbar">
+        <div class="container-glass">
+            <div class="nav-content">
+                <!-- Logo -->
+                <div class="logo-section" data-page="home">
+                    <div class="logo-container">
+                        <i data-lucide="gamepad-2"></i>
+                    </div>
+                    <span class="logo-text" data-translate="nav.title">NFT Battle Arena</span>
+                </div>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-        <title>Emergent | Fullstack App</title>
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+                <!-- Desktop Menu -->
+                <div class="nav-menu" id="navMenu">
+                    <button class="nav-item" data-page="home" data-translate="nav.home">Головна</button>
+                    <button class="nav-item" data-page="game_info" data-translate="nav.game_info">Про гру</button>
+                    <button class="nav-item" data-page="marketplace" data-translate="nav.marketplace">Магазин</button>
+                    <button class="nav-item" data-page="battle_demo" data-translate="nav.battle_demo">Демо бою</button>
+                </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+                <!-- Right Section -->
+                <div class="nav-right">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-trigger" id="langTrigger">
+                            <i data-lucide="globe"></i>
+                            <span class="flag" id="currentFlag">🇺🇦</span>
+                            <span class="lang-code" id="currentLang">UA</span>
+                        </button>
+                        <div class="lang-dropdown" id="langDropdown">
+                            <button class="lang-option" data-lang="ua">
+                                <span>🇺🇦</span>
+                                <span>Українська</span>
+                            </button>
+                            <button class="lang-option" data-lang="en">
+                                <span>🇺🇸</span>
+                                <span>English</span>
+                            </button>
+                            <button class="lang-option" data-lang="pl">
+                                <span>🇵🇱</span>
+                                <span>Polski</span>
+                            </button>
+                        </div>
+                    </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-        <a
-            id="emergent-badge"
-            target="_blank"
-            href="https://app.emergent.sh/?utm_source=emergent-badge"
-            style="
-                display: flex !important;
-                align-items: center !important;
-                position: fixed !important;
-                bottom: 20px;
-                right: 20px;
-                text-decoration: none;
-                padding: 6px 10px;
-                font-family: -apple-system, BlinkMacSystemFont,
-                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
-                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
-                    sans-serif !important;
-                font-size: 12px !important;
-                z-index: 9999 !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-                border-radius: 8px !important;
-                background-color: #ffffff !important;
-                border: 1px solid rgba(255, 255, 255, 0.25) !important;
-            "
-        >
-            <div
-                style="display: flex; flex-direction: row; align-items: center"
-            >
-                <img
-                    style="width: 20px; height: 20px; margin-right: 8px"
-                    src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
-                />
-                <p
-                    style="
-                        color: #000000;
-                        font-family: -apple-system, BlinkMacSystemFont,
-                            &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu,
-                            Cantarell, &quot;Open Sans&quot;,
-                            &quot;Helvetica Neue&quot;, sans-serif !important;
-                        font-size: 12px !important;
-                        align-items: center;
-                        margin-bottom: 0;
-                    "
-                >
-                    Made with Emergent
-                </p>
+                    <button class="glass-button-accent connect-telegram" data-translate="nav.connect_telegram">
+                        Підключити Telegram
+                    </button>
+
+                    <!-- Mobile menu button -->
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <i data-lucide="menu" id="menuIcon"></i>
+                    </button>
+                </div>
             </div>
-        </a>
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                });
-                        }
-                        ((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r);
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
-            });
-        </script>
-    </body>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <div class="mobile-menu-content">
+                    <button class="mobile-nav-item" data-page="home" data-translate="nav.home">Головна</button>
+                    <button class="mobile-nav-item" data-page="game_info" data-translate="nav.game_info">Про гру</button>
+                    <button class="mobile-nav-item" data-page="marketplace" data-translate="nav.marketplace">Магазин</button>
+                    <button class="mobile-nav-item" data-page="battle_demo" data-translate="nav.battle_demo">Демо бою</button>
+                    <button class="glass-button-accent connect-telegram-mobile" data-translate="nav.connect_telegram">
+                        Підключити Telegram
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Page -->
+        <div class="page" id="homePage">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container-glass">
+                    <div class="hero-grid">
+                        <!-- Left Content -->
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <span>🌟</span>
+                                <span class="badge-text" data-translate="hero.badge">PLAY2EARN</span>
+                                <span>🚀</span>
+                            </div>
+                            
+                            <h1 class="hero-title">
+                                <span data-translate="hero.title1">NFT Battle Arena</span>
+                                <br>
+                                <span class="title-accent" data-translate="hero.title2">Battle Arena</span>
+                            </h1>
+                            
+                            <p class="hero-description" data-translate="hero.description">
+                                Отримай свій перший NFT, бийся на арені з суперниками та збирай унікальну колекцію. Це не просто гра – це битва за нагороди, престиж і справжню силу!
+                            </p>
+                            
+                            <div class="hero-buttons">
+                                <button class="glass-button-accent play-now-btn">
+                                    <i data-lucide="play"></i>
+                                    <span data-translate="hero.play_now">Грати зараз</span>
+                                </button>
+                                
+                                <button class="glass-button-primary learn-more-btn" data-page="game_info">
+                                    <i data-lucide="info"></i>
+                                    <span data-translate="hero.learn_more">Дізнатися більше</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Right Content - Hero Image -->
+                        <div class="hero-visual">
+                            <div class="hero-image-container">
+                                <div class="glow-effect"></div>
+                                <img src="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png" 
+                                     alt="NFT Battle Character" 
+                                     class="hero-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Stats -->
+            <section class="stats-section">
+                <div class="container-glass">
+                    <div class="stats-grid">
+                        <div class="stat-item glass-card">
+                            <div class="stat-icon blue">
+                                <i data-lucide="gamepad-2"></i>
+                            </div>
+                            <div class="stat-value">12,847</div>
+                            <div class="stat-label" data-translate="stats.active_players">Активних гравців</div>
+                        </div>
+                        <div class="stat-item glass-card">
+                            <div class="stat-icon yellow">
+                                <i data-lucide="star"></i>
+                            </div>
+                            <div class="stat-value">3,420</div>
+                            <div class="stat-label" data-translate="stats.nft_in_game">NFT у грі</div>
+                        </div>
+                        <div class="stat-item glass-card">
+                            <div class="stat-icon green">
+                                <i data-lucide="trophy"></i>
+                            </div>
+                            <div class="stat-value">89,234</div>
+                            <div class="stat-label" data-translate="stats.battles_fought">Боїв проведено</div>
+                        </div>
+                        <div class="stat-item glass-card">
+                            <div class="stat-icon purple">
+                                <i data-lucide="zap"></i>
+                            </div>
+                            <div class="stat-value">₴45,890</div>
+                            <div class="stat-label" data-translate="stats.rewards_paid">Нагород виплачено</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <div class="container-glass">
+                    <div class="section-header">
+                        <h2 class="section-title" data-translate="features.title">Чому обирають NFT Battle Arena</h2>
+                        <p class="section-subtitle" data-translate="features.subtitle">
+                            Унікальна комбінація NFT колекціонування, динамічних боїв та можливостей заробітку
+                        </p>
+                    </div>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card glass-card scale-hover">
+                            <div class="feature-icon green">
+                                <span>🎁</span>
+                            </div>
+                            <h3 class="feature-title" data-translate="features.free_nft_title">Безкоштовний NFT</h3>
+                            <p class="feature-description" data-translate="features.free_nft_desc">
+                                Отримай свого першого бійця безкоштовно та почни пригоди в арені
+                            </p>
+                        </div>
+                        <div class="feature-card glass-card scale-hover">
+                            <div class="feature-icon red">
+                                <span>⚔️</span>
+                            </div>
+                            <h3 class="feature-title" data-translate="features.epic_battles_title">Епічні бої</h3>
+                            <p class="feature-description" data-translate="features.epic_battles_desc">
+                                Бийся проти ботів та інших гравців за нагороди та рейтинг
+                            </p>
+                        </div>
+                        <div class="feature-card glass-card scale-hover">
+                            <div class="feature-icon blue">
+                                <span>💰</span>
+                            </div>
+                            <h3 class="feature-title" data-translate="features.earn_bp_title">Заробляй BP</h3>
+                            <p class="feature-description" data-translate="features.earn_bp_desc">
+                                Конвертуй свої BP поінти в реальні нагороди через Telegram Stars
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <div class="container-glass">
+                    <div class="cta-card glass-card-strong">
+                        <h2 class="cta-title">
+                            <span data-translate="cta.ready_title">Готовий почати пригоду?</span>
+                            <span>🚀</span>
+                        </h2>
+                        <p class="cta-description" data-translate="cta.ready_subtitle">
+                            Приєднуйся до тисяч гравців у NFT Battle Arena та почни заробляти разом з нами!
+                        </p>
+                        
+                        <div class="cta-buttons">
+                            <button class="glass-button-accent start-game-btn">
+                                <i data-lucide="users"></i>
+                                <span data-translate="cta.start_now">Почати гру зараз</span>
+                            </button>
+                            
+                            <button class="glass-button-primary watch-demo-btn" data-page="battle_demo">
+                                <i data-lucide="eye"></i>
+                                <span data-translate="cta.watch_demo">Дивитись демо бою</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Game Info Page -->
+        <div class="page" id="gameInfoPage" style="display: none;">
+            <section class="page-header">
+                <div class="container-glass">
+                    <h1 class="page-title">
+                        <span data-translate="game_info.title">Про гру NFT Battle Arena</span>
+                        <span>📖</span>
+                    </h1>
+                    <p class="page-subtitle" data-translate="game_info.subtitle">
+                        Дізнайтесь все про механіку гри, правила та можливості заробітку
+                    </p>
+                </div>
+            </section>
+
+            <section class="tabs-section">
+                <div class="container-glass">
+                    <div class="tabs">
+                        <div class="tab-list glass-card">
+                            <button class="tab-button active" data-tab="how-to-get">
+                                <i data-lucide="gift"></i>
+                                <span>NFT</span>
+                            </button>
+                            <button class="tab-button" data-tab="rules">
+                                <i data-lucide="sword"></i>
+                                <span data-translate="game_info.rules">Правила</span>
+                            </button>
+                            <button class="tab-button" data-tab="roadmap">
+                                <i data-lucide="calendar"></i>
+                                <span>Roadmap</span>
+                            </button>
+                            <button class="tab-button" data-tab="faq">
+                                <i data-lucide="help-circle"></i>
+                                <span>FAQ</span>
+                            </button>
+                        </div>
+
+                        <div class="tab-content">
+                            <!-- How to Get NFT Tab -->
+                            <div class="tab-panel active" id="how-to-get">
+                                <div class="section-header">
+                                    <h2 class="section-title">
+                                        <span data-translate="game_info.how_to_get_nft">Як отримати NFT</span>
+                                        <span>🎁</span>
+                                    </h2>
+                                    <p class="section-subtitle">
+                                        Дізнайтесь усі способи отримання унікальних NFT-бійців та аксесуарів у NFT Battle Arena
+                                    </p>
+                                </div>
+                                
+                                <div class="methods-grid">
+                                    <div class="method-card glass-card scale-hover">
+                                        <div class="method-icon green">
+                                            <i data-lucide="gift"></i>
+                                        </div>
+                                        <h3 class="method-title">
+                                            <span>🎁</span>
+                                            <span>Безкоштовний стартовий NFT</span>
+                                        </h3>
+                                        <p class="method-description">
+                                            Кожен новий гравець отримує свого першого NFT-бійця абсолютно безкоштовно через Airdrop систему.
+                                        </p>
+                                    </div>
+                                    <div class="method-card glass-card scale-hover">
+                                        <div class="method-icon blue">
+                                            <i data-lucide="star"></i>
+                                        </div>
+                                        <h3 class="method-title">
+                                            <span>⭐</span>
+                                            <span>Покупка за Telegram Stars</span>
+                                        </h3>
+                                        <p class="method-description">
+                                            Додаткові унікальні NFT та аксесуари можна придбати за Telegram Stars у внутрішньому магазині.
+                                        </p>
+                                    </div>
+                                    <div class="method-card glass-card scale-hover">
+                                        <div class="method-icon yellow">
+                                            <i data-lucide="trophy"></i>
+                                        </div>
+                                        <h3 class="method-title">
+                                            <span>🏆</span>
+                                            <span>Нагороди за досягнення</span>
+                                        </h3>
+                                        <p class="method-description">
+                                            Отримуйте рідкісні NFT за участь у турнірах, досягнення високих рейтингів та виконання спеціальних завдань.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rules Tab -->
+                            <div class="tab-panel" id="rules">
+                                <div class="section-header">
+                                    <h2 class="section-title">
+                                        <span data-translate="game_info.game_rules">Правила гри</span>
+                                        <span>📜</span>
+                                    </h2>
+                                    <p class="section-subtitle">
+                                        Ознайомтесь з основними правилами та механікою гри для успішного старту
+                                    </p>
+                                </div>
+
+                                <div class="rules-list">
+                                    <div class="rule-section glass-card">
+                                        <h3 class="rule-title">
+                                            <span>🚀</span>
+                                            <span>Початок гри і перший NFT</span>
+                                        </h3>
+                                        <ul class="rule-items">
+                                            <li>При першому вході гравець отримує безкоштовного базового NFT-бійця</li>
+                                            <li>Цей воїн потрібен для початкових боїв проти бота та отримання перших BP-поінтів</li>
+                                            <li>Стартовий NFT має базові характеристики, які можна покращити</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rule-section glass-card">
+                                        <h3 class="rule-title">
+                                            <span>💎</span>
+                                            <span>Система BP-поінтів</span>
+                                        </h3>
+                                        <ul class="rule-items">
+                                            <li>BP-поінти нараховуються за перемогу в боях проти бота</li>
+                                            <li>Гравець може отримувати безкоштовні BP-поінти щодня – раз на 24 години</li>
+                                            <li>BP-поінти можна конвертувати в реальні нагороди через спеціальні аксесуари</li>
+                                            <li>Модульне вікно апгрейдів дозволяє підвищувати кількість BP за перемогу</li>
+                                        </ul>
+                                    </div>
+                                    <div class="rule-section glass-card">
+                                        <h3 class="rule-title">
+                                            <span>⚔️</span>
+                                            <span>Бойова система</span>
+                                        </h3>
+                                        <ul class="rule-items">
+                                            <li>Кожен боєць має 2000 HP (гравець) та 2400 HP (бот) для балансу</li>
+                                            <li>Три типи дій: атака, захист, спеціальний удар</li>
+                                            <li>Перемога приносить BP-поінти і досвід для покращення воїна</li>
+                                            <li>Поразка зменшує рейтинг, але NFT та BP-поінти залишаються у гравця</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Roadmap Tab -->
+                            <div class="tab-panel" id="roadmap">
+                                <div class="section-header">
+                                    <h2 class="section-title">
+                                        <span>Roadmap розвитку</span>
+                                        <span>🗺️</span>
+                                    </h2>
+                                    <p class="section-subtitle">
+                                        Плани розвитку NFT Battle Arena на найближчі роки
+                                    </p>
+                                </div>
+
+                                <div class="roadmap-list">
+                                    <div class="roadmap-item glass-card upcoming">
+                                        <div class="roadmap-header">
+                                            <h3 class="roadmap-title">PvE Розширення</h3>
+                                            <div class="roadmap-period">Осінь 2025</div>
+                                        </div>
+                                        <ul class="roadmap-features">
+                                            <li>Запуск PvE-режимів із сюжетними квестами</li>
+                                            <li>Битви проти легендарних босів з рідкісними NFT</li>
+                                            <li>Покращення UI/UX у Telegram Mini App</li>
+                                        </ul>
+                                    </div>
+                                    <div class="roadmap-item glass-card upcoming">
+                                        <div class="roadmap-header">
+                                            <h3 class="roadmap-title">Командна гра</h3>
+                                            <div class="roadmap-period">Зима 2025</div>
+                                        </div>
+                                        <ul class="roadmap-features">
+                                            <li>Запуск Guild Wars – кланових битв 5х5</li>
+                                            <li>Сезонні батл-паси з ексклюзивними аксесуарами</li>
+                                            <li>Система рейтингів і щотижневі турніри</li>
+                                        </ul>
+                                    </div>
+                                    <div class="roadmap-item glass-card planned">
+                                        <div class="roadmap-header">
+                                            <h3 class="roadmap-title">Інтерактивний світ</h3>
+                                            <div class="roadmap-period">Весна 2026</div>
+                                        </div>
+                                        <ul class="roadmap-features">
+                                            <li>Запуск інтерактивної карти скарбів із гео-локаційними NFT</li>
+                                            <li>Розширення системи аксесуарів</li>
+                                            <li>Перший міжрегіональний турнір з призовим фондом</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Tab -->
+                            <div class="tab-panel" id="faq">
+                                <div class="section-header">
+                                    <h2 class="section-title">
+                                        <span>Часті питання</span>
+                                        <span>❓</span>
+                                    </h2>
+                                    <p class="section-subtitle">
+                                        Відповіді на найпоширеніші запитання про NFT Battle Arena
+                                    </p>
+                                </div>
+
+                                <div class="faq-list">
+                                    <div class="faq-item glass-card scale-hover">
+                                        <h3 class="faq-question">
+                                            <i data-lucide="help-circle"></i>
+                                            <span>Що таке NFT Battle Arena?</span>
+                                        </h3>
+                                        <p class="faq-answer">
+                                            NFT Battle Arena – це інноваційна Play2Earn гра у форматі Telegram Mini App. Кожен гравець отримує безкоштовного NFT-бійця, щоб розпочати битви на арені та збирати унікальну колекцію.
+                                        </p>
+                                    </div>
+                                    <div class="faq-item glass-card scale-hover">
+                                        <h3 class="faq-question">
+                                            <i data-lucide="help-circle"></i>
+                                            <span>Чи потрібно мати криптовалюту для гри?</span>
+                                        </h3>
+                                        <p class="faq-answer">
+                                            Ні, криптовалюта не потрібна. Усі транзакції в грі здійснюються через Telegram Stars, що робить її доступною для всіх.
+                                        </p>
+                                    </div>
+                                    <div class="faq-item glass-card scale-hover">
+                                        <h3 class="faq-question">
+                                            <i data-lucide="help-circle"></i>
+                                            <span>Як я можу заробити гроші у грі?</span>
+                                        </h3>
+                                        <p class="faq-answer">
+                                            Ви можете заробляти BP-поінти за перемоги в боях, які можна конвертувати в реальні нагороди через спеціальні аксесуари. Також можна продавати NFT на майбутньому маркетплейсі.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Game Info CTA -->
+            <section class="cta-section">
+                <div class="container-glass">
+                    <div class="cta-card glass-card-strong">
+                        <h3 class="cta-title">
+                            <span>Готові спробувати NFT Battle Arena?</span>
+                            <span>🚀</span>
+                        </h3>
+                        <p class="cta-description">
+                            Приєднуйтесь до тисяч гравців та почніть свою пригоду в світі NFT боїв прямо зараз!
+                        </p>
+                        <div class="cta-buttons">
+                            <button class="glass-button-accent start-game-btn">
+                                <i data-lucide="users"></i>
+                                <span>Почати гру</span>
+                            </button>
+                            <button class="glass-button-primary" data-page="battle_demo">
+                                <i data-lucide="zap"></i>
+                                <span>Демо бою</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Marketplace Page -->
+        <div class="page" id="marketplacePage" style="display: none;">
+            <section class="page-header">
+                <div class="container-glass">
+                    <h1 class="page-title">
+                        <span data-translate="marketplace.title">NFT Магазин</span>
+                        <span>🏪</span>
+                    </h1>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="countdown-section">
+                        <h2 class="countdown-title">
+                            <span data-translate="marketplace.coming_soon">Магазин буде доступний через</span>
+                            <span>⏳</span>
+                        </h2>
+                        <div class="countdown-timer" id="countdownTimer">
+                            <div class="countdown-item glass-card">
+                                <div class="countdown-value" id="months">5</div>
+                                <div class="countdown-label">Місяців</div>
+                            </div>
+                            <div class="countdown-item glass-card">
+                                <div class="countdown-value" id="days">2</div>
+                                <div class="countdown-label">Днів</div>
+                            </div>
+                            <div class="countdown-item glass-card">
+                                <div class="countdown-value" id="hours">23</div>
+                                <div class="countdown-label">Годин</div>
+                            </div>
+                            <div class="countdown-item glass-card">
+                                <div class="countdown-value" id="minutes">59</div>
+                                <div class="countdown-label">Хвилин</div>
+                            </div>
+                            <div class="countdown-item glass-card">
+                                <div class="countdown-value" id="seconds">50</div>
+                                <div class="countdown-label">Секунд</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connection Status -->
+                    <div class="connection-status">
+                        <div class="status-indicator" id="telegramStatus">
+                            <div class="status-dot disconnected"></div>
+                            <span class="status-text" data-translate="marketplace.telegram_not_connected">Telegram не підключено</span>
+                        </div>
+                        
+                        <button class="glass-button-accent connect-account-btn" id="connectAccountBtn">
+                            <i data-lucide="link"></i>
+                            <span data-translate="marketplace.connect_account">Підключити акаунт</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marketplace Interface (Disabled) -->
+            <section class="marketplace-section">
+                <div class="container-glass">
+                    <div class="marketplace-overlay">
+                        <div class="overlay-content glass-card-strong">
+                            <div class="overlay-header">
+                                <i data-lucide="clock"></i>
+                                <h3 data-translate="marketplace.temporarily_unavailable">Магазин тимчасово недоступний</h3>
+                            </div>
+                            <p class="overlay-description" data-translate="marketplace.market_description">
+                                Ми працюємо над створенням найкращого досвіду покупки NFT. 
+                                Магазин буде доступний через кілька місяців з усіма функціями!
+                            </p>
+                            <div class="overlay-features">
+                                <div class="overlay-feature">
+                                    <span>🛒</span>
+                                    <span>Покупка та продаж NFT</span>
+                                </div>
+                                <div class="overlay-feature">
+                                    <span>💎</span>
+                                    <span>Рідкісні аксесуари</span>
+                                </div>
+                                <div class="overlay-feature">
+                                    <span>🔍</span>
+                                    <span>Розширений пошук</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marketplace Preview (Blurred) -->
+                    <div class="marketplace-preview">
+                        <div class="marketplace-tabs glass-card">
+                            <button class="tab-button active">
+                                <i data-lucide="search"></i>
+                                <span>Переглядати</span>
+                            </button>
+                            <button class="tab-button">
+                                <i data-lucide="plus"></i>
+                                <span>Продавати</span>
+                            </button>
+                            <button class="tab-button">
+                                <i data-lucide="shopping-cart"></i>
+                                <span>Кошик (0)</span>
+                            </button>
+                        </div>
+
+                        <div class="marketplace-filters">
+                            <div class="filter-item">
+                                <div class="search-input glass-input">
+                                    <i data-lucide="search"></i>
+                                    <input type="text" placeholder="Пошук NFT...">
+                                </div>
+                            </div>
+                            <div class="filter-item">
+                                <select class="glass-select">
+                                    <option>Усі категорії</option>
+                                    <option>Воїни</option>
+                                    <option>Маги</option>
+                                    <option>Асасини</option>
+                                </select>
+                            </div>
+                            <div class="filter-item">
+                                <select class="glass-select">
+                                    <option>Усі ціни</option>
+                                    <option>< 100 ⭐</option>
+                                    <option>100-200 ⭐</option>
+                                    <option>> 200 ⭐</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="nft-grid">
+                            <div class="nft-card glass-card">
+                                <div class="nft-image">
+                                    <img src="https://i.ibb.co/3mQ3s9Mn/Photoroom-20250819-205326.png" alt="Warrior Dragon">
+                                </div>
+                                <div class="nft-info">
+                                    <h3 class="nft-name">Warrior Dragon</h3>
+                                    <p class="nft-description">Legendary fire-breathing warrior</p>
+                                    <div class="nft-price">150 ⭐</div>
+                                    <div class="nft-rarity legendary">Легендарний</div>
+                                    <button class="glass-button-accent">
+                                        <i data-lucide="shopping-cart"></i>
+                                        <span>Додати в кошик</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Battle Demo Page -->
+        <div class="page" id="battleDemoPage" style="display: none;">
+            <section class="page-header">
+                <div class="container-glass">
+                    <h1 class="page-title">
+                        <span data-translate="battle.title">Демо бою</span>
+                        <span>⚔️</span>
+                    </h1>
+                    <p class="page-subtitle" data-translate="battle.description">
+                        Подивіться, як виглядає бій в NFT Battle Arena
+                    </p>
+                    
+                    <div class="battle-controls">
+                        <button class="glass-button-accent" id="startBattleBtn">
+                            <i data-lucide="play" id="playIcon"></i>
+                            <span id="battleBtnText" data-translate="battle.start">Почати</span>
+                        </button>
+                        
+                        <button class="glass-button-primary" id="resetBattleBtn">
+                            <i data-lucide="rotate-ccw"></i>
+                            <span data-translate="battle.reset">Скинути</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="battle-arena-section">
+                <div class="container-glass">
+                    <!-- Battle UI -->
+                    <div class="battle-arena glass-card-strong">
+                        <!-- HP Bars -->
+                        <div class="battle-hud">
+                            <!-- Player HP -->
+                            <div class="hp-section">
+                                <div class="hp-header">
+                                    <span class="hp-label" data-translate="battle.player_hp">HP Гравця</span>
+                                    <span class="hp-value">
+                                        <span id="playerHP">2000</span>/<span id="maxPlayerHP">2000</span>
+                                    </span>
+                                </div>
+                                <div class="hp-bar">
+                                    <div class="hp-fill" id="playerHPFill" style="width: 100%"></div>
+                                </div>
+                                <div class="energy-bar">
+                                    <div class="energy-fill" id="playerEnergyFill" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Turn Indicator -->
+                            <div class="turn-indicator">
+                                <div class="turn-icon" id="turnIcon">👤</div>
+                                <div class="turn-text" id="turnText" data-translate="battle.player_turn">Хід гравця</div>
+                            </div>
+
+                            <!-- Enemy HP -->
+                            <div class="hp-section">
+                                <div class="hp-header">
+                                    <span class="hp-value">
+                                        <span id="enemyHP">2400</span>/<span id="maxEnemyHP">2400</span>
+                                    </span>
+                                    <span class="hp-label" data-translate="battle.enemy_hp">HP Ворога</span>
+                                </div>
+                                <div class="hp-bar">
+                                    <div class="hp-fill enemy" id="enemyHPFill" style="width: 100%"></div>
+                                </div>
+                                <div class="energy-bar">
+                                    <div class="energy-fill" id="enemyEnergyFill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Characters -->
+                        <div class="battle-characters">
+                            <div class="character player" id="playerCharacter">
+                                <div class="character-sprite">
+                                    <span>🦸‍♂️</span>
+                                </div>
+                                <div class="character-label">Player</div>
+                            </div>
+
+                            <div class="vs-indicator">
+                                <span>⚡</span>
+                                <div class="vs-text">VS</div>
+                            </div>
+
+                            <div class="character enemy" id="enemyCharacter">
+                                <div class="character-sprite">
+                                    <span>👹</span>
+                                </div>
+                                <div class="character-label">Enemy</div>
+                            </div>
+                        </div>
+
+                        <!-- Battle Result Overlay -->
+                        <div class="battle-result" id="battleResult" style="display: none;">
+                            <div class="result-content">
+                                <div class="result-icon" id="resultIcon">🏆</div>
+                                <div class="result-text" id="resultText">ВИ ПЕРЕМОГЛИ!</div>
+                                <button class="glass-button-accent" id="playAgainBtn">
+                                    Грати знову
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Battle Log -->
+                    <div class="battle-log glass-card">
+                        <div class="log-header">
+                            <i data-lucide="info"></i>
+                            <h3 data-translate="battle.battle_log">Лог бою</h3>
+                        </div>
+                        <div class="log-content" id="battleLogContent">
+                            <p class="log-placeholder" data-translate="battle.battle_not_started">
+                                Бій ще не почався...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Demo Info -->
+                    <div class="demo-info glass-card">
+                        <div class="demo-header">
+                            <i data-lucide="info"></i>
+                            <h3 data-translate="battle.demo_info">Це демо версія</h3>
+                        </div>
+                        <p class="demo-description" data-translate="battle.demo_description">
+                            У справжній грі ви зможете контролювати всі дії персонажа, використовувати різні NFT з унікальними здібностями та заробляти BP поінти за перемоги.
+                        </p>
+                        <button class="glass-button-accent play-real-game-btn">
+                            <i data-lucide="play"></i>
+                            <span data-translate="battle.play_real_game">Грати справжню гру</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
 </html>
