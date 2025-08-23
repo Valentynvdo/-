@@ -4,9 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Input } from './ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Search, ShoppingCart, Plus, Star, Shield, Sword, Calendar, Clock, Link, Trash2 } from 'lucide-react';
-import { AnimatedEmoji } from './AnimatedEmoji';
+import { Emoji } from './AnimatedEmoji';
 import { CountdownTimer } from './CountdownTimer';
 import { mockNFTs, mockAccessories, marketLaunchDate } from '../data/mock';
 
@@ -17,7 +16,6 @@ export const Marketplace = ({ currentLang, translations }) => {
   const [priceRange, setPriceRange] = useState('all');
   const [cart, setCart] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
-  const [showListNFT, setShowListNFT] = useState(false);
   const [newNFT, setNewNFT] = useState({
     name: '',
     description: '',
@@ -27,11 +25,11 @@ export const Marketplace = ({ currentLang, translations }) => {
   });
 
   const categories = [
-    { value: 'all', label: 'Усі категорії', icon: '🎯' },
-    { value: 'warrior', label: 'Воїни', icon: '⚔️' },
-    { value: 'mage', label: 'Маги', icon: '🔮' },
-    { value: 'assassin', label: 'Асасини', icon: '🗡️' },
-    { value: 'accessories', label: 'Аксесуари', icon: '💎' }
+    { value: 'all', label: 'Усі категорії' },
+    { value: 'warrior', label: 'Воїни' },
+    { value: 'mage', label: 'Маги' },
+    { value: 'assassin', label: 'Асасини' },
+    { value: 'accessories', label: 'Аксесуари' }
   ];
 
   const rarities = [
@@ -79,7 +77,6 @@ export const Marketplace = ({ currentLang, translations }) => {
   };
 
   const handleConnectTelegram = () => {
-    // Mock connection
     setIsConnected(true);
     alert('Telegram акаунт успішно підключено! (Демо режим)');
   };
@@ -90,42 +87,39 @@ export const Marketplace = ({ currentLang, translations }) => {
       return;
     }
     alert('NFT успішно виставлено на продаж! (Демо режим)');
-    setShowListNFT(false);
     setNewNFT({ name: '', description: '', price: '', image: '', rarity: 'common' });
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-16">
-      <div className="container mx-auto px-6">
+    <div className="min-h-screen bg-black text-white pt-32 pb-16">
+      <div className="container-glass">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-            {t.title}
-            <AnimatedEmoji emoji="🏪" animation="bounce" className="ml-3" />
+        <div className="text-center mb-12 space-y-6">
+          <h1 className="text-display">
+            {t.title} <Emoji emoji="🏪" />
           </h1>
           
           {/* Countdown Timer */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold mb-6 text-[#00FFD1]">
-              {t.coming_soon}
-              <AnimatedEmoji emoji="⏳" animation="pulse" className="ml-2" />
+          <div className="space-y-6">
+            <h2 className="text-title text-blue-400">
+              {t.coming_soon} <Emoji emoji="⏳" />
             </h2>
             <CountdownTimer targetDate={marketLaunchDate} />
           </div>
 
           {/* Connection Status */}
-          <div className="flex justify-center items-center gap-4 mb-8">
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-none border ${isConnected ? 'border-green-500 bg-green-500/20' : 'border-white/20 bg-black/40'}`}>
-              <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
-              <span className="text-sm">
-                {isConnected ? 'Telegram підключено' : 'Telegram не підключено'}
+          <div className="flex justify-center items-center gap-4">
+            <div className={`flex items-center gap-2 px-4 py-3 rounded-2xl border ${isConnected ? 'border-green-500/30 bg-green-500/10' : 'border-white/20 glass-card'}`}>
+              <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-400' : 'bg-red-400'}`}></div>
+              <span className="text-body">
+                {isConnected ? (t.telegram_connected || 'Telegram Connected') : (t.telegram_not_connected || 'Telegram Not Connected')}
               </span>
             </div>
             
             {!isConnected && (
               <Button 
                 onClick={handleConnectTelegram}
-                className="bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold"
+                className="glass-button-accent"
               >
                 <Link className="w-4 h-4 mr-2" />
                 {t.connect_account}
@@ -137,30 +131,29 @@ export const Marketplace = ({ currentLang, translations }) => {
         {/* Marketplace Interface (Disabled) */}
         <div className="relative">
           {/* Disabled Overlay */}
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm z-10 flex items-center justify-center rounded-none">
-            <Card className="bg-black/90 backdrop-blur-md border-white/20 rounded-none text-center max-w-md">
-              <CardHeader>
-                <CardTitle className="text-white flex items-center justify-center">
-                  <Clock className="w-6 h-6 mr-2 text-[#00FFD1]" />
-                  Магазин тимчасово недоступний
+          <div className="absolute inset-0 glass-card-strong z-10 flex items-center justify-center rounded-3xl">
+            <Card className="glass-card-strong text-center max-w-md p-8">
+              <CardHeader className="space-y-4">
+                <CardTitle className="text-headline flex items-center justify-center gap-2">
+                  <Clock className="w-6 h-6 text-blue-400" />
+                  {t.temporarily_unavailable || "Marketplace temporarily unavailable"}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-white/80 mb-4">
-                  Ми працюємо над створенням найкращого досвіду покупки NFT. 
-                  Магазин буде доступний через кілька місяців з усіма функціями!
+              <CardContent className="space-y-6">
+                <p className="text-body">
+                  {t.market_description || "We're working on creating the best NFT shopping experience. The marketplace will be available in a few months with all features!"}
                 </p>
-                <div className="flex flex-col gap-2 text-sm text-white/60">
-                  <div className="flex items-center justify-center gap-2">
-                    <AnimatedEmoji emoji="🛒" animation="bounce" />
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-center gap-2 text-body">
+                    <Emoji emoji="🛒" />
                     Покупка та продаж NFT
                   </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <AnimatedEmoji emoji="💎" animation="pulse" />
+                  <div className="flex items-center justify-center gap-2 text-body">
+                    <Emoji emoji="💎" />
                     Рідкісні аксесуари
                   </div>
-                  <div className="flex items-center justify-center gap-2">
-                    <AnimatedEmoji emoji="🔍" animation="float" />
+                  <div className="flex items-center justify-center gap-2 text-body">
+                    <Emoji emoji="🔍" />
                     Розширений пошук
                   </div>
                 </div>
@@ -169,87 +162,84 @@ export const Marketplace = ({ currentLang, translations }) => {
           </div>
 
           {/* Marketplace UI Preview */}
-          <div className="opacity-30">
-            <Tabs defaultValue="browse" className="w-full mb-8">
-              <TabsList className="grid w-full grid-cols-3 bg-black/40 backdrop-blur-md rounded-none">
-                <TabsTrigger value="browse" className="rounded-none">
+          <div className="opacity-20 space-y-8">
+            <Tabs defaultValue="browse" className="w-full">
+              <TabsList className="grid w-full grid-cols-3 glass-card rounded-2xl p-1">
+                <TabsTrigger value="browse" className="rounded-xl">
                   <Search className="w-4 h-4 mr-2" />
-                  Переглядати
+                  <span className="hidden sm:inline">Переглядати</span>
                 </TabsTrigger>
-                <TabsTrigger value="sell" className="rounded-none" disabled={!isConnected}>
+                <TabsTrigger value="sell" className="rounded-xl" disabled={!isConnected}>
                   <Plus className="w-4 h-4 mr-2" />
-                  Продавати
+                  <span className="hidden sm:inline">Продавати</span>
                 </TabsTrigger>
-                <TabsTrigger value="cart" className="rounded-none">
+                <TabsTrigger value="cart" className="rounded-xl">
                   <ShoppingCart className="w-4 h-4 mr-2" />
-                  Кошик ({cart.length})
+                  <span className="hidden sm:inline">Кошик ({cart.length})</span>
                 </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="browse" className="space-y-6">
+              <TabsContent value="browse" className="space-y-6 mt-8">
                 {/* Filters */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="relative">
-                    <Search className="absolute left-3 top-3 w-4 h-4 text-white/50" />
+                    <Search className="absolute left-3 top-3.5 w-4 h-4 text-white/50" />
                     <Input 
                       placeholder={t.search_placeholder}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white"
+                      className="pl-10 glass-input"
                     />
                   </div>
                   
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white">
+                    <SelectTrigger className="glass-input">
                       <SelectValue placeholder={t.categories} />
                     </SelectTrigger>
-                    <SelectContent className="bg-black/90 backdrop-blur-md border-white/20 rounded-none">
+                    <SelectContent className="glass-card-strong">
                       {categories.map(cat => (
-                        <SelectItem key={cat.value} value={cat.value} className="text-white hover:bg-white/10 rounded-none">
-                          <span className="flex items-center gap-2">
-                            <span>{cat.icon}</span>
-                            <span>{cat.label}</span>
-                          </span>
+                        <SelectItem key={cat.value} value={cat.value} className="text-white hover:bg-white/10 rounded-lg">
+                          {cat.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
 
                   <Select value={priceRange} onValueChange={setPriceRange}>
-                    <SelectTrigger className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white">
+                    <SelectTrigger className="glass-input">
                       <SelectValue placeholder={t.price_range} />
                     </SelectTrigger>
-                    <SelectContent className="bg-black/90 backdrop-blur-md border-white/20 rounded-none">
-                      <SelectItem value="all" className="text-white hover:bg-white/10 rounded-none">Усі ціни</SelectItem>
-                      <SelectItem value="low" className="text-white hover:bg-white/10 rounded-none">&lt; 100 ⭐</SelectItem>
-                      <SelectItem value="mid" className="text-white hover:bg-white/10 rounded-none">100-200 ⭐</SelectItem>
-                      <SelectItem value="high" className="text-white hover:bg-white/10 rounded-none">&gt; 200 ⭐</SelectItem>
+                    <SelectContent className="glass-card-strong">
+                      <SelectItem value="all" className="text-white hover:bg-white/10 rounded-lg">Усі ціни</SelectItem>
+                      <SelectItem value="low" className="text-white hover:bg-white/10 rounded-lg">&lt; 100 ⭐</SelectItem>
+                      <SelectItem value="mid" className="text-white hover:bg-white/10 rounded-lg">100-200 ⭐</SelectItem>
+                      <SelectItem value="high" className="text-white hover:bg-white/10 rounded-lg">&gt; 200 ⭐</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 {/* NFT Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredItems.map((item) => (
-                    <Card key={item.id} className="bg-black/40 backdrop-blur-md border-white/20 rounded-none hover:bg-black/60 transition-all duration-300">
+                <div className="grid-glass grid-glass-4">
+                  {filteredItems.slice(0, 8).map((item) => (
+                    <Card key={item.id} className="glass-card scale-hover">
                       <CardHeader className="p-4">
                         <img 
                           src={item.image} 
                           alt={item.name}
-                          className="w-full h-48 object-cover rounded-none mb-4"
+                          className="w-full h-48 object-cover rounded-2xl mb-4"
                         />
-                        <CardTitle className="text-white text-lg">{item.name}</CardTitle>
-                        <CardDescription className="text-white/70 text-sm">
+                        <CardTitle className="text-headline">{item.name}</CardTitle>
+                        <CardDescription className="text-body">
                           {item.description}
                         </CardDescription>
                       </CardHeader>
-                      <CardContent className="p-4 pt-0">
-                        <div className="flex justify-between items-center mb-4">
-                          <div className="text-[#00FFD1] font-bold text-lg">
+                      <CardContent className="p-4 pt-0 space-y-4">
+                        <div className="flex justify-between items-center">
+                          <div className="text-blue-400 font-bold text-lg">
                             {item.price} {item.currency}
                           </div>
                           {item.rarity && (
-                            <div className={`text-sm px-2 py-1 border rounded-none ${
+                            <div className={`text-sm px-3 py-1 border rounded-xl ${
                               rarities.find(r => r.value === item.rarity)?.color || 'text-white'
                             } border-current`}>
                               {rarities.find(r => r.value === item.rarity)?.label}
@@ -258,7 +248,7 @@ export const Marketplace = ({ currentLang, translations }) => {
                         </div>
                         
                         {item.stats && (
-                          <div className="flex justify-around text-xs mb-4 text-white/70">
+                          <div className="flex justify-around text-xs text-white/70">
                             <div className="flex items-center gap-1">
                               <Sword className="w-3 h-3" />
                               <span>{item.stats.attack}</span>
@@ -276,124 +266,15 @@ export const Marketplace = ({ currentLang, translations }) => {
                         
                         <Button 
                           onClick={() => addToCart(item)}
-                          className="w-full bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold"
+                          className="w-full glass-button-accent"
                         >
                           <ShoppingCart className="w-4 h-4 mr-2" />
-                          Додати в кошик
+                          {t.add_to_cart || "Add to Cart"}
                         </Button>
                       </CardContent>
                     </Card>
                   ))}
                 </div>
-              </TabsContent>
-
-              <TabsContent value="sell">
-                <Card className="bg-black/40 backdrop-blur-md border-white/20 rounded-none">
-                  <CardHeader>
-                    <CardTitle className="text-white">{t.list_nft}</CardTitle>
-                    <CardDescription className="text-white/70">
-                      Виставте свій NFT або аксесуар на продаж
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <Input 
-                      placeholder="Назва NFT"
-                      value={newNFT.name}
-                      onChange={(e) => setNewNFT(prev => ({ ...prev, name: e.target.value }))}
-                      className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white"
-                    />
-                    <Input 
-                      placeholder="Опис"
-                      value={newNFT.description}
-                      onChange={(e) => setNewNFT(prev => ({ ...prev, description: e.target.value }))}
-                      className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white"
-                    />
-                    <Input 
-                      placeholder="Ціна (⭐)"
-                      type="number"
-                      value={newNFT.price}
-                      onChange={(e) => setNewNFT(prev => ({ ...prev, price: e.target.value }))}
-                      className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white"
-                    />
-                    <Input 
-                      placeholder="URL зображення"
-                      value={newNFT.image}
-                      onChange={(e) => setNewNFT(prev => ({ ...prev, image: e.target.value }))}
-                      className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white"
-                    />
-                    <Select value={newNFT.rarity} onValueChange={(value) => setNewNFT(prev => ({ ...prev, rarity: value }))}>
-                      <SelectTrigger className="bg-black/40 backdrop-blur-md border-white/20 rounded-none text-white">
-                        <SelectValue placeholder="Рідкість" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-black/90 backdrop-blur-md border-white/20 rounded-none">
-                        {rarities.map(rarity => (
-                          <SelectItem key={rarity.value} value={rarity.value} className="text-white hover:bg-white/10 rounded-none">
-                            <span className={rarity.color}>{rarity.label}</span>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Button 
-                      onClick={handleListNFT}
-                      className="w-full bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold"
-                    >
-                      Виставити на продаж
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="cart">
-                <Card className="bg-black/40 backdrop-blur-md border-white/20 rounded-none">
-                  <CardHeader>
-                    <CardTitle className="text-white flex items-center">
-                      <ShoppingCart className="w-5 h-5 mr-2" />
-                      {t.cart}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {cart.length === 0 ? (
-                      <p className="text-white/70 text-center py-8">Кошик пустий</p>
-                    ) : (
-                      <>
-                        <div className="space-y-4 mb-6">
-                          {cart.map((item) => (
-                            <div key={item.id} className="flex items-center justify-between p-4 bg-black/20 rounded-none">
-                              <div className="flex items-center gap-4">
-                                <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-none" />
-                                <div>
-                                  <div className="text-white font-semibold">{item.name}</div>
-                                  <div className="text-white/70 text-sm">
-                                    {item.price} ⭐ × {item.quantity}
-                                  </div>
-                                </div>
-                              </div>
-                              <Button 
-                                variant="outline"
-                                size="sm"
-                                onClick={() => removeFromCart(item.id)}
-                                className="border-red-500 text-red-500 hover:bg-red-500/20 rounded-none"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </Button>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="border-t border-white/20 pt-4">
-                          <div className="flex justify-between items-center mb-4">
-                            <span className="text-lg font-semibold text-white">Всього:</span>
-                            <span className="text-lg font-bold text-[#00FFD1]">{getTotalPrice()} ⭐</span>
-                          </div>
-                          <Button 
-                            className="w-full bg-[#00FFD1] text-black hover:bg-[#00FFD1]/80 rounded-none font-bold"
-                          >
-                            Оформити замовлення
-                          </Button>
-                        </div>
-                      </>
-                    )}
-                  </CardContent>
-                </Card>
               </TabsContent>
             </Tabs>
           </div>
