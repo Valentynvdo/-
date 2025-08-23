@@ -515,12 +515,48 @@ const translations = {
             health_restored: "¡Salud restaurada!"
         },
         game_info: {
-            title: "Sobre el Juego NFT Battle Arena",
+            title: "Información del Juego NFT Battle Arena",
             subtitle: "Aprende todo sobre las mecánicas del juego, reglas y oportunidades de ganancias",
             how_to_get_nft: "Cómo Obtener NFT",
             game_rules: "Reglas del Juego",
             roadmap: "Hoja de Ruta",
-            faq: "FAQ"
+            faq: "FAQ",
+            free_nft_title: "NFT de Inicio Gratuito",
+            free_nft_desc: "Cada nuevo jugador recibe su primer luchador NFT absolutamente gratis a través del sistema Airdrop.",
+            cta_title: "¿Listo para probar NFT Battle Arena?",
+            cta_subtitle: "¡Únete a miles de jugadores y comienza tu aventura en el mundo de las batallas NFT ahora mismo!",
+            cta_start_game: "Empezar Juego",
+            cta_demo: "Demo Batalla",
+            how_to_get: {
+                title: "Cómo Obtener NFT",
+                subtitle: "Aprende todas las formas de obtener luchadores NFT únicos y accesorios en NFT Battle Arena",
+                free_nft_title: "NFT de Inicio Gratuito",
+                free_nft_desc: "Cada nuevo jugador recibe su primer luchador NFT absolutamente gratis a través del sistema Airdrop.",
+                purchase_title: "Compra con Telegram Stars",
+                purchase_desc: "NFT únicos adicionales y accesorios se pueden comprar con Telegram Stars en el mercado interno.",
+                rewards_title: "Recompensas por Logros",
+                rewards_desc: "Obtén NFT raros por participar en torneos, alcanzar altas calificaciones y completar tareas especiales."
+            },
+            rules: {
+                title: "Reglas del Juego",
+                subtitle: "Familiarízate con las reglas básicas y la mecánica del juego para un inicio exitoso",
+                start_title: "Inicio del Juego y Primer NFT",
+                start_item_1: "En el primer acceso, el jugador recibe un luchador NFT básico gratuito",
+                start_item_2: "Este guerrero es necesario para las batallas iniciales contra bot y ganar los primeros puntos BP",
+                start_item_3: "El NFT de inicio tiene características básicas que pueden mejorarse",
+                bp_title: "Sistema de Puntos BP",
+                bp_item_1: "Los puntos BP se ganan por victorias en batallas contra bot",
+                bp_item_2: "El jugador puede obtener puntos BP gratuitos diariamente – una vez cada 24 horas",
+                bp_item_3: "Los puntos BP pueden convertirse en recompensas reales a través de accesorios especiales",
+                battle_title: "Sistema de Batalla",
+                battle_item_1: "Cada luchador tiene 2500 HP (jugador) y 2400 HP (bot) para equilibrio",
+                battle_item_2: "Tres tipos de acciones: ataque, defensa, golpe especial",
+                battle_item_3: "La victoria trae puntos BP y experiencia para mejorar al guerrero",
+                economy_title: "Economía del Juego",
+                economy_item_1: "Todos los NFT y accesorios se compran exclusivamente con Telegram Stars",
+                economy_item_2: "Los puntos BP NO se gastan en compras - solo para retiro a través de accesorios",
+                economy_item_3: "Economía transparente - todos los precios y opciones de retiro se muestran honestamente"
+            }
         },
         common: {
             loading: "Cargando...",
