@@ -1,5 +1,6 @@
 import React from 'react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { Globe } from './ui/icons';
 
 const languages = [
   { code: 'ua', name: 'Українська', flag: '🇺🇦' },
