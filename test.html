@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test NFT Battle Arena</title>
+    <style>
+        .page-content { display: block; }
+        .page-content.hidden { display: none !important; }
+        .glass-button-accent {
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Navigation</h1>
+    <button class="glass-button-accent" onclick="changePage('home')">Home</button>
+    <button class="glass-button-accent" onclick="changePage('game_info')">Game Info</button>
+    <button class="glass-button-accent" onclick="changePage('battle_demo')">Battle Demo</button>
+
+    <div id="homePage" class="page-content">
+        <h2>Home Page</h2>
+        <p>This is the home page content.</p>
+    </div>
+
+    <div id="gameInfoPage" class="page-content hidden">
+        <h2>Game Info Page</h2>
+        <p>This is the game info page content.</p>
+    </div>
+
+    <div id="battleDemoPage" class="page-content hidden">
+        <h2>Battle Demo Page</h2>
+        <p>This is the battle demo page content.</p>
+    </div>
+
+    <script>
+        let currentPage = 'home';
+
+        function changePage(page) {
+            console.log('Attempting to change page to:', page);
+            
+            if (currentPage === page) return;
+            
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            console.log('Found pages:', pages.length);
+            pages.forEach(p => {
+                p.classList.add('hidden');
+                console.log('Hidden page:', p.id);
+            });
+            
+            // Show selected page
+            let targetPageId;
+            if (page === 'home') {
+                targetPageId = 'homePage';
+            } else if (page === 'game_info') {
+                targetPageId = 'gameInfoPage';
+            } else if (page === 'battle_demo') {
+                targetPageId = 'battleDemoPage';
+            }
+            
+            const targetPage = document.getElementById(targetPageId);
+            console.log('Looking for page:', targetPageId, 'Found:', targetPage);
+            
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                currentPage = page;
+                console.log('Successfully changed to page:', page);
+            } else {
+                console.error('Page not found:', targetPageId);
+            }
+        }
+    </script>
+</body>
+</html>
